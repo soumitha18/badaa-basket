@@ -1,9 +1,17 @@
 const express = require("express");
-const { registration, login } = require("../Controllers/Controllers");
+const { registration, login, addProduct, getProducts, searchProducts, getAllProducts } = require("../Controllers/Controllers");
 const router = express.Router();
 
 router.post("/login", login)
 
 router.post("/register", registration)
+
+router.post("/addproduct", addProduct)
+
+router.get("/getallproducts", getAllProducts)
+
+router.get("/getproducts", getProducts)
+
+router.get("/searchproduct", searchProducts)
 
 module.exports = router
