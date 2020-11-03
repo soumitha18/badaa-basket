@@ -1,0 +1,17 @@
+.inputDiv {
+    position: relative;
+}
+.navTollFree {
+    position: absolute;
+    top: -30px;
+    right: 20px;
+}
+.searchButton {
+    border: none;
+    background-color: rgb(129, 212, 19) ;
+}
+
+.shopBy {
+    background-color:  rgb(129, 212, 19);
+    color: white;
+}
