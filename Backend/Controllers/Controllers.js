@@ -1,7 +1,9 @@
 const { loginValidation, registerValidation } = require("../Validation/Validation")
 const User = require("../Models/User")
 const Product = require("../Models/Product")
+const Location = require("../Models/Locations")
 const bcrypt = require("bcryptjs");
+const axios = require("axios")
 
 const registration = async (req, res) => {
     const { error } = registerValidation(req.body);
@@ -100,4 +102,25 @@ const searchProducts = async (req, res) => {
     }
 }
 
-module.exports = { registration, login, addProduct, getAllProducts, searchProducts, getProducts }
+const getLocation = async (req, res) => {
+    try {
+        const city = req.query.location
+        const result = { city }
+        let locations = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?country=IN&access_token=pk.eyJ1Ijoic291bWl0aGEiLCJhIjoiY2toMjRhd202MWVnaTJzbnYyZm83aGo2NSJ9.yapH0I3gFXBGmO7Qptnx8A`)
+        result.locations = locations.data["features"].map(item => item.place_name)
+
+        let temp = await Location.findOne({ city })
+
+        if (temp == null) {
+            let locationData = new Location(result)
+            locationData.save()
+                .then(() => null)
+                .catch(() => null)
+        }
+        res.send(temp || result)
+    } catch (err) {
+        res.send(err)
+    }
+}
+
+module.exports = { registration, login, addProduct, getAllProducts, searchProducts, getProducts, getLocation }
