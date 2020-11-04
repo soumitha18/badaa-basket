@@ -1,15 +1,13 @@
 import React from "react";
 import { NavBar } from "./Components/NavBar";
-import { Home } from "./Components/Pages/Home";
 import { Footer } from "./Components/Footer";
+import { Routes } from "./Components/Routes"
 
 function App() {
   return (
     <div>
       <NavBar />
-      <SignInAndSignUP />
-      {/* <Home /> */}
-      {/* <ProductItem /> */}
+      <Routes />
       <Footer />
     </div>
   );

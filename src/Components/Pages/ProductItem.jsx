@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import style from "../styles/productItem.modules.css"
+import { Link } from 'react-router-dom'
 
-export const ProductItem = ({ data }) => {
+export const ProductItem = () => {
+
+    const data = JSON.parse(localStorage.getItem("product"))
     const [size, setSize] = useState(data.size[0])
     const [index, setIndex] = useState(0)
 
@@ -16,10 +18,10 @@ export const ProductItem = ({ data }) => {
 
     return (
         <div className="container">
-            <div className="row text-secondary">
+            <div className="row text-muted">
                 <div className="col-10">
                     <small>
-                        {`Home > ${data.category} > ${data.subCategory} > ${data.brandName} > ${data.productName}`}
+                        <Link to="/" className="text-muted" >Home</Link>{` > ${data.category} > ${data.subCategory} > ${data.brandName} > ${data.productName}`}
                     </small>
                 </div>
                 <div className="col-2">
@@ -45,7 +47,7 @@ export const ProductItem = ({ data }) => {
                     <div>
                         <small className={data.category === "Foodgrains, oils & Masala" ? "text-success" : null}>Foodgrains Oil and Masala</small>
                         <div className="ml-3">
-                            <small id="Rice & rice products" className={data.subCategory === "Rice & rice products" ? "text-success" : null}>Rice & rice products</small><br />
+                            <small id="Rice & rice products" className={data.subCategory === "Rice & Rice Products" ? "text-success" : null}>Rice & rice products</small><br />
                             <small id="Dry fruits" className={data.subCategory === "Dry fruits" ? "text-success" : null}>Dry fruits</small><br />
                             <small id="Masala" className={data.subCategory === "Masala" ? "text-success" : null}>Masala</small><br />
                             <small id="Salt, sugar & Jaggery" className={data.subCategory === "Salt, sugar & Jaggery" ? "text-success" : null}>Salt, sugar and Jaggery</small>
@@ -82,20 +84,28 @@ export const ProductItem = ({ data }) => {
                 <div className="col-5 border-right mt-3">
                     <small className="border-bottom border-dark">{data.brandName}</small>
                     <h5 className="mt-1 mb-3">{data.productName} - {size}</h5>
-                    <small className="text-secondary">MRP.<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[index]}</em> <b className="text-dark">Price: Rs.{(data.mrp[index] - Math.floor(data.mrp[index] / data.offers))}</b> <b className="text-danger">you save : {data.offers}%</b> (including all taxes) </small><br />
+                    <small className="text-muted">MRP.<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[index]}</em> <b className="text-dark">Price: Rs.{(data.mrp[index] - Math.floor(data.mrp[index] / data.offer))}</b> <b className="text-danger">you save : {data.offer}%</b> (including all taxes) </small><br />
                     <span className="px-1 text-light" style={{ background: "#14a043" }}><small>{data.ratings}</small> <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828884.svg" alt="star" width="12px" /></span> {data.reviews} Reviews
                     <div className="mt-3 mb-1">
                         <button className="btn border-success">1</button>
                         <button className="btn btn-success mx-3">ADD TO BASKET</button>
                         <button className="btn border-success">SAVE</button>
                     </div>
-                    <small className="text-secondary">Express: Today 5:00PM - 7:00PM</small>
+                    <small className="text-muted">Express: Today 5:00PM - 7:00PM</small>
                     <div>
                         <small>Pack Size</small>
                         {
                             data.size && data.size.map((item, i) => (
-                                <div key={i} className={`mt-3 p-2 rounded border ${index === i ? style.cards : ""}`} onClick={() => handleClick(i)}>
-                                    {item} <small className="text-secondary ml-5">Rs.{(data.mrp[i] - Math.floor(data.mrp[i] / data.offers))} MRP:<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[i]}</em> <b className="text-danger">{data.offers}% Off</b></small><span className="float-right"><img className={`${index === i ? "bg-success" : ""}`} src="https://www.flaticon.com/svg/static/icons/svg/594/594852.svg" alt="select" width="20px" /></span>
+                                <div key={i} className={`row mt-3 rounded border ${index === i ? "border-success" : null}`} onClick={() => handleClick(i)}>
+                                    <div className="col-3 p-2">
+                                        {item}
+                                    </div>
+                                    <div className="col-7 p-2">
+                                        <small className="text-muted">Rs.{(data.mrp[i] - Math.floor(data.mrp[i] / data.offer))} MRP:<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[i]}</em> <b className="text-danger">{data.offer}% Off</b></small>
+                                    </div>
+                                    <div className="col-2 float-right pl-5 pt-2">
+                                        <img src={index === i ? "https://www.flaticon.com/svg/static/icons/svg/845/845646.svg" : "https://www.flaticon.com/svg/static/icons/svg/594/594852.svg"} alt="select" width={index === i ? "25px" : "20px"} />
+                                    </div>
                                 </div>
                             ))
                         }
@@ -105,12 +115,12 @@ export const ProductItem = ({ data }) => {
             <div className="mt-5">
                 <h3>{data.productName} - {data.brandName}</h3>
                 <hr />
-                <p className="text-secondary">About Product</p>
+                <p className="text-muted">About Product</p>
                 <small>{data.description}</small>
             </div>
             <div className="my-4">
                 <h3>Rating and Reviews</h3>
-                <div className="bg-secondary p-1 text-light">
+                <div className="p-1 text-light" style={{ background: "grey" }}>
                     <img src="https://www.flaticon.com/svg/static/icons/svg/2389/2389220.svg" alt="reviews" width="15px" /> Only customers who purchase this product from bigbasket can rate and review
                 </div>
                 <div className="row">
@@ -127,9 +137,9 @@ export const ProductItem = ({ data }) => {
                         <div className="border">
                             {
                                 data.reviewList && data.reviewList.map((item, i) => (
-                                    <div className="p-5 border">
+                                    <div key={i} className="p-5 border">
                                         <h5>{item.text}HEllow</h5>
-                                        <small className="text-secondary">{item.user}fasdlifjks</small>
+                                        <small className="text-muted">{item.user}fasdlifjks</small>
                                     </div>
                                 ))
                             }

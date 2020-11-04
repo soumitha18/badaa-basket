@@ -1,16 +1,19 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
+const cors = require("cors")
 
 dotenv.config();
 
 const app = express()
 
 const routers = require("./Routes/Routes");
-const products = require("./products")
-const Product = require("./Models/Product");
+// const products = require("./products")
+// const Product = require("./Models/Product");
 
 app.use(express.json())
+
+app.use(cors())
 
 mongoose.connect(process.env.ATLAS_URI, {
     useNewUrlParser: true,

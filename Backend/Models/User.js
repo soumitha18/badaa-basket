@@ -15,10 +15,6 @@ const userSchema = new Schema({
         max: 255,
         min: 6,
     },
-    number: {
-        type: Number,
-        min: 10
-    },
     password: {
         type: String,
         required: true,
