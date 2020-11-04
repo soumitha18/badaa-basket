@@ -1,0 +1,64 @@
+.list {
+    color: grey;
+}
+
+.list:hover {
+   color:green;
+   text-decoration: none;
+  }
+
+  .circleFb{
+      height: 55px;
+      width: 55px;
+      border-radius: 50%;
+      border: 1px solid #223d66;
+      background-color: #223d66;
+      color:white;
+  }
+
+   .circleFb:hover{
+      background-color:white;
+      color: #223d66;
+  }
+
+   .circleP{
+      height: 55px;
+      width: 55px;
+      border-radius: 50%;
+      border: 1px solid #b30c18;
+      background-color: #b30c18;
+      color:white;
+  }
+
+   .circleP:hover{
+       background-color:white;
+      color: #b30c18;
+  }
+
+   .circleT{
+      height: 55px;
+      width: 55px;
+      border-radius: 50%;
+      border: 1px solid #22ecf0;
+      background-color: #22ecf0;
+      color:white;
+  }
+
+   .circleT:hover{
+       background-color:white;
+      color: #22ecf0;
+  }
+
+   .circleI{
+      height: 55px;
+      width: 55px;
+      border-radius: 50%;
+      border: 1px solid  #6988c2;
+      background-color: #6988c2;
+      color:white;
+  }
+
+   .circleI:hover{
+       background-color:white;
+      color: #6988c2;
+  }
