@@ -6,9 +6,10 @@
     top: -30px;
     right: 20px;
 }
+
 .searchButton {
     border: none;
-    background-color: rgb(129, 212, 19) ;
+    background-color: rgb(129, 212, 19) !important;
 }
 
 .shopBy {
