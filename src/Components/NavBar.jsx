@@ -7,7 +7,7 @@ import { useState } from 'react';
 import axios from "axios"
 
 export const NavBar = () => {
-    const [location, setLocation] = useState("mumbai")
+    const [location, setLocation] = useState("")
     const [locations, setLocations] = useState([])
 
     const handleLocation = e => {
@@ -23,7 +23,14 @@ export const NavBar = () => {
                     <img src="https://www.bbassets.com/static/staticContent/bb_logo.png" className="img-fluid" alt="" />
                 </div>
                 <div className="col-7 inputDiv mt-4">
-                    <span className="float-right navTollFree"><small className="mr-3">1860 123 1000</small> <small data-toggle="modal" data-target="#modalConfirmDelete"><img src="https://www.flaticon.com/svg/static/icons/svg/684/684809.svg" alt="location" width="10px" />{location}</small></span>
+                    <span className="float-right navTollFree">
+                        <small className="mr-3">
+                            <img src="https://www.flaticon.com/svg/static/icons/svg/633/633515.svg" alt="call" width="12px" /> 1860 123 1000
+                            </small>
+                        <small data-toggle="modal" data-target="#modalConfirmDelete">
+                            <img src="https://www.flaticon.com/svg/static/icons/svg/684/684809.svg" alt="location" width="12px" />{location || `Mumbai`}
+                        </small>
+                    </span>
                     <div className="input-group mb-3">
                         <input type="text" className="form-control" placeholder="Search for Products.." aria-label="Username" aria-describedby="basic-addon1" />
                         <div className="input-group-prepend ">
@@ -70,11 +77,13 @@ export const NavBar = () => {
                                 <option value="visakhapatnam">Visakhapatnam</option>
                             </select>
                             <div>
-                                <input list="browsers" placeholder="select area" className="w-100 mt-3" />
+                                <input list="browsers" value={location} onChange={e => setLocation(e.target.value)} placeholder="select area" className="w-100 mt-3" />
                                 <datalist id="browsers">
-                                    {
-                                        locations & locations.map((item, i) => <option key={i} value={item}>{item}</option>)
-                                    }
+                                    <option value={locations[0]} />
+                                    <option value={locations[1]} />
+                                    <option value={locations[2]} />
+                                    <option value={locations[3]} />
+                                    <option value={locations[4]} />
                                 </datalist>
                             </div>
                             <div className="text-center mt-3">
