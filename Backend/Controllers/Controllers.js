@@ -2,6 +2,7 @@ const { loginValidation, registerValidation } = require("../Validation/Validatio
 const User = require("../Models/User")
 const Product = require("../Models/Product")
 const Location = require("../Models/Locations")
+const Customer = require("../Models/Customer")
 const bcrypt = require("bcryptjs");
 const axios = require("axios")
 
@@ -123,4 +124,9 @@ const getLocation = async (req, res) => {
     }
 }
 
-module.exports = { registration, login, addProduct, getAllProducts, searchProducts, getProducts, getLocation }
+const addUserDetails = async (req, res) => {
+    const data = req.body
+    res.send(req.body)
+}
+
+module.exports = { registration, login, addProduct, getAllProducts, searchProducts, getProducts, getLocation, addUserDetails }
