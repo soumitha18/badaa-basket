@@ -1,7 +1,16 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../styles/home.modules.css";
+import { ProductCard } from "./ProductCard";
+import axios from 'axios';
 
 export const Home = () => {
+    const [data, setData] = useState([])
+
+useEffect(() => {
+   axios.get('http://localhost:5000/getallproducts')
+   .then(res => setData(res.data))
+   .catch(err=>console.log(err))
+}, [])
   return (
     <div>
       <div className="container-fluid">
@@ -95,6 +104,36 @@ export const Home = () => {
             </div>
           </div>
         </div>
+        
+        <div id="carouselExampleControls" class="carousel slide mt-3" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <div className="row my-3" >
+                        <div className="col-12 d-flex" style={{display: "flex",flexWrap: "wrap"}}>
+                            {data && data.filter((a,i)=> i>=0 && i<4).map(item=> <ProductCard prod={item} />)}
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                <div className="row my-3" >
+                        <div className="col-12 d-flex" style={{display: "flex",flexWrap: "wrap"}}>
+                            {data && data.filter((a,i)=> i>=4 && i<8).map(item=> <ProductCard prod={item} />)}
+                        </div>
+                    </div>
+                </div>
+                {/* <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="..."/>
+                </div> */}
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only text-danger">Next</span>
+            </a>
+            </div>
         <div className="row my-5">
           <div className="col-12">
           <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">

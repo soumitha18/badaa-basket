@@ -1,0 +1,30 @@
+.truck:hover {
+    color: rgb(129, 212, 19);
+}
+
+.addBtn {
+    background-color: #FEE67C;
+    color: GRAY;
+    font-size: 15px;
+    border-radius: 7PX;
+    border: none;
+    height: 35px;
+    margin-top:2px;
+    width: 70px;
+}
+
+.offer {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 90%;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 3px 3px 3px gray;
+    color: rgb(150, 35, 35);
+}
+
+.mainCard:hover {
+    box-shadow:0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.19);
+    transform: scale(1.01);
+}
