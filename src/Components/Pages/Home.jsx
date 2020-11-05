@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
 import "../styles/home.modules.css";
 import { ProductCard } from "./ProductCard";
-import axios from 'axios';
+import {useDispatch,useSelector} from 'react-redux'
 import { Link } from "react-router-dom";
+import { getAllProduct } from "../../Redux/ProductReducer/action";
 
 export const Home = () => {
     const [data, setData] = useState([])
+    const dispatch = useDispatch()
+    const product = useSelector(state => state.product.productData)
+    console.log(data)
+    console.log(product, "prod")
+    useEffect(() => {
+        dispatch(getAllProduct())
+    }, [])
 
     useEffect(() => {
-        axios.get('http://localhost:5000/getallproducts')
-            .then(res => setData(res.data))
-            .catch(err => console.log(err))
-    }, [])
+        setData(product)
+    }, [product])
+
     return (
         <div>
             <div className="container-fluid">
