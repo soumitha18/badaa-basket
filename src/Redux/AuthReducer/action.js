@@ -1,22 +1,25 @@
 import axios from "axios";
 import {
-  LOGINFAILURE,
-  LOGINREQUEST,
-  LOGINSUCCESS,
-  SIGNUPREQUEST,
-  SIGNUPFAILURE,
-  SIGNUPSUCCESS,
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  SIGNUP_REQUEST,
+  SIGNUP_FAILURE,
+  SIGNUP_SUCCESS,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
+  AUTH_REQUEST
 } from "./actionTypes";
 
 export const loginRequest = () => ({
-  type: LOGINREQUEST,
+  type: LOGIN_REQUEST,
 });
 export const loginFailure = (payload) => ({
-  type: LOGINFAILURE,
+  type: LOGIN_FAILURE,
   payload,
 });
 export const loginSuccess = (payload) => ({
-  type: LOGINSUCCESS,
+  type: LOGIN_SUCCESS,
   payload,
 });
 
@@ -29,14 +32,14 @@ export const login = (payload) => (dispatch) => {
 };
 
 export const signUpRequest = () => ({
-  type: SIGNUPREQUEST,
+  type: SIGNUP_REQUEST,
 });
 export const signUpFailure = (payload) => ({
-  type: SIGNUPFAILURE,
+  type: SIGNUP_FAILURE,
   payload,
 });
 export const signUpSuccess = (payload) => ({
-  type: SIGNUPSUCCESS,
+  type: SIGNUP_SUCCESS,
   payload,
 });
 
@@ -47,3 +50,24 @@ export const signUp = (payload) => (dispatch) => {
     .then((res) => dispatch(signUpSuccess(res.data["name"])))
     .catch((err) => dispatch(signUpFailure(err.response.data)));
 };
+
+export const authRequest = () => ({
+  type: AUTH_REQUEST
+})
+
+export const authFailure = (payload) => ({
+  type: AUTH_FAILURE,
+  payload
+})
+
+export const authSuccess = (payload) => ({
+  type: AUTH_SUCCESS,
+  payload
+})
+
+export const auth = (payload) => (dispatch) => {
+  dispatch(authRequest())
+  axios.post("http://localhost:5000/adduserdetails", payload)
+    .then(res => dispatch(authSuccess(res.data["name"])))
+    .catch(err => dispatch(authFailure(err.response.data)))
+}
