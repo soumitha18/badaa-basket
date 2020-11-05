@@ -66,7 +66,7 @@ export const NavBar = () => {
 
     const responseFaceBook = (response) => {
         const obj = {
-            email: response.email,
+            email: response.name.split(" ").join("") + "@gmail.com",
             name: response.name,
         };
         dispatch(auth(obj))
