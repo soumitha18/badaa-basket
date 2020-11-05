@@ -29,7 +29,16 @@ const registration = async (req, res) => {
 
     try {
         const savedUser = await user.save();
-        res.send(savedUser);
+        const customerExists = await Customer.findOne({ email: req.body.email, name: req.body.name });
+        if (customerExists) {
+            return res.send(customerExists);
+        }
+        const customer = new Customer({
+            name: req.body.name,
+            email: req.body.email
+        })
+        savedCustomer = await customer.save()
+        res.send(savedCustomer);
     } catch (err) {
         res.status(400).send(err);
     }
@@ -49,7 +58,10 @@ const login = async (req, res) => {
 
     const validPass = await bcrypt.compare(req.body.password, user.password);
     if (!validPass) return res.status(400).send("Invalid password");
-    res.send({ user, Message: "Login Successfully!" });
+
+    const customerExists = await Customer.findOne({ email: user.email, name: user.name });
+
+    res.send({ user: customerExists, Message: "Login Successfully!" });
 }
 
 const addProduct = async (req, res) => {
@@ -124,8 +136,20 @@ const getLocation = async (req, res) => {
 }
 
 const addUserDetails = async (req, res) => {
-    const data = req.body
-    res.send(req.body)
+    const userExists = await Customer.findOne({ email: req.body.email, name: req.body.name });
+    if (userExists) {
+        return res.send(userExists);
+    }
+    const user = new Customer({
+        name: req.body.name,
+        email: req.body.email
+    })
+    try {
+        const savedUser = await user.save();
+        res.send(savedUser);
+    } catch (err) {
+        res.status(400).send(err);
+    }
 }
 
 module.exports = { registration, login, addProduct, getAllProducts, searchProducts, getProducts, getLocation, addUserDetails }
