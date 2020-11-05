@@ -93,7 +93,7 @@ const searchProducts = async (req, res) => {
 
         let products = await Product.find()
 
-        let result = products.filter(item => item.name.toLowerCase().includes(name))
+        let result = products.filter(item => item.productName.toLowerCase().includes(name))
 
         res.send(result)
     }
