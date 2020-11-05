@@ -5,38 +5,36 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
 import { Link, useHistory } from "react-router-dom";
-import { login, signUp } from "../Redux/AuthReducer/action";
+import { auth, login, signUp } from "../Redux/AuthReducer/action";
+import { getSearchProduct } from "../Redux/ProductReducer/action"
+import { getLocation } from "../Redux/LocationReducer/action"
+import { SearchProductCard } from "./Pages/SearchProductCard";
 
 export const NavBar = () => {
     const [location, setLocation] = useState("");
-    const [locations, setLocations] = useState([]);
-    let [userName, setUserName] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    let [err, setErr] = useState("");
-    const dispatch = useDispatch();
-    const isAuth = useSelector((state) => state.auth.isAuth);
-    userName = useSelector((state) => state.auth.userName);
-    err = useSelector((state) => state.auth.error);
+    const [password, setPassword] = useState("")
     const [search, setSearch] = useState("")
-    const throttledVal = useThrottle(search, 1000)
-    const [data, setData] = useState([])
-    const history = useHistory()
     const [status, setStatus] = useState(true)
+
+    const dispatch = useDispatch();
+    const history = useHistory()
+
+    const locations = useSelector(state => state.location.locations)
+    const isAuth = useSelector((state) => state.auth.isAuth);
+    const userName = useSelector((state) => state.auth.userName);
+    const err = useSelector((state) => state.auth.error);
+    const data = useSelector(state => state.product.searchData)
+
+    const throttledVal = useThrottle(search, 500)
 
     useEffect(() => {
         if (search !== "") {
-            axios.get(`http://localhost:5000/searchproduct?name=${search}`)
-                .then(res => {
-                    setStatus(true)
-                    setData(res.data)
-                })
-                .catch(err => console.log(err.response.data))
+            dispatch(getSearchProduct(search))
         }
     }, [throttledVal])
 
@@ -44,7 +42,16 @@ export const NavBar = () => {
         if (search === "") {
             setStatus(false)
         }
+        else {
+            setStatus(true)
+        }
     }, [search])
+
+    useEffect(() => {
+        if (isAuth) {
+            empty();
+        }
+    }, [isAuth]);
 
     const handleClick = (item) => {
         localStorage.setItem("product", JSON.stringify(item))
@@ -54,10 +61,7 @@ export const NavBar = () => {
     }
 
     const handleLocation = (e) => {
-        axios
-            .get(`http://localhost:5000/getlocation?location=${e.target.value}`)
-            .then((res) => setLocations(res.data.locations))
-            .catch((err) => console.log(err.response.data));
+        dispatch(getLocation(e.target.value))
     };
 
     const responseFaceBook = (response) => {
@@ -65,10 +69,7 @@ export const NavBar = () => {
             email: response.email,
             name: response.name,
         };
-        axios
-            .post(`http://localhost:5000/adduserdetails`, obj)
-            .then((res) => setUserName(res.data.name))
-            .catch((err) => setErr(err.response.data));
+        dispatch(auth(obj))
     };
 
     const responseGoogle = (response) => {
@@ -76,22 +77,13 @@ export const NavBar = () => {
             email: response.profileObj.email,
             name: response.profileObj.name,
         };
-        axios
-            .post(`http://localhost:5000/adduserdetails`, obj)
-            .then((res) => setUserName(res.data.name))
-            .catch((err) => setErr(err.response.data));
+        dispatch(auth(obj))
     };
 
     const handleLogin = () => {
         const obj = { email, password };
         dispatch(login(obj));
     };
-
-    useEffect(() => {
-        if (isAuth) {
-            empty();
-        }
-    }, [isAuth]);
 
     const handleRegister = () => {
         const obj = { name, email, password };
@@ -102,7 +94,6 @@ export const NavBar = () => {
         setName("");
         setEmail("");
         setPassword("");
-        setErr("");
     };
 
     return (
@@ -163,34 +154,7 @@ export const NavBar = () => {
                             <div className="position-absolute pr-2 text-left" style={{ zIndex: "10", width: "100%", height: "330px", overflow: "scroll", display: status ? "block" : "none" }}>
                                 {
                                     data && data.map((item, i) => (
-                                        <div className="card p-2" key={i}>
-                                            <div className="row">
-                                                <div className="col-1">
-                                                    <img src={item.imageUrl} alt={item.productName} width="40px" />
-                                                </div>
-                                                <div className="col-4" onClick={() => handleClick(item)}>
-                                                    <small className="text-muted">{item.brandName}<br />
-                                                        <b>{item.productName}</b></small>
-                                                </div>
-                                                <div className="col-2 p-0">
-                                                    <small><b>{item.size[0]}</b></small>
-                                                </div>
-                                                <div className="col-1 p-0">
-                                                    <small><b>{item.mrp[0]}/-</b></small>
-                                                </div>
-                                                <div className="col-2 px-1 pt-1">
-                                                    <div className="input-group flex-nowrap">
-                                                        <div className="input-group-prepend">
-                                                            <span className="input-group-text" id="addon-wrapping"><samll className="text-muted">Qty</samll></span>
-                                                        </div>
-                                                        <input type="text" className="form-control" />
-                                                    </div>
-                                                </div>
-                                                <div className="col-2 px-1">
-                                                    <button className="btn btn-success py-2 px-4">ADD</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <SearchProductCard item={item} i={i} handleClick={handleClick} />
                                     ))
                                 }
                             </div>
