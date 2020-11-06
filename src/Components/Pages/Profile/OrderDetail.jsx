@@ -2,11 +2,14 @@ import React from 'react'
 import "../../styles/ProfileDetail.modules.css";
 
 export default function OrderDetail() {
+
+    let user = JSON.parse(localStorage.getItem("userProfile"))
+
     return (
         <div>
-            <div className="container">
+            <div className="container my-3">
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-3"><small>
                         <h6 className="border-bottom mt-1" style={{ textDecoration: "underline", textDecorationColor: "#86d615", textDecorationThickness: "2px" }}>PERSONAL DETAILS</h6>
                         <div className="mt-1 text-muted" style={{ display: "flex", flexDirection: "column" }}>
                             <span className="my-2">Edit Profile</span>
@@ -31,6 +34,7 @@ export default function OrderDetail() {
                             <div className="my-3">Alerts & Notification</div>
                             <div className="my-3">Spend Trends</div>
                         </div>
+                    </small>
                     </div>
                     <div className="col-9 ">
                         <div className="row border-left d-flex">
@@ -43,6 +47,9 @@ export default function OrderDetail() {
                             <div className="p-2">
                                 <button type="button" className="btn" style={{ cursor: "no-drop", backgroundColor: "#86d615", width: "200px" }}>PAY NOW</button>
                             </div>
+                        </div>
+                        <div className="my-3 text-center" >
+                            <small>{user && user.order.length === 0 ? "No Orders" : null}</small>
                         </div>
                     </div>
                 </div>

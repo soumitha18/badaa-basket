@@ -92,6 +92,10 @@ export const NavBar = () => {
         }
     }, [isAuth]);
 
+    useEffect(() => {
+        localStorage.setItem("userProfile", JSON.stringify(user))
+    }, [user])
+
     const handleClick = (item) => {
         localStorage.setItem("product", JSON.stringify(item))
         history.push(`/product-item/${item.productName}`)
@@ -229,13 +233,13 @@ export const NavBar = () => {
                 </div>
                 <div className="col-2">
                     <div className="text-center">
-                        <small data-toggle="modal" data-target="#modalLRForm">
+                        <small data-toggle={isAuth ? null : "modal"} data-target={isAuth ? null : "#modalLRForm"}>
                             <img
                                 src="https://www.flaticon.com/svg/static/icons/svg/167/167123.svg"
                                 alt="User"
                                 width="15px"
                             />{" "}
-                            {user.name || " login | sign up"}
+                            {isAuth ? <Link to="/my-account/profile" className="text-dark">{user.name}</Link> : " login | sign up"}
                         </small>
                     </div>
                     <div
@@ -443,7 +447,7 @@ export const NavBar = () => {
                                         <div className="text-center text-secondary">
                                             OR sign with:
                     </div>
-                                        <div className="text-center mt-2">
+                                        <div className="text-center mt-2" data-dismiss="modal">
                                             <GoogleLogin
                                                 clientId="25593677194-7vebfmo92m96cc9pg0rcjhgdjm5aq04p.apps.googleusercontent.com"
                                                 buttonText="SIGN WITH GOOGLE"
