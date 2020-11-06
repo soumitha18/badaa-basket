@@ -151,7 +151,7 @@ export const NavBar = () => {
                                     </span>
                                 </div>
                             </div>
-                            <div className="position-absolute pr-2 text-left" style={{ zIndex: "10", width: "100%", height: "330px", overflow: "scroll", display: status ? "block" : "none" }}>
+                            <div className="position-absolute pr-2 text-left" style={{ zIndex: "10", width: "100%", minHeight: "0px",maxHeight:"330px", overflowY: "scroll", display: status ? "block" : "none" }}>
                                 {
                                     data && data.map((item, i) => (
                                         <SearchProductCard item={item} i={i} handleClick={handleClick} />

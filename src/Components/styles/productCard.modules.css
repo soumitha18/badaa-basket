@@ -23,7 +23,9 @@
     box-shadow: 3px 3px 3px gray;
     color: rgb(150, 35, 35);
 }
-
+.mainCard {
+    
+}
 .mainCard:hover {
     box-shadow:0 4px 8px 0 rgba(131, 131, 131, 0.2), 0 6px 20px 0 rgba(131, 131, 131, 0.19);
     transform: scale(1.01);

@@ -115,17 +115,15 @@ export const Home = () => {
                 <div id="carouselExampleControls" className="carousel slide mt-3" data-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <div className="row my-3" >
-                                <div className="col-12 d-flex" style={{ display: "flex", flexWrap: "wrap" }}>
-                                    {data && data.filter((a, i) => i >= 0 && i < 4).map((item, i) => <ProductCard key={i} prod={item} />)}
-                                </div>
+                            <div className="row my-3 px-2 d-flex flex-wrap" >
+                                
+                                {data && data.filter((a, i) => i >= 0 && i < 4).map((item, i) => <div className="col-3"><ProductCard key={i} prod={item} /></div>)}
+                                
                             </div>
                         </div>
                         <div className="carousel-item">
-                            <div className="row my-3" >
-                                <div className="col-12 d-flex" style={{ display: "flex", flexWrap: "wrap" }}>
-                                    {data && data.filter((a, i) => i >= 4 && i < 8).map((item, i) => <ProductCard key={i} prod={item} />)}
-                                </div>
+                            <div className="row my-3 px-2 d-flex flex-wrap" >
+                                    {data && data.filter((a, i) => i >= 4 && i < 8).map((item, i) => <div className="col-3"><ProductCard key={i} prod={item} /></div>)}
                             </div>
                         </div>
                         {/* <div className="carousel-item">
