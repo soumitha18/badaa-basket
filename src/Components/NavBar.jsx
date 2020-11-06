@@ -65,7 +65,7 @@ export const NavBar = () => {
 
     const locations = useSelector(state => state.location.locations)
     const isAuth = useSelector((state) => state.auth.isAuth);
-    const userName = useSelector((state) => state.auth.userName);
+    const user = useSelector((state) => state.auth.user);
     const err = useSelector((state) => state.auth.error);
     const data = useSelector(state => state.product.searchData)
 
@@ -235,7 +235,7 @@ export const NavBar = () => {
                                 alt="User"
                                 width="15px"
                             />{" "}
-                            {userName || " login | sign up"}
+                            {user.name || " login | sign up"}
                         </small>
                     </div>
                     <div

@@ -11,7 +11,7 @@ import {
 } from "./actionTypes";
 
 export const initState = {
-  userName: "",
+  user: [],
   error: "",
   isAuth: false
 }
@@ -22,7 +22,7 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         error: "",
-        userName: ""
+        user: ""
       };
     case LOGIN_FAILURE:
       return {
@@ -33,14 +33,14 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         error: "",
-        userName: action.payload,
+        user: action.payload,
         isAuth: true
       };
     case SIGNUP_REQUEST:
       return {
         ...state,
         error: "",
-        userName: ""
+        user: ""
       };
     case SIGNUP_FAILURE:
       return {
@@ -51,14 +51,14 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         error: "",
-        userName: action.payload,
+        user: action.payload,
         isAuth: true
       };
     case AUTH_REQUEST:
       return {
         ...state,
         error: "",
-        userName: ""
+        user: ""
       }
     case AUTH_FAILURE:
       return {
@@ -69,7 +69,7 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         error: "",
-        userName: action.payload,
+        user: action.payload,
         isAuth: true
       }
     default:
