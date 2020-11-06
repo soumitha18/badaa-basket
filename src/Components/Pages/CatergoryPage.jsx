@@ -4,14 +4,16 @@ import { Link } from 'react-router-dom'
 import { ProductCard } from './ProductCard'
 
 export const CategoryPage = () => {
-    const data = JSON.parse(localStorage.getItem("product"))
+    const data = JSON.parse(localStorage.getItem("data"))
+    const title = JSON.parse(localStorage.getItem("title"))
     const [product, setProduct] = useState([])
 
     useEffect(() => {
-        Axios.get(`http://localhost:5000/getproducts`)
+        console.log(title, data)
+        Axios.get(`http://localhost:5000/getproducts?${title}=${data}`)
             .then(res => setProduct(res.data))
             .catch(err => console.log(err))
-    }, [])
+    }, [title, data])
 
     const handleFetch = e => {
         console.log(e.target.id)
@@ -22,7 +24,7 @@ export const CategoryPage = () => {
             <div className="row text-muted">
                 <div className="col-12">
                     <small>
-                        <Link to="/" className="text-muted" >Home</Link>{` > ${data.category} > ${data.subCategory}`}
+                        <Link to="/" className="text-muted" >Home</Link>{` > ${title} > ${data}`}
                     </small>
                 </div>
             </div>
@@ -97,21 +99,21 @@ export const CategoryPage = () => {
                         <span className="border-bottom border-success">Category</span>
                     </div>
                     <div>
-                        <small className={data.category === "Fruits and Vegetables" ? "text-success" : null}>Fruits and Vegetables</small>
+                        <small>Fruits and Vegetables</small>
                         <div className="ml-3">
-                            <small id="Fresh vegetables" className={data.subCategory === "Fresh vegetables" ? "text-success" : null}>Fresh vegetable</small><br />
-                            <small id="Herbs and seasonings" className={data.subCategory === "Herbs and seasonings" ? "text-success" : null}>Herbs and seasonings</small><br />
-                            <small id="Fresh fruits" className={data.subCategory === "Fresh fruits" ? "text-success" : null}>Fresh fruits</small><br />
-                            <small id="Organic Fruits and Vegetable" className={data.subCategory === "Organic Fruits and Vegetable" ? "text-success" : null}>Organic fruits and vegetable</small>
+                            <small id="Fresh vegetables">Fresh vegetable</small><br />
+                            <small id="Herbs and seasonings">Herbs and seasonings</small><br />
+                            <small id="Fresh fruits">Fresh fruits</small><br />
+                            <small id="Organic Fruits and Vegetable">Organic fruits and vegetable</small>
                         </div>
                     </div>
                     <div>
-                        <small className={data.category === "Foodgrains, oils & Masala" ? "text-success" : null}>Foodgrains Oil and Masala</small>
+                        <small>Foodgrains Oil and Masala</small>
                         <div className="ml-3">
-                            <small id="Rice & rice products" className={data.subCategory === "Rice & Rice Products" ? "text-success" : null}>Rice & rice products</small><br />
-                            <small id="Dry fruits" className={data.subCategory === "Dry fruits" ? "text-success" : null}>Dry fruits</small><br />
-                            <small id="Masala" className={data.subCategory === "Masala" ? "text-success" : null}>Masala</small><br />
-                            <small id="Salt, sugar & Jaggery" className={data.subCategory === "Salt, sugar & Jaggery" ? "text-success" : null}>Salt, sugar and Jaggery</small>
+                            <small id="Rice & rice products">Rice & rice products</small><br />
+                            <small id="Dry fruits">Dry fruits</small><br />
+                            <small id="Masala">Masala</small><br />
+                            <small id="Salt, sugar & Jaggery">Salt, sugar and Jaggery</small>
                         </div>
                     </div>
                     <div>
@@ -136,12 +138,12 @@ export const CategoryPage = () => {
                         <span className="border-bottom border-success">Brand</span>
                     </div>
                     <div>
-                        <small className="text-success">{data.brandName}</small>
+                        <small className="text-success">{data}</small>
                     </div>
                 </div>
-                <div className="col-10 d-flex flex-wrap">
+                <div className="col-10">
                     <div className="row">
-                        {product && product.map((item, i) => <div className="col-3 px-1  m-0"><ProductCard key={i} prod={item} /></div>)}
+                        {product && product.map((item, i) => <div className="col-3 px-1 m-0"><ProductCard key={i} prod={item} /></div>)}
                     </div>
                 </div>
             </div>

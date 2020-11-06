@@ -32,19 +32,19 @@
     border: 1px solid whitesmoke;
 }
 
-#category{
+.category{
     background-color: white;
     padding: 0%;
     margin: 0%;
 }
 
-#subCategory{
+.subCategory{
     background-color: whitesmoke;
     padding: 0%;
     margin: 0%;
 }
 
-#category>p, #subCategory>div>p , #product > div> p{
+.category>p, .subCategory>div>p , .product > div> p{
     padding: 0% 2% 0% 2%;
     margin: 0%;
     margin-left: 2%;
@@ -52,22 +52,22 @@
     border:1px solid whitesmoke;
 }
 
-#subCategory >div> p, #product > div> p{
+.subCategory >div> p, .product > div> p{
     border:0px;
 }
 
-#product > div> p:hover{
+.product > div> p:hover{
     color: green;
     font-weight: bolder;
 }
 
-#subCategory >div> p:hover{
+.subCategory >div> p:hover{
     border:0px;
     font-weight: bold;
     background-color: white;
 }
 
-#category>p:hover {
+.category>p:hover {
     background-color:whitesmoke;
     font-weight: bold;
 }

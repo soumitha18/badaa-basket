@@ -12,6 +12,7 @@ export const Routes = () => {
             <Route path="/bb-star" component={BBStar} />
             <Route path="/category" component={CategoryPage} />
             <Route path="/product-item/:name" component={ProductItem} />
+            <Route path="/product/:name" component={CategoryPage} />
         </div>
     )
 }

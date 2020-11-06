@@ -12,6 +12,7 @@ import { auth, login, signUp } from "../Redux/AuthReducer/action";
 import { getSearchProduct } from "../Redux/ProductReducer/action"
 import { getLocation } from "../Redux/LocationReducer/action"
 import { SearchProductCard } from "./Pages/SearchProductCard";
+import Axios from "axios";
 
 export const NavBar = () => {
     const [location, setLocation] = useState("");
@@ -42,7 +43,7 @@ export const NavBar = () => {
     }
     const productObj = {
         FV: [
-            ["Potato, Onion & Tomato", "Cucumber & Capsicum", "Beans, Brinjals & Okra", "Gourd, Pumpkin, Drumstick", "Leafy Vegetables", "Root Vegetables", "Cabbage & Cauliflower", "Specialty"],
+            ["Potato", "Onion", "Tomato", "Cucumber & Capsicum", "Beans, Brinjals & Okra", "Gourd, Pumpkin, Drumstick", "Leafy Vegetables", "Root Vegetables", "Cabbage & Cauliflower", "Specialty"],
             ["Lemon, Ginger & Garlic", "Indian & Exotic Herbs"],
             ["Mangoes", "Kiwi, Melon, Citrus Fruit", "Seasonal Fruits", "Banana, Sapota & Papaya", "Apples & Pomegranate"],
             ["Organic Vegetables", "Organic Fruits"],
@@ -96,6 +97,24 @@ export const NavBar = () => {
         history.push(`/product-item/${item.productName}`)
         setStatus(false)
         setSearch("")
+    }
+
+    const handleClickCategory = (e) => {
+        const [data, title] = e.target.id.split(":")
+        if (title === "productName") {
+            Axios.get(`http://localhost:5000/getproducts?${title}=${data}`)
+                .then(res => {
+                    localStorage.setItem("product", JSON.stringify(res.data[0]))
+                    history.push(`/product-item/${data}`)
+                })
+                .catch(err => console.log(err))
+        }
+        else {
+            localStorage.setItem("title", JSON.stringify(title))
+            localStorage.setItem("data", JSON.stringify(data))
+            const path = `${title}/${data}`
+            history.push(`/product/${path}`)
+        }
     }
 
     const handleLocation = (e) => {
@@ -189,7 +208,7 @@ export const NavBar = () => {
                                     </span>
                                 </div>
                             </div>
-                            <div className="position-absolute pr-2 text-left" style={{ zIndex: "10", width: "100%", minHeight: "0px",maxHeight:"330px", overflowY: "scroll", display: status ? "block" : "none" }}>
+                            <div className="position-absolute pr-2 text-left" style={{ zIndex: "10", width: "100%", minHeight: "0px", maxHeight: "330px", overflowY: "scroll", display: status ? "block" : "none" }}>
                                 {
                                     data && data.map((item, i) => (
                                         <SearchProductCard item={item} i={i} handleClick={handleClick} />
@@ -238,33 +257,33 @@ export const NavBar = () => {
             <div className="row">
                 <div className="col-2 shopBy p-1  hoverDiv">
                     <small><b>SHOP BY CATEGORY</b></small> <i className="fas fa-caret-down pl-2 float-right"></i>
-                    <div className="innerHoverDiv">
+                    <div className="innerHoverDiv" onClick={(e) => handleClickCategory(e)}>
                         <div style={{ display: 'flex', flexDirection: "row" }}>
-                            <div id="category">
-                                <p onMouseOver={() => setCategoryState("FV")} style={{ background: categoryState === "FV" ? "whitesmoke" : null }}><small>Fruits & Vegetables</small></p>
-                                <p onMouseOver={() => setCategoryState("FOM")} style={{ background: categoryState === "FOM" ? "whitesmoke" : null }}><small>Foodgrains, Oil & Masala</small></p>
-                                <p onMouseOver={() => setCategoryState("BCB")} style={{ background: categoryState === "BCB" ? "whitesmoke" : null }}><small>Bakery, Cakes & Dairy</small></p>
-                                <p onMouseOver={() => setCategoryState("B")} style={{ background: categoryState === "B" ? "whitesmoke" : null }}><small>Beverages</small></p>
-                                <p onMouseOver={() => setCategoryState("SB")} style={{ background: categoryState === "SB" ? "whitesmoke" : null }}><small>Snacks & Branded Foods</small></p>
-                                <p onMouseOver={() => setCategoryState("BH")} style={{ background: categoryState === "BH" ? "whitesmoke" : null }}><small>Beauty & Hygiene</small></p>
-                                <p onMouseOver={() => setCategoryState("CH")} style={{ background: categoryState === "CH" ? "whitesmoke" : null }}><small>Cleaning & Household</small></p>
-                                <p onMouseOver={() => setCategoryState("KGP")} style={{ background: categoryState === "KGP" ? "whitesmoke" : null }}><small>Kitchen, Garden & Pets</small></p>
-                                <p onMouseOver={() => setCategoryState("EMF")} style={{ background: categoryState === "EMF" ? "whitesmoke" : null }}><small>Eggs, Meat & Fish</small></p>
-                                <p onMouseOver={() => setCategoryState("GW")} style={{ background: categoryState === "GW" ? "whitesmoke" : null }}><small>Gourmet & World Food</small></p>
-                                <p onMouseOver={() => setCategoryState("BC")} style={{ background: categoryState === "BC" ? "whitesmoke" : null }}><small>Baby Care</small>.</p>
-                                <p onMouseOver={() => setCategoryState("ALL")} style={{ background: categoryState === "ALL" ? "whitesmoke" : null }}><small>View All</small></p>
+                            <div class="category">
+                                <p onMouseOver={() => setCategoryState("FV")} style={{ background: categoryState === "FV" ? "whitesmoke" : null }}><small id="Fruits and vegetables:category">Fruits & Vegetables</small></p>
+                                <p onMouseOver={() => setCategoryState("FOM")} style={{ background: categoryState === "FOM" ? "whitesmoke" : null }}><small id="Foodgrains, Oils and Masala:category">Foodgrains, Oil & Masala</small></p>
+                                <p onMouseOver={() => setCategoryState("BCB")} style={{ background: categoryState === "BCB" ? "whitesmoke" : null }}><small id="Bakery, Cakes & Dairy:category">Bakery, Cakes & Dairy</small></p>
+                                <p onMouseOver={() => setCategoryState("B")} style={{ background: categoryState === "B" ? "whitesmoke" : null }}><small id="Beverages:category">Beverages</small></p>
+                                <p onMouseOver={() => setCategoryState("SB")} style={{ background: categoryState === "SB" ? "whitesmoke" : null }}><small id="Snacks & Branded Foods:category">Snacks & Branded Foods</small></p>
+                                <p onMouseOver={() => setCategoryState("BH")} style={{ background: categoryState === "BH" ? "whitesmoke" : null }}><small id="Beauty & Hygiene:category">Beauty & Hygiene</small></p>
+                                <p onMouseOver={() => setCategoryState("CH")} style={{ background: categoryState === "CH" ? "whitesmoke" : null }}><small id="Cleaning & Household:category">Cleaning & Household</small></p>
+                                <p onMouseOver={() => setCategoryState("KGP")} style={{ background: categoryState === "KGP" ? "whitesmoke" : null }}><small id="Kitchen, Garden & Pets:category">Kitchen, Garden & Pets</small></p>
+                                <p onMouseOver={() => setCategoryState("EMF")} style={{ background: categoryState === "EMF" ? "whitesmoke" : null }}><small id="Eggs, Meat & Fish:category">Eggs, Meat & Fish</small></p>
+                                <p onMouseOver={() => setCategoryState("GW")} style={{ background: categoryState === "GW" ? "whitesmoke" : null }}><small id="Gourmet & World Food:category">Gourmet & World Food</small></p>
+                                <p onMouseOver={() => setCategoryState("BC")} style={{ background: categoryState === "BC" ? "whitesmoke" : null }}><small id="Baby Care:category">Baby Care</small></p>
+                                <p onMouseOver={() => setCategoryState("ALL")} style={{ background: categoryState === "ALL" ? "whitesmoke" : null }}><small id="all">View All</small></p>
                             </div>
-                            <div id="subCategory">
+                            <div class="subCategory">
                                 <div>
                                     {
-                                        subCategoryObj[categoryState] && subCategoryObj[categoryState].map((item, i) => <p onMouseOver={() => setSubCategoryState(i)} style={{ background: subCategoryState === i ? "white" : null }} key={i}><small>{item}</small></p>)
+                                        subCategoryObj[categoryState] && subCategoryObj[categoryState].map((item, i) => <p onMouseOver={() => setSubCategoryState(i)} style={{ background: subCategoryState === i ? "white" : null }} key={i}><small id={`${item}:subCategory`}>{item}</small></p>)
                                     }
                                 </div>
                             </div>
-                            <div id="product">
+                            <div class="product">
                                 <div>
                                     {
-                                        productObjItem && productObjItem[subCategoryState] && productObjItem[subCategoryState].map((item, i) => <p key={i}><small>{item}</small></p>)
+                                        productObjItem && productObjItem[subCategoryState] && productObjItem[subCategoryState].map((item, i) => <p key={i}><small id={`${item}:productName`}>{item}</small></p>)
                                     }
                                 </div>
                             </div>
