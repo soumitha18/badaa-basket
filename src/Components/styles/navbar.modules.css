@@ -16,3 +16,62 @@
     background-color:  rgb(129, 212, 19);
     color: white;
 }
+
+.hoverDiv{
+    position: relative;
+}
+
+.innerHoverDiv{
+    color: black;
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 1000px;
+    z-index: 1;
+    padding:0%;
+    border: 1px solid whitesmoke;
+}
+
+#category{
+    background-color: white;
+    padding: 0%;
+    margin: 0%;
+}
+
+#subCategory{
+    background-color: whitesmoke;
+    padding: 0%;
+    margin: 0%;
+}
+
+#category>p, #subCategory>div>p , #product > div> p{
+    padding: 0% 2% 0% 2%;
+    margin: 0%;
+    margin-left: 2%;
+    width: 250px;
+    border:1px solid whitesmoke;
+}
+
+#subCategory >div> p, #product > div> p{
+    border:0px;
+}
+
+#product > div> p:hover{
+    color: green;
+    font-weight: bolder;
+}
+
+#subCategory >div> p:hover{
+    border:0px;
+    font-weight: bold;
+    background-color: white;
+}
+
+#category>p:hover {
+    background-color:whitesmoke;
+    font-weight: bold;
+}
+
+.hoverDiv:hover .innerHoverDiv {
+    display: block;
+}
