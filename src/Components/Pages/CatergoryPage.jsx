@@ -7,7 +7,14 @@ export const CategoryPage = () => {
     const data = JSON.parse(localStorage.getItem("data"))
     const title = JSON.parse(localStorage.getItem("title"))
     const [product, setProduct] = useState([])
-
+    let list = []
+    if(data==="Fruits and vegetables"){
+        list = ["Fresh Vegetables", "Herbs & Seasonings", "Fresh Fruits", "Organic Fruits & Vegetables", "Exotic Fruits & Veggies", "Cuts & Sprouts", "Flowers Bouquets, Bunches"]
+    }
+    if(data==="Foodgrains, Oils and Masala"){
+        list = ["Dols & Pulses", "Atta, Flours & Sooji", "Rice & Rice Product", "Edible Oils & Gees", "Masalas & Spices", "Organics Staples", "Dry Fruits"]
+    }
+    console.log(list)
     useEffect(() => {
         console.log(title, data)
         Axios.get(`http://localhost:5000/getproducts?${title}=${data}`)
@@ -99,39 +106,9 @@ export const CategoryPage = () => {
                         <span className="border-bottom border-success">Category</span>
                     </div>
                     <div>
-                        <small>Fruits and Vegetables</small>
+                        <small>{data}</small>
                         <div className="ml-3">
-                            <small id="Fresh vegetables">Fresh vegetable</small><br />
-                            <small id="Herbs and seasonings">Herbs and seasonings</small><br />
-                            <small id="Fresh fruits">Fresh fruits</small><br />
-                            <small id="Organic Fruits and Vegetable">Organic fruits and vegetable</small>
-                        </div>
-                    </div>
-                    <div>
-                        <small>Foodgrains Oil and Masala</small>
-                        <div className="ml-3">
-                            <small id="Rice & rice products">Rice & rice products</small><br />
-                            <small id="Dry fruits">Dry fruits</small><br />
-                            <small id="Masala">Masala</small><br />
-                            <small id="Salt, sugar & Jaggery">Salt, sugar and Jaggery</small>
-                        </div>
-                    </div>
-                    <div>
-                        <small>Bakery , cakes and Dairy</small>
-                        <div className="ml-3">
-                            <small> Bread & bun</small><br />
-                            <small>Icecream and desert</small><br />
-                            <small> Cookies</small><br />
-                            <small>Bakery snacks</small>
-                        </div>
-                    </div>
-                    <div>
-                        <small>Beverage & Drinks</small>
-                        <div className="ml-3">
-                            <small>Healthy drink and supplements</small><br />
-                            <small>Tea & coffee</small><br />
-                            <small>Energy and soft drinks</small><br />
-                            <small>Fruit Juice</small>
+                            {list && list.map(item=> <><small id={item}>{item}</small><br/></>)}
                         </div>
                     </div>
                     <div className=" border-bottom">
