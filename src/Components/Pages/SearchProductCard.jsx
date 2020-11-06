@@ -12,10 +12,10 @@ export const SearchProductCard = ({ item, i, handleClick }) => {
                     <small className="text-muted">{item.brandName}<br />
                         <b>{item.productName}</b></small>
                 </div>
-                <div className="col-2 p-0">
+                <div className="col-2 p-0 pt-2">
                     <small><b>{item.size[0]}</b></small>
                 </div>
-                <div className="col-1 p-0">
+                <div className="col-1 p-0 pt-2">
                     <small><b>{item.mrp[0]}/-</b></small>
                 </div>
                 <div className="col-2 px-1 pt-1">

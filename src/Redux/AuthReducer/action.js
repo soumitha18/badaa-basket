@@ -68,6 +68,6 @@ export const authSuccess = (payload) => ({
 export const auth = (payload) => (dispatch) => {
   dispatch(authRequest())
   axios.post("http://localhost:5000/adduserdetails", payload)
-    .then(res => dispatch(authSuccess(res.data["name"])))
+    .then(res => dispatch(authSuccess(res.data)))
     .catch(err => dispatch(authFailure(err.response.data)))
 }
