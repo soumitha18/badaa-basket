@@ -9,6 +9,11 @@ export const ProductCard = ({ prod }) => {
     const handleClick = () => {
         localStorage.setItem("product", JSON.stringify(prod))
     }
+
+    const handleBasket = () => {
+        console.log(val, prod)
+    }
+
     const discountedPrice = ((price * (100 - Number(prod.offer))) / 100).toFixed(2)
 
     return (
@@ -48,7 +53,7 @@ export const ProductCard = ({ prod }) => {
                                         </div>
                                     </div>
                                     <div className="col-5">
-                                        <button className="addBtn m-n1">ADD <i className="fas fa-shopping-basket"></i></button>
+                                        <button className="addBtn m-n1" onClick={handleBasket}>ADD <i className="fas fa-shopping-basket"></i></button>
                                     </div>
                                 </div>
                             </div>

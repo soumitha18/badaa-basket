@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 
 export const SearchProductCard = ({ item, i, handleClick }) => {
     const [val, setVal] = useState(1)
+
+    const handleBasket = () => {
+        console.log(val, item)
+    }
+
     return (
         <div className="card p-2" key={i}>
             <div className="row">
@@ -27,7 +32,7 @@ export const SearchProductCard = ({ item, i, handleClick }) => {
                     </div>
                 </div>
                 <div className="col-2 px-1">
-                    <button className="addBtn">ADD <i className="fas fa-shopping-basket"></i></button>
+                    <button className="addBtn" onClick={handleBasket}>ADD <i className="fas fa-shopping-basket"></i></button>
                 </div>
             </div>
         </div>
