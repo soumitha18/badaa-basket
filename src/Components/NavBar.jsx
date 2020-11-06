@@ -104,6 +104,9 @@ export const NavBar = () => {
     }
 
     const handleClickCategory = (e) => {
+        if(e.target.id === ""){
+            return
+        }
         const [data, title] = e.target.id.split(":")
         if (title === "productName") {
             Axios.get(`http://localhost:5000/getproducts?${title}=${data}`)
