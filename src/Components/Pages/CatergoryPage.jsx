@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import Axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import product from '../data'
 import { ProductCard } from './ProductCard'
 
 export const CategoryPage = () => {
-
     const data = JSON.parse(localStorage.getItem("product"))
-    
+    const [product, setProduct] = useState([])
+
+    useEffect(() => {
+        Axios.get(`http://localhost:5000/getproducts`)
+            .then(res => setProduct(res.data))
+            .catch(err => console.log(err))
+    }, [])
 
     const handleFetch = e => {
         console.log(e.target.id)
@@ -23,67 +28,67 @@ export const CategoryPage = () => {
             </div>
             <div className="row my-3">
                 <div className="col-12">
-                <div
-                    id="carouselExampleIndicators"
-                    className="carousel slide p-0 m-0"
-                    data-ride="carousel"
-                >
-                    <ol className="carousel-indicators">
-                        <li
-                            data-target="#carouselExampleIndicators"
-                            data-slide-to="0"
-                            className="active"
-                        ></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div className="carousel-inner">
-                        <div className="carousel-item active">
-                            <img
-                                src="https://www.bigbasket.com/media/uploads/banner_images/L1-NNP5767-1200x300-14thoct.jpg"
-                                className="d-block w-100 img-fluid"
-                                alt="..."
-                            />
+                    <div
+                        id="carouselExampleIndicators"
+                        className="carousel slide p-0 m-0"
+                        data-ride="carousel"
+                    >
+                        <ol className="carousel-indicators">
+                            <li
+                                data-target="#carouselExampleIndicators"
+                                data-slide-to="0"
+                                className="active"
+                            ></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div className="carousel-inner">
+                            <div className="carousel-item active">
+                                <img
+                                    src="https://www.bigbasket.com/media/uploads/banner_images/L1-NNP5767-1200x300-14thoct.jpg"
+                                    className="d-block w-100 img-fluid"
+                                    alt="..."
+                                />
+                            </div>
+                            <div className="carousel-item">
+                                <img
+                                    src="https://www.bigbasket.com/media/uploads/banner_images/L1-NNP5722-1200x300-14thoct.jpg"
+                                    className="d-block w-100 img-fluid"
+                                    alt="..."
+                                />
+                            </div>
+                            <div className="carousel-item">
+                                <img
+                                    src="https://www.bigbasket.com/media/uploads/banner_images/L1-NNP5740-1200x300-14thoct.jpg"
+                                    className="d-block w-100 img-fluid"
+                                    alt="..."
+                                />
+                            </div>
                         </div>
-                        <div className="carousel-item">
-                            <img
-                                src="https://www.bigbasket.com/media/uploads/banner_images/L1-NNP5722-1200x300-14thoct.jpg"
-                                className="d-block w-100 img-fluid"
-                                alt="..."
-                            />
-                        </div>
-                        <div className="carousel-item">
-                            <img
-                                src="https://www.bigbasket.com/media/uploads/banner_images/L1-NNP5740-1200x300-14thoct.jpg"
-                                className="d-block w-100 img-fluid"
-                                alt="..."
-                            />
-                        </div>
+                        <a
+                            className="carousel-control-prev"
+                            href="#carouselExampleIndicators"
+                            role="button"
+                            data-slide="prev"
+                        >
+                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span className="sr-only">Previous</span>
+                        </a>
+                        <a
+                            className="carousel-control-next"
+                            href="#carouselExampleIndicators"
+                            role="button"
+                            data-slide="next"
+                        >
+                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span className="sr-only">Next</span>
+                        </a>
                     </div>
-                    <a
-                        className="carousel-control-prev"
-                        href="#carouselExampleIndicators"
-                        role="button"
-                        data-slide="prev"
-                    >
-                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span className="sr-only">Previous</span>
-                    </a>
-                    <a
-                        className="carousel-control-next"
-                        href="#carouselExampleIndicators"
-                        role="button"
-                        data-slide="next"
-                    >
-                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span className="sr-only">Next</span>
-                    </a>
-                </div>
                 </div>
             </div>
             <div className="row">
                 <div className="col-12 my-3">
-                    <img src="https://www.bigbasket.com/media/uploads/flatpages/test-1/Fruits%20&%20vegetables.jpg" className="img-fluid" alt=""/>
+                    <img src="https://www.bigbasket.com/media/uploads/flatpages/test-1/Fruits%20&%20vegetables.jpg" className="img-fluid" alt="" />
                 </div>
             </div>
             <div className="row mt-4">
@@ -136,7 +141,7 @@ export const CategoryPage = () => {
                 </div>
                 <div className="col-10 d-flex flex-wrap">
                     <div className="row">
-                    {product && product.filter(item => item.category==="Fruits and vegetables").map((item, i) => <div className="col-3 px-1  m-0"><ProductCard  key={i} prod={item} /></div>)}
+                        {product && product.map((item, i) => <div className="col-3 px-1  m-0"><ProductCard key={i} prod={item} /></div>)}
                     </div>
                 </div>
             </div>

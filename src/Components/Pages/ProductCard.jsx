@@ -36,7 +36,7 @@ export const ProductCard = ({ prod }) => {
                                     <div className="col-1">
                                         <i className="fas fa-truck truck"></i>
                                     </div>
-                                    <div className="col-10" style={{ lineHeight: 1 }}><small>Standard Delivery: Today 5:00PM - 8:00PM</small></div>
+                                    <div className="col-10 text-muted" style={{ lineHeight: 1 }}><small>Standard Delivery: Today 5:00PM - 8:00PM</small></div>
                                 </div>
                                 <div className="row mt-2">
                                     <div className="col-7 ml-n2">
