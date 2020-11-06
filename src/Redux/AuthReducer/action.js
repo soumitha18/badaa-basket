@@ -27,7 +27,7 @@ export const login = (payload) => (dispatch) => {
   dispatch(loginRequest());
   axios
     .post("http://localhost:5000/login", payload)
-    .then((res) => dispatch(loginSuccess(res.data.user["name"])))
+    .then((res) => dispatch(loginSuccess(res.data.user)))
     .catch((err) => dispatch(loginFailure(err.response.data)));
 };
 
@@ -47,7 +47,7 @@ export const signUp = (payload) => (dispatch) => {
   dispatch(signUpRequest());
   axios
     .post("http://localhost:5000/register", payload)
-    .then((res) => dispatch(signUpSuccess(res.data["name"])))
+    .then((res) => dispatch(signUpSuccess(res.data.user)))
     .catch((err) => dispatch(signUpFailure(err.response.data)));
 };
 

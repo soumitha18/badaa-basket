@@ -1,5 +1,6 @@
 const express = require("express");
-const { registration, login, addProduct, getProducts, searchProducts, getAllProducts, getLocation, addUserDetails } = require("../Controllers/Controllers");
+const { registration, login, getLocation, addUserDetails } = require("../Controllers/userControllers");
+const {addProduct, getProducts, searchProducts, getAllProducts} = require('../Controllers/productControllers')
 const router = express.Router();
 
 router.post("/login", login)

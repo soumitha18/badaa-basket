@@ -1,17 +1,10 @@
-import Axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { ProductCard } from './ProductCard'
 
 export const CategoryPage = () => {
     const data = JSON.parse(localStorage.getItem("product"))
     const [product, setProduct] = useState([])
-
-    useEffect(() => {
-        Axios.get(`http://localhost:5000/getproducts`)
-            .then(res => setProduct(res.data))
-            .catch(err => console.log(err))
-    }, [])
 
     const handleFetch = e => {
         console.log(e.target.id)
