@@ -44,7 +44,7 @@ export const ProductCard = ({ prod }) => {
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text m-n1 " id="addon-wrapping"><samll className="text-muted">Qty</samll></span>
                                             </div>
-                                            <input type="text" className="form-control m-n1" value={val} onChange={(e) => setVal(e.target.value)} />
+                                            <input type="text" className="form-control m-n1 text-center" value={val} onChange={(e) => setVal(e.target.value)} />
                                         </div>
                                     </div>
                                     <div className="col-5">

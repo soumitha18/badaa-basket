@@ -4,7 +4,10 @@ import {
   GET_ALL_PRODUCT_SUCCESS,
   GET_SEARCH_PRODUCT_REQUEST,
   GET_SEARCH_PRODUCT_FAILURE,
-  GET_SEARCH_PRODUCT_SUCCESS
+  GET_SEARCH_PRODUCT_SUCCESS,
+  GET_PRODUCT_REQUEST,
+  GET_PRODUCT_FAILURE,
+  GET_PRODUCT_SUCCESS
 } from "./actionTypes";
 
 import axios from "axios";
@@ -50,3 +53,24 @@ export const getSearchProduct = (data) => (dispatch) => {
     .then(res => dispatch(getSearchProductSuccess(res.data)))
     .catch(() => dispatch(getSearchProductFailure()))
 }
+
+export const getProductRequest = () => ({
+  type: GET_PRODUCT_REQUEST,
+});
+
+export const getProductFailure = () => ({
+  type: GET_PRODUCT_FAILURE,
+});
+
+export const getProductSuccess = (payload) => ({
+  type: GET_PRODUCT_SUCCESS,
+  payload,
+});
+
+export const getProduct = () => (dispatch) => {
+  dispatch(getProductRequest());
+  axios
+    .get("http://localhost:5000/getproducts")
+    .then((res) => dispatch(getProductSuccess(res.data)))
+    .catch(() => dispatch(getProductFailure()));
+};
