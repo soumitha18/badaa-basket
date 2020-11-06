@@ -8,7 +8,8 @@ import {
   SIGNUP_SUCCESS,
   AUTH_SUCCESS,
   AUTH_FAILURE,
-  AUTH_REQUEST
+  AUTH_REQUEST,
+  LOGOUT
 } from "./actionTypes";
 
 export const loginRequest = () => ({
@@ -70,4 +71,12 @@ export const auth = (payload) => (dispatch) => {
   axios.post("http://localhost:5000/adduserdetails", payload)
     .then(res => dispatch(authSuccess(res.data)))
     .catch(err => dispatch(authFailure(err.response.data)))
+}
+
+export const logoutSuccess = () => ({
+  type: LOGOUT
+})
+
+export const logout = () => (dispatch) => {
+  dispatch(logoutSuccess())
 }

@@ -7,7 +7,8 @@ import {
   SIGNUP_SUCCESS,
   AUTH_FAILURE,
   AUTH_REQUEST,
-  AUTH_SUCCESS
+  AUTH_SUCCESS,
+  LOGOUT
 } from "./actionTypes";
 
 export const initState = {
@@ -71,6 +72,12 @@ const reducer = (state = initState, action) => {
         error: "",
         user: action.payload,
         isAuth: true
+      }
+    case LOGOUT:
+      return {
+        ...state,
+        isAuth: false,
+        user: []
       }
     default:
       return state;

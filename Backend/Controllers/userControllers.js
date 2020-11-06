@@ -27,7 +27,7 @@ const registration = async (req, res) => {
     });
 
     try {
-        const savedUser = await user.save();
+        await user.save();
         const customerExists = await Customer.findOne({ email: req.body.email, name: req.body.name });
         if (customerExists) {
             return res.send(customerExists);
@@ -102,4 +102,4 @@ const addUserDetails = async (req, res) => {
     }
 }
 
-module.exports = { registration, login,  getLocation, addUserDetails }
+module.exports = { registration, login, getLocation, addUserDetails }

@@ -17,7 +17,7 @@
     color: white;
 }
 
-.hoverDiv{
+.hoverDiv, .userHover{
     position: relative;
 }
 
@@ -67,11 +67,27 @@
     background-color: white;
 }
 
-.category>p:hover {
+.category>p:hover, .userHover-content>*:hover  {
     background-color:whitesmoke;
-    font-weight: bold;
+    font-weight: 700;
+    color: black;
 }
 
-.hoverDiv:hover .innerHoverDiv {
+.hoverDiv:hover .innerHoverDiv, .userHover:hover .userHover-content {
     display: block;
+}
+  
+.userHover-content {
+    display: none;
+    position: absolute;
+    width: 200px;
+    z-index: 1;
+    background-color: white;
+    border: 2px solid whitesmoke;
+}
+  
+.userHover-content>* {
+    display: block;
+    text-align: left;
+    color: black;
 }
