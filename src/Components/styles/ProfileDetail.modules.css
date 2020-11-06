@@ -1,0 +1,7 @@
+.hEffect {
+    cursor: pointer
+}
+
+.hEffect:hover{
+    color: #86d615;
+}
