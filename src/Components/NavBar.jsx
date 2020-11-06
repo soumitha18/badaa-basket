@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
 import { Link, useHistory } from "react-router-dom";
-import { auth, login, signUp } from "../Redux/AuthReducer/action";
+import { auth, login, signUp, logout } from "../Redux/AuthReducer/action";
 import { getSearchProduct } from "../Redux/ProductReducer/action"
 import { getLocation } from "../Redux/LocationReducer/action"
 import { SearchProductCard } from "./Pages/SearchProductCard";
@@ -104,7 +104,7 @@ export const NavBar = () => {
     }
 
     const handleClickCategory = (e) => {
-        if(e.target.id === ""){
+        if (e.target.id === "") {
             return
         }
         const [data, title] = e.target.id.split(":")
@@ -153,6 +153,10 @@ export const NavBar = () => {
         const obj = { name, email, password };
         dispatch(signUp(obj));
     };
+
+    const handleLogout = () => {
+        dispatch(logout())
+    }
 
     const empty = () => {
         setName("");
@@ -218,7 +222,7 @@ export const NavBar = () => {
                             <div className="position-absolute pr-2 text-left" style={{ zIndex: "10", width: "100%", minHeight: "0px", maxHeight: "330px", overflowY: "scroll", display: status ? "block" : "none" }}>
                                 {
                                     data && data.map((item, i) => (
-                                        <SearchProductCard item={item} i={i} handleClick={handleClick} />
+                                        <SearchProductCard key={i} item={item} i={i} handleClick={handleClick} />
                                     ))
                                 }
                             </div>
@@ -235,14 +239,26 @@ export const NavBar = () => {
                     </div>
                 </div>
                 <div className="col-2">
-                    <div className="text-center">
+                    <div className={`text-center ${isAuth ? "userHover" : null} `}>
                         <small data-toggle={isAuth ? null : "modal"} data-target={isAuth ? null : "#modalLRForm"}>
                             <img
                                 src="https://www.flaticon.com/svg/static/icons/svg/167/167123.svg"
                                 alt="User"
                                 width="15px"
                             />{" "}
-                            {isAuth ? <Link to="/my-account/profile" className="text-dark">{user.name}</Link> : " login | sign up"}
+                            {isAuth ? <Link to="/my-account/profile" className="text-dark text-center">{user.name}</Link> : " login | sign up"}
+                        </small>
+                        <small>
+                            <div className="userHover-content">
+                                <Link to="/my-account/profile" className="px-2 py-1 border-bottom">My Account</Link>
+                                <Link to="/my-account/basket" className="px-2 py-1 border-bottom">My Basket<span className="float-right font-weight-bolder">0 item</span></Link>
+                                <Link to="/my-account/orders" className="px-2 py-1 border-bottom">My Orders</Link>
+                                <Link to="/my-account/membership" className="px-2 py-1 border-bottom">My MemberShip</Link>
+                                <Link to="/my-account/wallet" className="px-2 py-1 border-bottom">Wallet<span className="float-right font-weight-bolder">Rs. 0</span></Link>
+                                <Link to="/my-account/ask-us" className="px-2 py-1 border-bottom">Ask US</Link>
+                                <Link to="/my-account/customer-service" className="px-2 py-1 border-bottom">Customer Service</Link>
+                                <div onClick={handleLogout} className="px-2 py-1">Logout</div>
+                            </div>
                         </small>
                     </div>
                     <div
@@ -255,9 +271,7 @@ export const NavBar = () => {
                             alt="basket"
                             width="20px"
                         />
-                        <small>
-                            My Basket <b className="text-success">0</b> items
-            </small>
+                        <small>My Basket <b className="text-success">0</b> items</small>
                     </div>
                 </div>
             </div>
@@ -266,7 +280,7 @@ export const NavBar = () => {
                     <small><b>SHOP BY CATEGORY</b></small> <i className="fas fa-caret-down pl-2 float-right"></i>
                     <div className="innerHoverDiv" onClick={(e) => handleClickCategory(e)}>
                         <div style={{ display: 'flex', flexDirection: "row" }}>
-                            <div class="category">
+                            <div className="category">
                                 <p onMouseOver={() => setCategoryState("FV")} style={{ background: categoryState === "FV" ? "whitesmoke" : null }}><small id="Fruits and vegetables:category">Fruits & Vegetables</small></p>
                                 <p onMouseOver={() => setCategoryState("FOM")} style={{ background: categoryState === "FOM" ? "whitesmoke" : null }}><small id="Foodgrains, Oils and Masala:category">Foodgrains, Oil & Masala</small></p>
                                 <p onMouseOver={() => setCategoryState("BCB")} style={{ background: categoryState === "BCB" ? "whitesmoke" : null }}><small id="Bakery, Cakes & Dairy:category">Bakery, Cakes & Dairy</small></p>
@@ -280,14 +294,14 @@ export const NavBar = () => {
                                 <p onMouseOver={() => setCategoryState("BC")} style={{ background: categoryState === "BC" ? "whitesmoke" : null }}><small id="Baby Care:category">Baby Care</small></p>
                                 <p onMouseOver={() => setCategoryState("ALL")} style={{ background: categoryState === "ALL" ? "whitesmoke" : null }}><small id="all">View All</small></p>
                             </div>
-                            <div class="subCategory">
+                            <div className="subCategory">
                                 <div>
                                     {
                                         subCategoryObj[categoryState] && subCategoryObj[categoryState].map((item, i) => <p onMouseOver={() => setSubCategoryState(i)} style={{ background: subCategoryState === i ? "white" : null }} key={i}><small id={`${item}:subCategory`}>{item}</small></p>)
                                     }
                                 </div>
                             </div>
-                            <div class="product">
+                            <div className="product">
                                 <div>
                                     {
                                         productObjItem && productObjItem[subCategoryState] && productObjItem[subCategoryState].map((item, i) => <p key={i}><small id={`${item}:productName`}>{item}</small></p>)
@@ -392,8 +406,7 @@ export const NavBar = () => {
                                         href="#panel7"
                                         role="tab"
                                     >
-                                        <i className="fas fa-user mr-1"></i>Login
-                  </div>
+                                        <i className="fas fa-user mr-1"></i>Login</div>
                                 </li>
                                 <li className="nav-item">
                                     <div
@@ -402,8 +415,7 @@ export const NavBar = () => {
                                         href="#panel8"
                                         role="tab"
                                     >
-                                        <i className="fas fa-user-plus mr-1"></i>Register
-                  </div>
+                                        <i className="fas fa-user-plus mr-1"></i>Register</div>
                                 </li>
                             </ul>
                             <div className="tab-content">
@@ -440,16 +452,12 @@ export const NavBar = () => {
                                             )}
                                         </div>
                                         <div className="text-center">
-                                            <button onClick={handleLogin} className="btn btn-success">
-                                                Log in
-                      </button>
+                                            <button onClick={handleLogin} className="btn btn-success">Log in</button>
                                             {!err.includes("email") && !err.includes("password") && (
                                                 <small className="text-danger">{err}</small>
                                             )}
                                         </div>
-                                        <div className="text-center text-secondary">
-                                            OR sign with:
-                    </div>
+                                        <div className="text-center text-secondary">OR sign with:</div>
                                         <div className="text-center mt-2" data-dismiss="modal">
                                             <GoogleLogin
                                                 clientId="25593677194-7vebfmo92m96cc9pg0rcjhgdjm5aq04p.apps.googleusercontent.com"
@@ -513,18 +521,14 @@ export const NavBar = () => {
                                             <button
                                                 onClick={handleRegister}
                                                 className="btn btn-success"
-                                            >
-                                                Sign up
-                      </button>
+                                            >Sign up</button>
                                             {!err.includes("email") &&
                                                 !err.includes("password") &&
                                                 !err.includes("name") && (
                                                     <small className="text-danger">{err}</small>
                                                 )}
                                         </div>
-                                        <div className="text-center text-secondary">
-                                            OR sign with:
-                    </div>
+                                        <div className="text-center text-secondary">OR sign with:</div>
                                         <div className="text-center mt-2">
                                             <GoogleLogin
                                                 clientId="25593677194-7vebfmo92m96cc9pg0rcjhgdjm5aq04p.apps.googleusercontent.com"

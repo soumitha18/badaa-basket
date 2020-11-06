@@ -1,11 +1,18 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import "../../styles/ProfileDetail.modules.css";
 
 export default function ProfileDetail() {
 
-    let user = JSON.parse(localStorage.getItem("userProfile"))
-    
+    const isAuth = useSelector((state) => state.auth.isAuth);
+    const user = useSelector((state) => state.auth.user);
+    const history = useHistory()
+
+    if (!isAuth) {
+        history.push("/")
+    }
+
     return (
         <div>
             <div className="container my-3">
@@ -40,7 +47,7 @@ export default function ProfileDetail() {
                             <div className="border-bottom">
                                 <div className="mt-4 font-weight-light h4">{user.name}</div>
                                 <div>
-                                    <i class="fa fa-envelope" style={{ color: "grey" }} aria-hidden="true"></i> <span>{user.email}</span>
+                                    <i className="fa fa-envelope" style={{ color: "grey" }} aria-hidden="true"></i> <span>{user.email}</span>
                                 </div>
                                 <div>
                                     <span className="ml-3">+(91) {user.number}</span>

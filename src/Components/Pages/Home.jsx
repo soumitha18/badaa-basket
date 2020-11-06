@@ -116,19 +116,16 @@ export const Home = () => {
                     <div className="carousel-inner">
                         <div className="carousel-item active">
                             <div className="row my-3 px-2 d-flex flex-wrap" >
-                                
-                                {data && data.filter((a, i) => i >= 0 && i < 4).map((item, i) => <div className="col-3"><ProductCard key={i} prod={item} /></div>)}
-                                
+
+                                {data && data.filter((a, i) => i >= 0 && i < 4).map((item, i) => <div key={i} className="col-3"><ProductCard prod={item} /></div>)}
+
                             </div>
                         </div>
                         <div className="carousel-item">
                             <div className="row my-3 px-2 d-flex flex-wrap" >
-                                    {data && data.filter((a, i) => i >= 4 && i < 8).map((item, i) => <div className="col-3"><ProductCard key={i} prod={item} /></div>)}
+                                {data && data.filter((a, i) => i >= 4 && i < 8).map((item, i) => <div key={i} className="col-3"><ProductCard prod={item} /></div>)}
                             </div>
                         </div>
-                        {/* <div className="carousel-item">
-                <img src="..." className="d-block w-100" alt="..."/>
-                </div> */}
                     </div>
                     <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span className="carousel-control-prev-icon" aria-hidden="true"></span>

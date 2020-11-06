@@ -1,9 +1,18 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import "../../styles/ProfileDetail.modules.css";
+
 
 export default function OrderDetail() {
 
-    let user = JSON.parse(localStorage.getItem("userProfile"))
+    const isAuth = useSelector((state) => state.auth.isAuth);
+    const user = useSelector((state) => state.auth.user);
+    const history = useHistory()
+
+    if (!isAuth) {
+        history.push("/")
+    }
 
     return (
         <div>
@@ -49,7 +58,7 @@ export default function OrderDetail() {
                             </div>
                         </div>
                         <div className="my-3 text-center" >
-                            <small>{user && user.order.length === 0 ? "No Orders" : null}</small>
+                            <small>{user && user.order && user.order.length === 0 ? "No Orders" : null}</small>
                         </div>
                     </div>
                 </div>
