@@ -102,4 +102,8 @@ const addUserDetails = async (req, res) => {
     }
 }
 
-module.exports = { registration, login, getLocation, addUserDetails }
+const editUserDetails = async (req, res) => {
+
+}
+
+module.exports = { registration, login, getLocation, addUserDetails, editUserDetails }

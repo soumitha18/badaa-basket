@@ -6,6 +6,7 @@ export const ProductItem = () => {
     const data = JSON.parse(localStorage.getItem("product"))
     const [size, setSize] = useState(data.size[0])
     const [index, setIndex] = useState(0)
+    const [val, setVal] = useState(1)
 
     const handleClick = (i) => {
         setIndex(i)
@@ -14,6 +15,10 @@ export const ProductItem = () => {
 
     const handleFetch = e => {
         console.log(e.target.id)
+    }
+
+    const handleBasket = () => {
+        console.log(val, data, size, data.mrp[index])
     }
 
     return (
@@ -86,10 +91,10 @@ export const ProductItem = () => {
                     <h5 className="mt-1 mb-3">{data.productName} - {size}</h5>
                     <small className="text-muted">MRP.<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[index]}</em> <b className="text-dark">Price: Rs.{(data.mrp[index] - Math.floor(data.mrp[index] / data.offer))}</b> <b className="text-danger">you save : {data.offer}%</b> (including all taxes) </small><br />
                     <span className="px-1 text-light" style={{ background: "#14a043" }}><small>{data.ratings}</small> <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828884.svg" alt="star" width="12px" /></span> {data.reviews} Reviews
-                    <div className="mt-3 mb-1">
-                        <button className="btn border-success">1</button>
-                        <button className="btn btn-success mx-3">ADD TO BASKET</button>
-                        <button className="btn border-success">SAVE</button>
+                    <div className="mt-3 row mb-1">
+                        <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-2 ml-4 mt-1 p-4" />
+                        <button className="btn btn-success col-5 mx-3" onClick={handleBasket}>ADD TO BASKET</button>
+                        <button className="btn col-3 border-success">SAVE</button>
                     </div>
                     <small className="text-muted">Express: Today 5:00PM - 7:00PM</small>
                     <div>

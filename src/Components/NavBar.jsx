@@ -41,6 +41,21 @@ export const NavBar = () => {
         BC: ["Diapers", "Baby Food & Formula", "Baby Bath & Hygiene", "Mothers & Maternity", "Feeding & Nursing", "Baby Accessories"],
         ALL: []
     }
+    const images = {
+        FV: "https://www.bigbasket.com/media/uploads/banner_images/NNP6785-NNP6792-30oct20.jpg",
+        FOM: "https://www.bigbasket.com/media/uploads/banner_images/NPL5137-40-4nov20.jpg",
+        BCB: "https://www.bigbasket.com/media/uploads/banner_images/L1-NPL4584-220x460-6thnov.jpg",
+        B: "https://www.bigbasket.com/media/uploads/banner_images/L1-NPL4636-220x460-6thnov.jpg",
+        SB: "https://www.bigbasket.com/media/uploads/banner_images/L1-NPL4637-220x460-6thnov.jpg",
+        BH: "https://www.bigbasket.com/media/uploads/banner_images/NB-NNP6286-220x460-28thoct.jpg",
+        CH: "https://www.bigbasket.com/media/uploads/banner_images/L1-NPL4581-220x460-6thnov.jpg",
+        KGP: "https://www.bigbasket.com/media/uploads/banner_images/NNP2912-220X220-4thnov.jpg",
+        EMF: "https://www.bigbasket.com/media/uploads/banner_images/L1-NPL4586-220x460-6thnov.jpg",
+        GW: "https://www.bigbasket.com/media/uploads/banner_images/NPL5020-22-27oct20.jpg",
+        BC: "",
+        ALL: ""
+    }
+
     const productObj = {
         FV: [
             ["Potato", "Onion", "Tomato", "Cucumber & Capsicum", "Beans, Brinjals & Okra", "Gourd, Pumpkin, Drumstick", "Leafy Vegetables", "Root Vegetables", "Cabbage & Cauliflower", "Specialty"],
@@ -307,6 +322,11 @@ export const NavBar = () => {
                                         productObjItem && productObjItem[subCategoryState] && productObjItem[subCategoryState].map((item, i) => <p key={i}><small id={`${item}:productName`}>{item}</small></p>)
                                     }
                                 </div>
+                            </div>
+                            <div className="image">
+                                {
+                                    images[categoryState] && <img src={images[categoryState]} alt={categoryState} width="100%" />
+                                }
                             </div>
                         </div>
                     </div>

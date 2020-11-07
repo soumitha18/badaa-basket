@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../styles/productCard.modules.css'
 
 export const ProductCard = ({ prod }) => {
     const [price, setPrice] = useState(prod.mrp[0])
     const [val, setVal] = useState(1)
+    const user = useSelector(state => state.auth.user)
 
     const handleClick = () => {
         localStorage.setItem("product", JSON.stringify(prod))
@@ -12,6 +14,7 @@ export const ProductCard = ({ prod }) => {
 
     const handleBasket = () => {
         console.log(val, prod)
+        
     }
 
     const discountedPrice = ((price * (100 - Number(prod.offer))) / 100).toFixed(2)
