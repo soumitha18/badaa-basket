@@ -6,14 +6,19 @@ import '../styles/productCard.modules.css'
 export const ProductCard = ({ prod }) => {
     const [price, setPrice] = useState(prod.mrp[0])
     const [val, setVal] = useState(1)
+    const [size, setSize] = useState(prod.size[0])
     const user = useSelector(state => state.auth.user)
 
+    const handleChange = (e) => {
+        setPrice(prod.mrp[e.target.value])
+        setSize(prod.size[e.target.value])
+    }
     const handleClick = () => {
         localStorage.setItem("product", JSON.stringify(prod))
     }
 
     const handleBasket = () => {
-        console.log(val, prod)
+        console.log(val, prod,size,user)
         
     }
 
@@ -32,7 +37,7 @@ export const ProductCard = ({ prod }) => {
                     <div>
                         <div className="row">
                             <div className="col-12">
-                                <select name="" id="" onChange={(e) => setPrice(prod.mrp[e.target.value])} className="custom-select">
+                                <select name="" id="" onChange={handleChange} className="custom-select">
                                     {prod.size && prod.size.map((item, i) => <option key={i} value={i}>{item} - Rs.{prod.mrp[i]}</option>)}
                                 </select>
                             </div>

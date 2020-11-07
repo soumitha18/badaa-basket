@@ -16,9 +16,10 @@ export const ProductItem = () => {
     const handleFetch = e => {
         console.log(e.target.id)
     }
-
+    
+    const discountedPrice = ((Number(data.mrp[index]) * (100 - Number(data.offer))) / 100).toFixed(2)
     const handleBasket = () => {
-        console.log(val, data, size, data.mrp[index])
+        console.log(val, data, size, discountedPrice)
     }
 
     return (
@@ -89,7 +90,7 @@ export const ProductItem = () => {
                 <div className="col-5 border-right mt-3">
                     <small className="border-bottom border-dark">{data.brandName}</small>
                     <h5 className="mt-1 mb-3">{data.productName} - {size}</h5>
-                    <small className="text-muted">MRP.<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[index]}</em> <b className="text-dark">Price: Rs.{(data.mrp[index] - Math.floor(data.mrp[index] / data.offer))}</b> <b className="text-danger">you save : {data.offer}%</b> (including all taxes) </small><br />
+                    <small className="text-muted">MRP.<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[index]}</em> <b className="text-dark">Price: Rs.{discountedPrice}</b> <b className="text-danger">you save : {data.offer}%</b> (including all taxes) </small><br />
                     <span className="px-1 text-light" style={{ background: "#14a043" }}><small>{data.ratings}</small> <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828884.svg" alt="star" width="12px" /></span> {data.reviews} Reviews
                     <div className="mt-3 row mb-1">
                         <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-2 ml-4 mt-1 p-4" />
@@ -106,7 +107,7 @@ export const ProductItem = () => {
                                         {item}
                                     </div>
                                     <div className="col-7 p-2">
-                                        <small className="text-muted">Rs.{(data.mrp[i] - Math.floor(data.mrp[i] / data.offer))} MRP:<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[i]}</em> <b className="text-danger">{data.offer}% Off</b></small>
+                                        <small className="text-muted">Rs.{discountedPrice} MRP:<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[i]}</em> <b className="text-danger">{data.offer}% Off</b></small>
                                     </div>
                                     <div className="col-2 float-right pl-5 pt-2">
                                         <img src={index === i ? "https://www.flaticon.com/svg/static/icons/svg/845/845646.svg" : "https://www.flaticon.com/svg/static/icons/svg/594/594852.svg"} alt="select" width={index === i ? "25px" : "20px"} />
