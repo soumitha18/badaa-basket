@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 export const SearchProductCard = ({ item, i, handleClick }) => {
     const [val, setVal] = useState(1)
+    const user = useSelector(state => state.auth.user)
 
+    const discountedPrice = ((Number(item.mrp[0]) * (100 - Number(item.offer))) / 100).toFixed(2)
     const handleBasket = () => {
-        console.log(val, item)
+        console.log(val, item, discountedPrice, user)
     }
 
     return (
@@ -17,11 +20,11 @@ export const SearchProductCard = ({ item, i, handleClick }) => {
                     <small className="text-muted">{item.brandName}<br />
                         <b>{item.productName}</b></small>
                 </div>
-                <div className="col-2 p-0 pt-2">
-                    <small><b>{item.size[0]}</b></small>
+                <div className="col-1 p-0 pt-2 text-muted">
+                    <small>{item.size[0]}</small>
                 </div>
-                <div className="col-1 p-0 pt-2">
-                    <small><b>{item.mrp[0]}/-</b></small>
+                <div className="col-2 text-center text-muted p-0 pt-2">
+                    <small>{discountedPrice}/-</small>
                 </div>
                 <div className="col-2 px-1 pt-1">
                     <div className="input-group flex-nowrap">
