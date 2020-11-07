@@ -80,6 +80,7 @@
 .userHover-content {
     display: none;
     position: absolute;
+    right: 20px;
     width: 200px;
     z-index: 1;
     background-color: white;
