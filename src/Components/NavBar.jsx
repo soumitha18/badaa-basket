@@ -266,7 +266,7 @@ export const NavBar = () => {
                         <small>
                             <div className="userHover-content">
                                 <Link to="/my-account/profile" className="px-2 py-1 border-bottom">My Account</Link>
-                                <Link to="/my-account/basket" className="px-2 py-1 border-bottom">My Basket<span className="float-right font-weight-bolder">0 item</span></Link>
+                                <Link to="/my-account/basket" className="px-2 py-1 border-bottom">My Basket<span className="float-right font-weight-bolder">{user.order && user.order.length || 0} item</span></Link>
                                 <Link to="/my-account/orders" className="px-2 py-1 border-bottom">My Orders</Link>
                                 <Link to="/my-account/membership" className="px-2 py-1 border-bottom">My MemberShip</Link>
                                 <Link to="/my-account/wallet" className="px-2 py-1 border-bottom">Wallet<span className="float-right font-weight-bolder">Rs. 0</span></Link>
@@ -286,7 +286,7 @@ export const NavBar = () => {
                             alt="basket"
                             width="20px"
                         />
-                        <small>My Basket <b className="text-success">0</b> items</small>
+                        <small>My Basket <b className="text-success">{user.order && user.order.length || 0}</b> items</small>
                     </div>
                 </div>
             </div>

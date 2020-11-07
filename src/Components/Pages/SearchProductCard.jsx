@@ -1,13 +1,23 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { editing } from '../../Redux/AuthReducer/action'
 
 export const SearchProductCard = ({ item, i, handleClick }) => {
     const [val, setVal] = useState(1)
     const user = useSelector(state => state.auth.user)
+  
+    const dispatch = useDispatch()
 
     const discountedPrice = ((Number(item.mrp[0]) * (100 - Number(item.offer))) / 100).toFixed(2)
     const handleBasket = () => {
-        console.log(val, item, discountedPrice, user)
+        const basket = {
+            ...item,
+            size: item.size[0],
+            mrp: discountedPrice,
+            quantity: val
+        }
+        user.order.push(basket)
+        dispatch(editing(user))
     }
 
     return (

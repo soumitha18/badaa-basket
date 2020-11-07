@@ -8,7 +8,10 @@ import {
   AUTH_FAILURE,
   AUTH_REQUEST,
   AUTH_SUCCESS,
-  LOGOUT
+  LOGOUT,
+  EDIT_FAILURE,
+  EDIT_REQUEST,
+  EDIT_SUCCESS
 } from "./actionTypes";
 
 export const initState = {
@@ -78,6 +81,21 @@ const reducer = (state = initState, action) => {
         ...state,
         isAuth: false,
         user: []
+      }
+    case EDIT_FAILURE:
+      return {
+        ...state,
+        err: "Something Went Wrong"
+      }
+    case EDIT_REQUEST:
+      return {
+        ...state,
+        err: ""
+      }
+    case EDIT_SUCCESS:
+      return {
+        ...state,
+        user: action.payload
       }
     default:
       return state;

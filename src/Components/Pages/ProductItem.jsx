@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { editing } from '../../Redux/AuthReducer/action'
 
 export const ProductItem = () => {
 
@@ -7,6 +9,9 @@ export const ProductItem = () => {
     const [size, setSize] = useState(data.size[0])
     const [index, setIndex] = useState(0)
     const [val, setVal] = useState(1)
+    const user = useSelector(state => state.auth.user)
+  
+    const dispatch = useDispatch()
 
     const handleClick = (i) => {
         setIndex(i)
@@ -16,10 +21,17 @@ export const ProductItem = () => {
     const handleFetch = e => {
         console.log(e.target.id)
     }
-    
+
     const discountedPrice = ((Number(data.mrp[index]) * (100 - Number(data.offer))) / 100).toFixed(2)
     const handleBasket = () => {
-        console.log(val, data, size, discountedPrice)
+        const basket = {
+            ...data,
+            size: size,
+            mrp: discountedPrice,
+            quantity: val
+        }
+        user.order.push(basket)
+        dispatch(editing(user))
     }
 
     return (

@@ -9,6 +9,9 @@ import {
   AUTH_SUCCESS,
   AUTH_FAILURE,
   AUTH_REQUEST,
+  EDIT_FAILURE,
+  EDIT_REQUEST,
+  EDIT_SUCCESS,
   LOGOUT
 } from "./actionTypes";
 
@@ -79,4 +82,24 @@ export const logoutSuccess = () => ({
 
 export const logout = () => (dispatch) => {
   dispatch(logoutSuccess())
+}
+
+export const editRequest = () => ({
+  type: EDIT_REQUEST
+})
+
+export const editFailure = () => ({
+  type: EDIT_FAILURE
+})
+
+export const editSuccess = (payload) => ({
+  type: EDIT_SUCCESS,
+  payload
+})
+
+export const editing = (payload) => (dispatch) => {
+  dispatch(editRequest())
+  axios.post(`http://localhost:5000/edituserdetails`, payload)
+    .then(res => dispatch(editSuccess(res.data)))
+    .catch(() => dispatch(editFailure()))
 }

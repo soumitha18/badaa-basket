@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { editing } from '../../Redux/AuthReducer/action'
 import '../styles/productCard.modules.css'
 
 export const ProductCard = ({ prod }) => {
@@ -8,6 +9,8 @@ export const ProductCard = ({ prod }) => {
     const [val, setVal] = useState(1)
     const [size, setSize] = useState(prod.size[0])
     const user = useSelector(state => state.auth.user)
+  
+    const dispatch = useDispatch()
 
     const handleChange = (e) => {
         setPrice(prod.mrp[e.target.value])
@@ -17,12 +20,19 @@ export const ProductCard = ({ prod }) => {
         localStorage.setItem("product", JSON.stringify(prod))
     }
 
+    const discountedPrice = ((price * (100 - Number(prod.offer))) / 100).toFixed(2)
+
     const handleBasket = () => {
-        console.log(val, prod,size,user)
-        
+        const basket = {
+            ...prod,
+            size: size,
+            mrp: discountedPrice,
+            quantity: val
+        }
+        user.order.push(basket)
+        dispatch(editing(user))
     }
 
-    const discountedPrice = ((price * (100 - Number(prod.offer))) / 100).toFixed(2)
 
     return (
         <div className="my-2 mainCard" onClick={handleClick}>
