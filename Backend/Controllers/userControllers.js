@@ -103,7 +103,24 @@ const addUserDetails = async (req, res) => {
 }
 
 const editUserDetails = async (req, res) => {
+    try {
+        Customer.findById(req.body._id)
+            .then(customer => {
+                customer.name = req.body.name,
+                    customer.email = req.body.email,
+                    customer.number = req.body.number,
+                    customer.order = req.body.order,
+                    customer.basket = req.body.basket,
+                    customer.membership = req.body.membership,
+                    customer.wallet = req.body.wallet
 
+                customer.save()
+                    .then(() => res.send(customer))
+                    .catch(err => res.status(400).send(err))
+            })
+    } catch (err) {
+        res.status(400).send(err)
+    }
 }
 
 module.exports = { registration, login, getLocation, addUserDetails, editUserDetails }
