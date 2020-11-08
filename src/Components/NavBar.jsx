@@ -29,7 +29,7 @@ export const NavBar = () => {
     const [subCategoryState, setSubCategoryState] = useState(0)
     const subCategoryObj = {
         FV: ["Fresh Vegetables", "Herbs & Seasonings", "Fresh Fruits", "Organic Fruits & Vegetables", "Exotic Fruits & Veggies", "Cuts & Sprouts", "Flowers Bouquets, Bunches"],
-        FOM: ["Dols & Pulses", "Atta, Flours & Sooji", "Rice & Rice Product", "Edible Oils & Gees", "Masalas & Spices", "Organics Staples", "Dry Fruits"],
+        FOM: ["Dals & Pulses", "Atta, Flours & Sooji", "Rice & Rice Product", "Edible Oils & Gees", "Masalas & Spices", "Organics Staples", "Dry Fruits"],
         BCB: ["Dairy", "Ice Cream & Desserts", "Breads & Buns", "Gourmet Bread", "Cookies, Rusk & Khari", "Cakes & Pastries", "Bakery Snacks"],
         B: ["Tea", "Energy & Soft Drinks", "Water", "Coffee", "Fruits Juice & Drinks", "Health Drink, Supplement"],
         SB: ["Chocolates & Candies", "Noodles,Pasta & Vermicelli", "Biscuits & Cookies", "Spreads, Sauces, Ketchup", "Breakfast Cereals", "Frozen Veggies & Snacks", "Ready To Cook & Eat", "Snacks & Namkeen", "Pickels & Chutney", "Indian Mithai"],
@@ -65,7 +65,7 @@ export const NavBar = () => {
             ["Exotic Fruits", "Exotic Vegetables"],
             []
         ],
-        FOM: [[], [], []],
+        FOM: [["Toor Channa & Moong Dal", "Urad & Other Dals", "Cereals & Millets"], ["Sooji, Maida & Besan", "Atta Whole Wheat", "Rice & others Flour"], ["Sugar & Jaggery", "Salts", "Sugarfree Sweeteners"], ["Basmati Rice", "Raw Rice"], ["Soya & Mustard Oils", "Ghee & Vanaspati"]],
         BCB: [],
         B: [],
         SB: [],
