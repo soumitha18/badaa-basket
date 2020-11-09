@@ -96,3 +96,32 @@
 .image{
     width: 250px;
 }
+
+.cartHover{
+    position: relative;
+}
+
+.cartInnerHover{
+    display: none;
+    position: absolute;
+    right: 7px;
+    background-color: whitesmoke;
+    width: 600px;
+    z-index: 1;
+}
+
+.cartInnerHover >div > div{
+    display: block;
+    background-color: white;
+}
+
+.cartInnerHover >div{
+    height: 270px;
+    overflow-y: scroll;
+}
+  
+.cartHover:hover .cartInnerHover {display: block;}
+
+.buttonBasket{
+    background-color: whitesmoke;
+}

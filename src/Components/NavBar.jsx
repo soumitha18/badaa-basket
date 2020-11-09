@@ -12,6 +12,7 @@ import { auth, login, signUp, logout } from "../Redux/AuthReducer/action";
 import { getSearchProduct } from "../Redux/ProductReducer/action"
 import { getLocation } from "../Redux/LocationReducer/action"
 import { SearchProductCard } from "./Pages/SearchProductCard";
+import { BasketCard } from "./Pages/BasketCard"
 import Axios from "axios";
 
 export const NavBar = () => {
@@ -256,19 +257,15 @@ export const NavBar = () => {
                 <div className="col-2">
                     <div className={`text-center ${isAuth ? "userHover" : null} `}>
                         <small data-toggle={isAuth ? null : "modal"} data-target={isAuth ? null : "#modalLRForm"}>
-                            <img
-                                src="https://www.flaticon.com/svg/static/icons/svg/167/167123.svg"
-                                alt="User"
-                                width="15px"
-                            />{" "}
+                            <i className="fa fa-user text-muted pr-1"></i>
                             {isAuth ? <Link to="/my-account/profile" className="text-dark text-center">{user.name}</Link> : " login | sign up"}
                         </small>
                         <small>
                             <div className="userHover-content">
                                 <Link to="/my-account/profile" className="px-2 py-1 border-bottom">My Account</Link>
-                                <Link to="/my-account/basket" className="px-2 py-1 border-bottom">My Basket<span className="float-right font-weight-bolder">{user.order && user.order.length || 0} item</span></Link>
+                                <Link to="/my-account/basket" className="px-2 py-1 border-bottom">My Basket<span className="float-right font-weight-bolder">{user.basket && user.basket.length} item</span></Link>
                                 <Link to="/my-account/orders" className="px-2 py-1 border-bottom">My Orders</Link>
-                                <Link to="/my-account/membership" className="px-2 py-1 border-bottom">My MemberShip</Link>
+                                <Link to="/bb-star" className="px-2 py-1 border-bottom">My MemberShip</Link>
                                 <Link to="/my-account/wallet" className="px-2 py-1 border-bottom">Wallet<span className="float-right font-weight-bolder">Rs. 0</span></Link>
                                 <Link to="/my-account/ask-us" className="px-2 py-1 border-bottom">Ask US</Link>
                                 <Link to="/my-account/customer-service" className="px-2 py-1 border-bottom">Customer Service</Link>
@@ -277,16 +274,24 @@ export const NavBar = () => {
                         </small>
                     </div>
                     <div
-                        className="card ml-4 mt-2  pl-3 pt-3 pb-2 border-0"
+                        className="card ml-2 mt-2 pl-3 py-2 pr-2 border-0"
                         style={{ background: "whitesmoke" }}
                     >
-                        <img
-                            src="https://www.flaticon.com/svg/static/icons/svg/3697/3697422.svg"
-                            className="float-left"
-                            alt="basket"
-                            width="20px"
-                        />
-                        <small>My Basket <b className="text-success">{user.order && user.order.length || 0}</b> items</small>
+                        <div className="row">
+                            <div className="col-4">
+                                <i className="fas fa-shopping-basket fa-2x pt-2" style={{ color: "red" }}></i>
+                            </div>
+                            <div className="col-8 cartHover">
+                                <small>My Basket <b className="text-success">{(user.basket && user.basket.length) || 0}</b> items</small>
+                                <div className="cartInnerHover">
+                                    <div>
+                                        {
+                                            user.basket && user.basket.map((item, i) => <BasketCard key={i} item={item} />)
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

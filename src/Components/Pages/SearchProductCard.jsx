@@ -16,7 +16,7 @@ export const SearchProductCard = ({ item, i, handleClick }) => {
             mrp: discountedPrice,
             quantity: val
         }
-        user.order.push(basket)
+        user.basket.push(basket)
         dispatch(editing(user))
     }
 
