@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { editing } from '../../Redux/AuthReducer/action'
 
 export const BasketCard = ({ item, index }) => {
-    const [val, setVal] = useState(item.quantity)
+    // const [val, setVal] = useState(item.quantity)
     const user = useSelector(state => state.auth.user)
 
     const dispatch = useDispatch()
@@ -15,12 +15,16 @@ export const BasketCard = ({ item, index }) => {
             ...user,
             basket
         }
-        dispatch(editing(userDetail))
+        dispatch(editing(userDetail))   
     }
 
     const handleQuantity = (value) => {
-        setVal(val => val + (value))
-        user.basket[index].quantity = val + (value)
+        // setVal(val => val + (value))
+        if(user.basket[index].quantity === 1 && value === -1){
+            handleRemove()
+            return
+        }
+        user.basket[index].quantity = Number(user.basket[index].quantity) + (value)
         dispatch(editing(user))
     }
 
@@ -34,13 +38,13 @@ export const BasketCard = ({ item, index }) => {
                 <div className="col-5">
                     <small className="text-muted">{item.category}</small><br />
                     <small>{item.subCategory} {item.productName} {item.size}</small><br />
-                    <small className="text-muted">{val}x{item.mrp}</small>
+                    <small className="text-muted">{item.quantity}x{item.mrp}</small>
                 </div>
                 <div className="col-2 m-0 p-0 pt-3">
-                    <button disabled={val === 1 ? true : false } className="bg-white rounded-circle border" onClick={() => handleQuantity(-1)}> - </button> {val} <button className="bg-white rounded-circle border" onClick={() => handleQuantity(1)}> + </button>
+                    <button  className="bg-white rounded-circle border" onClick={() => handleQuantity(-1)}> - </button> {item.quantity} <button className="bg-white rounded-circle border" onClick={() => handleQuantity(1)}> + </button>
                 </div>
                 <div className="col-2 pt-2 text-center">
-                    <small>Rs. {(Number(item.mrp) * Number(val)).toFixed(2)}</small><br />
+                    <small>Rs. {(Number(item.mrp) * Number(item.quantity)).toFixed(2)}</small><br />
                     <small className="text-success" style={{ fontSize: "10px" }}>saved Rs.{ }</small>
                 </div>
                 <div className="col-1">

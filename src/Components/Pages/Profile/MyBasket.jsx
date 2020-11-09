@@ -26,8 +26,31 @@ export default function MyBasket() {
         }
         dispatch(editing(userDetail))
     }
+    const handleQuantity = (i,val) => {
+        // setVal(val => val + (value))
+        if(user.basket[i].quantity === 1 && val === -1){
+            let basket = user.basket.filter((ele) => ele.productName !== user.basket[i].productName)
+            const userDetail = {
+                ...user,
+                basket
+            }
+            dispatch(editing(userDetail))
+            return
+        }
+        user.basket[i].quantity = Number(user.basket[i].quantity) + val
+        dispatch(editing(user))
+    }
 
-    const total = (user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)).toFixed(2)
+    const handleAllDelete = () => {
+        let basket = []
+        const userDetail = {
+            ...user,
+            basket
+        }
+        dispatch(editing(userDetail))
+    }
+
+    const total = (user && user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)).toFixed(2)
 
     return (
         <>
@@ -54,8 +77,12 @@ export default function MyBasket() {
                                             <p><b>{item.productName} {item.size}</b></p>
                                         </div>
                                         <div className="col-2 text-center pt-3">Rs.{item.mrp}</div>
-                                        <div className="col-2 text-center pt-3">{item.quantity}</div>
-                                        <div className="col-2 text-center pt-3">Rs.{item.mrp * item.quantity} <span onClick={() => handleClick(item)} className="float-right pr-2">x</span></div>
+                                        <div className="col-2 text-center pt-3">
+                                                <button className="border-0 rounded-left px-2" onClick={()=>handleQuantity(i,-1)}>-</button>
+                                                <input type="text" value={item.quantity} className="border py-0 text-center" style={{width:"25%", border:"1px solid gray"}}/>
+                                                <button className="border-0 rounded-right" onClick={()=>handleQuantity(i,1)}>+</button>
+                                            </div>
+                                        <div className="col-2 text-center pt-3">Rs.{(item.mrp * item.quantity).toFixed(2)} <span onClick={() => handleClick(item)} className="float-right pr-2">x</span></div>
                                         <div className="col-1 text-center pt-3"></div>
                                     </div>
                                 ))
@@ -66,7 +93,7 @@ export default function MyBasket() {
                                 <div className="row">
                                     <div className="col-4">
                                         <div>
-                                            <button type="button" className="btn text-muted" style={{ backgroundColor: "#fcfcfc", width: "150px", border: "1px solid green", fontSize: "14px" }}> <i class="fa fa-shopping-basket mr-2" aria-hidden="true"></i>EMPTY BASKET</button>
+                                            <button type="button" className="btn text-muted px-2 rounded shadow-none" style={{ backgroundColor: "#fcfcfc", width: "150px", border: "1px solid green", fontSize: "14px" }} onClick={handleAllDelete}> <i class="fa fa-shopping-basket mr-2" aria-hidden="true"></i>EMPTY BASKET</button>
                                         </div>
                                         <div>
                                             <button type="button" className="btn shadow-sm" style={{ backgroundColor: "#fcfcfc", width: "230px", fontSize: "14px", marginTop: "150px" }}>CONTINUE SHOPPING</button>
