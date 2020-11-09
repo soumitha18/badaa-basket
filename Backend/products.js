@@ -9,7 +9,7 @@ const products = [
         "subCategory": "Edible Oil",
         "category": "Foodgrains, Oils and Masala",
         "size": ["500 ml", "1 L"],
-        "mrp": [186, 96],
+        "mrp": ["96", "186"],
         "offer": 19,
         "description": "Fortune Kachi Ghani is a premium mustard oil that enhances the taste of your food. We use a traditional process to extract pure mustard oil, so that the natural properties, antioxidants and essential oils are retained. The strong aroma and taste of mustard oil adds a spicy flavor to your cooking."
     },
@@ -23,7 +23,7 @@ const products = [
         "subCategory": "Fresh Vegetables",
         "category": "Fruits and vegetables",
         "size": ["1 kg", "2 kg"],
-        "mrp": [92.50, 185],
+        "mrp": ["92.50", "185"],
         "offer": 28,
         "description": "Onion is a vegetable which is almost like a staple in Indian food. This is also known to be one of the essential ingredients of raw salads. They come in different colours like white, red or yellow and are quite in demand in cold salads and hot soups. You can dice, slice or cut it in rings and put it in burgers and sandwiches. Onions emit a sharp flavour and fragrance once they are fried; it is due to the sulphur compound in the vegetable"
     },
@@ -37,7 +37,7 @@ const products = [
         "subCategory": "Fresh Vegetables",
         "category": "Fruits and vegetables",
         "size": ["1 kg", "2 kg"],
-        "mrp": [56.25, 112.50],
+        "mrp": ["56.25", "112.50"],
         "offer": 25,
         "description": "Fresho Potatoes are nutrient-dense, non-fattening and have reasonable amount of calories. Include them in your regular meals so that the body receives a good supply of carbohydrates, dietary fibers and essential minerals such as copper, magnesium, and iron. In India, potatoes are probably the second-most consumed vegetables after onions."
     },
@@ -51,7 +51,7 @@ const products = [
         "subCategory": "Herbs and seasonings",
         "category": "Fruits and vegetables",
         "size": ["250 g", "500 g"],
-        "mrp": [36.25, 71.25],
+        "mrp": ["36.25", "71.25"],
         "offer": 20,
         "description": "With a segmented flesh that has a unique pleasant aroma and a strong sour taste, lemons are round/oval and have a yellow, texturized external peel."
     },
@@ -65,7 +65,7 @@ const products = [
         "subCategory": "Herbs and seasonings",
         "category": "Fruits and vegetables",
         "size": ["1 kg"],
-        "mrp": [245],
+        "mrp": ["245"],
         "offer": 20,
         "description": "Picdor Chilli have thick sharp and spicy taste, however the roughness can differ depending on the range of chilly. Some are very sharp, while some have less of flavor in them. It is high in Vitamin A & C. Product image shown is for representation purpose only, the actually product may vary based on season, produce & availability."
     },
@@ -79,7 +79,7 @@ const products = [
         "subCategory": "Rice & Rice Products",
         "category": "Foodgrains, oils & Masala",
         "size": ["1 kg", "5 kg"],
-        "mrp": [89, 440],
+        "mrp": ["89", "440"],
         "offer": 15,
         "description": "India Gate Basmati Rice Feast Rozzana is defined by its long grains and amazing aromatic flavour. Having this rice is truly having a feast rozzana (a daily feast); combine it with your veggies and serve a nice pulao. Without this Basmati Rice, your biryanis will seem dull and tasteless. This is the perfect ingredient for different rice recipes. "
     },
@@ -93,7 +93,7 @@ const products = [
         "subCategory": "Dry fruits",
         "category": "Foodgrains, oils & Masala",
         "size": ["100 gm", "200 gm", "500 gm", "1 kg"],
-        "mrp": [120, 240, 600, 1200],
+        "mrp": ["120", "240", "600", "1200"],
         "offer": 10,
         "description": "Almonds come in many varieties and the BB Royal California badam or almonds are premiere choice of many customers at bigbasket. The sweet and nutty taste of the almonds is combined here with hygienically packing to ensure freshness of these Californian Almonds. "
     },
@@ -107,7 +107,7 @@ const products = [
         "subCategory": "Salt, sugar & Jaggery",
         "category": "Foodgrains, oils & Masala",
         "size": ["1 kg", "2 kg", "5 kg"],
-        "mrp": [55, 110, 275],
+        "mrp": ["55", "110", "275"],
         "offer": 20,
         "description": "Almonds come in many varieties and the BB Royal California badam or almonds are premiere choice of many customers at bigbasket. The sweet and nutty taste of the almonds is combined here with hygienically packing to ensure freshness of these Californian Almonds. "
     },
@@ -121,7 +121,7 @@ const products = [
         "subCategory": "dairy",
         "category": "Bakery , cakes & Dairy",
         "size": ["200 gm", "500 gm", "1 kg"],
-        "mrp": [75, 190, 300],
+        "mrp": ["75", "190", "300"],
         "offer": 20,
         "description": "Paneer is also called cottage cheese. Amul Fresh Paneer is made from pure milk, hygenically packed untouched by hand. It adheres to FASSAI norms. Amul fresh paneer is a rich source of Protein."
     },
@@ -135,7 +135,7 @@ const products = [
         "subCategory": "Fresh Vegetables",
         "category": "Fruits and vegetables",
         "size": ["500 gm", "1 kg", "2 kg"],
-        "mrp": [35, 70, 130],
+        "mrp": ["35", "70", "130"],
         "offer": 31,
         "description": "Tomato Hybrids are high-quality fruits compared to desi, local tomatoes. They contain numerous edible seeds and are red in colour due to lycopene, an anti-oxidant. "
     },
@@ -149,7 +149,7 @@ const products = [
         "subCategory": "Fresh Vegetables",
         "category": "Fruits and vegetables",
         "size": ["500 gm", "1 kg"],
-        "mrp": [81.25, 160],
+        "mrp": ["81.25", "160"],
         "offer": 20,
         "description": "A popular sweet-tasting root vegetable, Carrots are narrow and cone shaped. They have thick, fleshy, deeply colored root, which grows underground, and feathery green leaves that emerge above the ground. While these greens are fresh tasting and slightly bitter, the carrot roots are crunchy textured with a sweet and minty aromatic taste. Fresho brings you the flavour and richness of the finest bright orange, crispy and juicy carrots. "
     },
@@ -163,7 +163,7 @@ const products = [
         "subCategory": "Fresh Vegetables",
         "category": "Fruits and vegetables",
         "size": ["500 gm", "1 kg"],
-        "mrp": [13.75, 26.25],
+        "mrp": ["13.75", "26.25"],
         "offer": 20,
         "description": "With a sweet, nutty and tangent flavour, Palaks are green leafy vegetables that are succulent and spoon shaped. "
     },
@@ -177,7 +177,7 @@ const products = [
         "subCategory": "Fresh Vegetables",
         "category": "Fruits and vegetables",
         "size": ["100 g", "250 g"],
-        "mrp": [16.25, 36.25],
+        "mrp": ["16.25", "36.25"],
         "offer": 20,
         "description": "Mint leaves are tender herbs with gentle stems and have a distinct pleasant aroma, pleasing taste, cool after-sensation and medicinal qualities. They are best used raw or added at the end of cooking in order to maintain their delicate flavour and texture. "
     },
@@ -191,7 +191,7 @@ const products = [
         "subCategory": "Fresh Vegetables",
         "category": "Fruits and vegetables",
         "size": ["500 g", "250 g", "1 Kg"],
-        "mrp": [211.25, 107.50, 421.25],
+        "mrp": ["211.25", "107.50", "421.25"],
         "offer": 20,
         "description": "With a shape resembling that of a cauliflower, Brocollis have clusters of small, tight flower heads. These heads turn bright green on cooking and tastes slightly bitter. "
     },
@@ -205,7 +205,7 @@ const products = [
         "subCategory": "Fresh Vegetables",
         "category": "Fruits and vegetables",
         "size": ["500 g", "1 Kg"],
-        "mrp": [267.50, 533.75],
+        "mrp": ["267.50", "533.75"],
         "offer": 20,
         "description": "Leaving a mild fruity flavour on the tastebuds, Yellow capsicums, also known as Yellow bell peppers are bell shaped, medium-sized fruit pods. They have thick and shiny skin with a fleshy texture on the inside."
     },
@@ -219,7 +219,7 @@ const products = [
         "subCategory": "Fresh Vegetables",
         "category": "Fruits and vegetables",
         "size": ["500 g", "1 Kg"],
-        "mrp": [196.25, 391.25],
+        "mrp": ["196.25", "391.25"],
         "offer": 20,
         "description": "It is round, wrapped in purplish red leaf layers. The flavour is more peppery and bold compared to green ones. Its leaves are coarser as they have less water content."
     },
@@ -233,7 +233,7 @@ const products = [
         "subCategory": "Fresh Vegetables",
         "category": "Fruits and vegetables",
         "size": ["250 g", "500 g", "1 Kg"],
-        "mrp": [42.50, 85, 170],
+        "mrp": ["42.50", "85", "170"],
         "offer": 66,
         "description": "Tinda is a small vegetable that looks bigger than a green apple but smaller than a pumpkin. Short and squat like a pumpkin, tindas have a dark green stem and white flesh that is tender and tastes like a cucumber. The seeds within are edible"
     },
@@ -247,7 +247,7 @@ const products = [
         "subCategory": "Dals & Pulses",
         "category": "Foodgrains, oils & Masala",
         "size": ["500 g", "1 kg"],
-        "mrp": [100, 200],
+        "mrp": ["100", "200"],
         "offer": 30,
         "description": "Moong dal is one of the most popular lentils eaten across India. Packed with protein, BB Royal moong dal packs deliver the finest selection of lentils which is evident from the shine on the lentils. The dal, sourced directly from farmers, is packed in a way that it retains the maximum nutrient value. "
     },
@@ -261,7 +261,7 @@ const products = [
         "subCategory": "Dals & Pulses",
         "category": "Foodgrains, oils & Masala",
         "size": ["500 g", "1 kg"],
-        "mrp": [100, 200],
+        "mrp": ["100", "200"],
         "offer": 30,
         "description": "Rajma White is superior to the regular rajma and very soft feel and more delicate flavor. These are white in color. Pulses are low in fat & cholesterol, high in dietary fiber and rich in protein. The normal antioxidants in the beans offer numerous health benefits. These are of finest quality and free from injurious chemicals and powders. "
     },
@@ -275,11 +275,10 @@ const products = [
         "subCategory": "Dals & Pulses",
         "category": "Foodgrains, oils & Masala",
         "size": ["500 g", "1 Kg", "2 Kg", "5 Kg"],
-        "mrp": [80, 160, 320, 800],
+        "mrp": ["80", "160", "320", "800"],
         "offer": 24,
         "description": "Toor Dal is processed with the most superior technology so that the original protein value is kept at its best; each grain of toor dal is the treasure of flavor of finest quality. It allows you with the dual richness of nutrition and appetizing taste for your family. It is fat free and nature contains designed it to absorb various mixtures of seasonings and spices. "
     }
-
 
 ]
 
