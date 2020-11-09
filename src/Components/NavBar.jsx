@@ -182,7 +182,7 @@ export const NavBar = () => {
 
     return (
         <div className="container">
-            <div className="row mt-3">
+            <div className="row">
                 <div className="col-2 p-3">
                     <Link to="/">
                         <img
