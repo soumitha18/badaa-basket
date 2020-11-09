@@ -14,6 +14,10 @@ export default function MyBasket() {
         history.push("/")
     }
 
+    const handleCheckOut = () =>{
+        history.push("/checkout")
+    }
+
     const handleClick = (prod) => {
         let basket = user.basket.filter((ele) => ele.productName !== prod.productName)
         const userDetail = {
@@ -22,6 +26,8 @@ export default function MyBasket() {
         }
         dispatch(editing(userDetail))
     }
+
+    const total = (user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)).toFixed(2)
 
     return (
         <>
@@ -87,21 +93,15 @@ export default function MyBasket() {
                                                 <span>Delivery Charges<i class="fa fa-question-circle text-success ml-1" aria-hidden="true"></i></span>
                                             </div>
                                             <div className="col-4 text-center">
-                                                <span>Rs. {user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)}</span><br />
+                                                <span>Rs. {total}</span><br />
                                                 <span>**</span>
                                             </div>
                                         </div>
                                         <hr />
-                                        <div className="row">
-                                            <div className="col-8">
-                                                <h3>TOTAL</h3>
-                                            </div>
-                                            <div className="col-4">
-                                                <h3>Rs. {user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)}</h3>
-                                            </div>
+                                        <div className="h3">TOTAL<span className="float-right">Rs. {total}</span>
                                         </div>
                                         <div className="text-center mb-0">
-                                            <small>*For this order: Accepted food coupon is Rs. {user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)}</small>
+                                            <small>*For this order: Accepted food coupon is Rs. {total}</small>
                                         </div>
                                     </div>
                                     <div className="col-2 border-left text-danger">
@@ -112,7 +112,7 @@ export default function MyBasket() {
                                 </div>
                                 <hr />
                                 <div>
-                                    <button type="button" className="btn text-muted shadow-sm" style={{ backgroundColor: "#fcd277", width: "210px", height: "60px", fontSize: "22px", marginLeft: "300px" }}><small>CHECKOUT <i class="fa fa-arrow-circle-right ml-3" aria-hidden="true"></i></small></button>
+                                    <button onClick={handleCheckOut} type="button" className="btn text-muted shadow-sm" style={{ backgroundColor: "#fcd277", width: "210px", height: "60px", fontSize: "22px", marginLeft: "300px" }}><small>CHECKOUT <i class="fa fa-arrow-circle-right ml-3" aria-hidden="true"></i></small></button>
                                 </div>
                                 <small>** Actual delivery charges computed at checkout time</small>
                             </div>

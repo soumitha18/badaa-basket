@@ -351,7 +351,7 @@ export const NavBar = () => {
                                                     </div>
                                                     <div className="col-5 ml-0 pl-1">
                                                         <div className="bg-white p-2">
-                                                            <p className="p-0 m-0"><small>Sub Total: <span className="float-right">Rs.{user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)}</span></small></p>
+                                                            <p className="p-0 m-0"><small>Sub Total: <span className="float-right">Rs.{(user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)).toFixed(2)}</span></small></p>
                                                             <p className="p-0 m-0"><small>Delivery Charge: <span className="float-right">**</span></small></p>
                                                         </div>
                                                         <div className="bg-success p-1 mt-1 text-center text-white">
