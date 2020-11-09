@@ -116,12 +116,8 @@
 }
 
 .cartInnerHover >div{
-    height: 270px;
+    max-height: 270px;
     overflow-y: scroll;
 }
   
 .cartHover:hover .cartInnerHover {display: block;}
-
-.buttonBasket{
-    background-color: whitesmoke;
-}

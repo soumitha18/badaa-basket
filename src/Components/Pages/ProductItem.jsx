@@ -10,7 +10,8 @@ export const ProductItem = () => {
     const [index, setIndex] = useState(0)
     const [val, setVal] = useState(1)
     const user = useSelector(state => state.auth.user)
-  
+    console.log(user)
+
     const dispatch = useDispatch()
 
     const handleClick = (i) => {
@@ -24,14 +25,18 @@ export const ProductItem = () => {
 
     const discountedPrice = ((Number(data.mrp[index]) * (100 - Number(data.offer))) / 100).toFixed(2)
     const handleBasket = () => {
-        const basket = {
-            ...data,
-            size: size,
-            mrp: discountedPrice,
-            quantity: val
+        if (user.name !== undefined) {
+            const basket = {
+                ...data,
+                size: size,
+                mrp: discountedPrice,
+                quantity: val
+            }
+            user.basket.push(basket)
+            dispatch(editing(user))
+        } else {
+            alert("Please Login Before adding to the Basket")
         }
-        user.basket.push(basket)
-        dispatch(editing(user))
     }
 
     return (

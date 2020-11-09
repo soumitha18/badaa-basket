@@ -15,7 +15,7 @@ import {
 } from "./actionTypes";
 
 export const initState = {
-  user: [],
+  user: {},
   error: "",
   isAuth: false
 }
@@ -80,7 +80,7 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         isAuth: false,
-        user: []
+        user: {}
       }
     case EDIT_FAILURE:
       return {

@@ -317,7 +317,7 @@ export const NavBar = () => {
                                 <Link to="/my-account/basket" className="px-2 py-1 border-bottom">My Basket<span className="float-right font-weight-bolder">{user.basket && user.basket.length} item</span></Link>
                                 <Link to="/my-account/orders" className="px-2 py-1 border-bottom">My Orders</Link>
                                 <Link to="/bb-star" className="px-2 py-1 border-bottom">My MemberShip</Link>
-                                <Link to="/my-account/wallet" className="px-2 py-1 border-bottom">Wallet<span className="float-right font-weight-bolder">Rs. 0</span></Link>
+                                <Link to="/my-account/wallet" className="px-2 py-1 border-bottom">Wallet<span className="float-right font-weight-bolder">Rs. {user.wallet}</span></Link>
                                 <Link to="/my-account/ask-us" className="px-2 py-1 border-bottom">Ask US</Link>
                                 <Link to="/my-account/customer-service" className="px-2 py-1 border-bottom">Customer Service</Link>
                                 <div onClick={handleLogout} className="px-2 py-1">Logout</div>
@@ -330,14 +330,16 @@ export const NavBar = () => {
                     >
                         <div className="row">
                             <div className="col-4">
-                                <i className="fas fa-shopping-basket fa-2x pt-2" style={{ color: "red" }}></i>
+                                <i className="fa fa-shopping-basket fa-2x pt-2" style={{ color: "red" }}></i>
                             </div>
                             <div className="col-8 cartHover">
                                 <small>My Basket <b className="text-success">{(user.basket && user.basket.length) || 0}</b> items</small>
                                 <div className="cartInnerHover">
                                     <div>
                                         {
-                                            user.basket && user.basket.map((item, i) => <BasketCard key={i} item={item} />)
+                                            user.basket && user.basket.map((item, i) => <BasketCard key={i} index={i} item={item} />)
+                                        }{
+                                            (!user.name || (user.basket && user.basket.length === 0)) && <div className="m-3 p-4 text-center text-muted"><small>Your Basket is Empty! Start Shopping Now!</small></div>
                                         }
                                     </div>
                                 </div>

@@ -5,3 +5,8 @@
 .hEffect:hover{
     color: #86d615;
 }
+
+.divHover:hover{
+    background-color: grey;
+    color: white;
+}

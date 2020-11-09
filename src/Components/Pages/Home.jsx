@@ -20,7 +20,7 @@ export const Home = () => {
 
     return (
         <div>
-            <div className="container-fluid">
+            <div className="container-fluid p-0 m-0">
                 <div
                     id="carouselExampleIndicators"
                     className="carousel slide p-0 m-0"
