@@ -342,6 +342,26 @@ export const NavBar = () => {
                                             (!user.name || (user.basket && user.basket.length === 0)) && <div className="m-3 p-4 text-center text-muted"><small>Your Basket is Empty! Start Shopping Now!</small></div>
                                         }
                                     </div>
+                                    <div>
+                                        {
+                                            isAuth && <div className="p-2 mx-2" style={{ background: "whitesmoke" }}>
+                                                <div className="row">
+                                                    <div className="col-7 mr-0 pr-1 pt-1">
+                                                        <div className="bg-white p-1 text-muted text-center"><small>**Actual Delivery Charges computed at checkout</small></div>
+                                                    </div>
+                                                    <div className="col-5 ml-0 pl-1">
+                                                        <div className="bg-white p-2">
+                                                            <p className="p-0 m-0"><small>Sub Total: <span className="float-right">Rs.{user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)}</span></small></p>
+                                                            <p className="p-0 m-0"><small>Delivery Charge: <span className="float-right">**</span></small></p>
+                                                        </div>
+                                                        <div className="bg-success p-1 mt-1 text-center text-white">
+                                                            <small><Link className="text-white" to="/my-account/basket">View Basket & Checkout</Link></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>

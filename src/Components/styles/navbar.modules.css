@@ -116,7 +116,7 @@
 }
 
 .cartInnerHover >div{
-    max-height: 270px;
+    max-height: 220px;
     overflow-y: scroll;
 }
   

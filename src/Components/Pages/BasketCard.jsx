@@ -37,7 +37,7 @@ export const BasketCard = ({ item, index }) => {
                     <small className="text-muted">{val}x{item.mrp}</small>
                 </div>
                 <div className="col-2 m-0 p-0 pt-3">
-                    <button className="bg-white rounded-circle border" onClick={() => handleQuantity(-1)}> - </button> {val} <button className="bg-white rounded-circle border" onClick={() => handleQuantity(1)}> + </button>
+                    <button disabled={val === 1 ? true : false } className="bg-white rounded-circle border" onClick={() => handleQuantity(-1)}> - </button> {val} <button className="bg-white rounded-circle border" onClick={() => handleQuantity(1)}> + </button>
                 </div>
                 <div className="col-2 pt-2 text-center">
                     <small>Rs. {(Number(item.mrp) * Number(val)).toFixed(2)}</small><br />

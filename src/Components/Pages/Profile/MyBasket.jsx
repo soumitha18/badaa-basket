@@ -1,15 +1,26 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { editing } from '../../../Redux/AuthReducer/action';
 
 export default function MyBasket() {
 
     const isAuth = useSelector((state) => state.auth.isAuth);
     const user = useSelector((state) => state.auth.user);
     const history = useHistory()
+    const dispatch = useDispatch()
 
     if (!isAuth) {
         history.push("/")
+    }
+
+    const handleClick = (prod) => {
+        let basket = user.basket.filter((ele) => ele.productName !== prod.productName)
+        const userDetail = {
+            ...user,
+            basket
+        }
+        dispatch(editing(userDetail))
     }
 
     return (
@@ -21,54 +32,29 @@ export default function MyBasket() {
                         <hr />
                         <button type="button" className="btn border border-danger"> <i class="fa fa-product-hunt mr-2 text-warning" aria-hidden="true"></i>VIEW AVAILABLE PROMOS</button>
 
-                        <div className="mt-5">
-                            <div className>
-
+                        <div className="my-3">
+                            <div className="row p-1 text-center text-white">
+                                <div className="col-5 p-2" style={{ backgroundColor: "#636360" }}><small>ITEM DESCRIPTION</small></div>
+                                <div className="col-2 p-2" style={{ backgroundColor: "#636360" }}><small>UNIT PRICE</small></div>
+                                <div className="col-2 p-2" style={{ backgroundColor: "#636360" }}><small>QUANTITY</small></div>
+                                <div className="col-2 p-2" style={{ backgroundColor: "#636360" }}><small>SUBTOTAL</small></div>
+                                <div className="col-1 p-2" style={{ backgroundColor: "#a5b357" }}><small>SAVINGS</small></div>
                             </div>
-                            {/* <table class="table">
-                                <thead class="thead" style={{ backgroundColor: "#636360", color: "white" }} >
-                                    <tr>
-                                        <th scope="col-6" className="w-50">ITEM DESCRIPTION</th>
-                                        <th scope="col-2">UNIT PRICE</th>
-                                        <th scope="col-2">QUANTITY</th>
-                                        <th scope="col-2">SUBTOTAL</th>
-                                        <th style={{ backgroundColor: "#a5b357", color: "black" }} scope="col-2">SAVINGS</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="bg-light" >
-                                            <span>Fruits & Vegetables</span>
-                                            <small className="text-muted ml-2">{user.basket.length} item: Rs. 270.00</small>
-                                        </td>
-                                        <td className="bg-light text-muted"></td>
-                                        <td className="bg-light text-muted"></td>
-                                        <td className="bg-light text-muted"></td>
-                                        <td className="bg-light text-muted"></td>
-                                    </tr>
-                                    <tr>
-                                        <td className="d-flex">
-                                            <div className="flex-1 mr-3 h3">
-                                                <i class="fa fa-motorcycle" aria-hidden="true"></i>
-                                            </div>
-                                            <div className="flex-1">
-                                                <small className="text-muted">FRESHO</small><br />
-                                                <span className="h6">Banana - Yelakki 1 kg</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span>Rs.135.00</span><br />
-                                            <small style={{ textDecoration: "line-through" }}>Rs. 168.75</small>
-                                        </td>
-                                        <td>1</td>
-                                        <td>Rs.135.00</td>
-                                        <td className="text-danger border-left">Rs. 33.75</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <hr /> */}
+                            {
+                                user.basket.map((item, i) => (
+                                    <div className="row m-0 border-bottom">
+                                        <div className="col-5 pl-5">
+                                            <small className="text-muted">{item.category} {item.subCategory}</small>
+                                            <p><b>{item.productName} {item.size}</b></p>
+                                        </div>
+                                        <div className="col-2 text-center pt-3">Rs.{item.mrp}</div>
+                                        <div className="col-2 text-center pt-3">{item.quantity}</div>
+                                        <div className="col-2 text-center pt-3">Rs.{item.mrp * item.quantity} <span onClick={() => handleClick(item)} className="float-right pr-2">x</span></div>
+                                        <div className="col-1 text-center pt-3"></div>
+                                    </div>
+                                ))
+                            }
                         </div>
-
                         <div className="row">
                             <div className="col">
                                 <div className="row">
@@ -101,7 +87,7 @@ export default function MyBasket() {
                                                 <span>Delivery Charges<i class="fa fa-question-circle text-success ml-1" aria-hidden="true"></i></span>
                                             </div>
                                             <div className="col-4 text-center">
-                                                <span>Rs.135.00</span><br />
+                                                <span>Rs. {user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)}</span><br />
                                                 <span>**</span>
                                             </div>
                                         </div>
@@ -111,11 +97,11 @@ export default function MyBasket() {
                                                 <h3>TOTAL</h3>
                                             </div>
                                             <div className="col-4">
-                                                <h3>Rs.135.00</h3>
+                                                <h3>Rs. {user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)}</h3>
                                             </div>
                                         </div>
                                         <div className="text-center mb-0">
-                                            <small>*For this order: Accepted food coupon is Rs. 135.00</small>
+                                            <small>*For this order: Accepted food coupon is Rs. {user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)}</small>
                                         </div>
                                     </div>
                                     <div className="col-2 border-left text-danger">
