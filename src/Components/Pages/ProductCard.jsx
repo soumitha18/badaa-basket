@@ -8,6 +8,7 @@ export const ProductCard = ({ prod }) => {
     const [price, setPrice] = useState(prod.mrp[0])
     const [val, setVal] = useState(1)
     const [size, setSize] = useState(prod.size[0])
+    const [addBtn, setAddBtn] = useState(true)
     const user = useSelector(state => state.auth.user)
 
     const dispatch = useDispatch()
@@ -24,6 +25,7 @@ export const ProductCard = ({ prod }) => {
 
     const handleBasket = () => {
         if (user.name !== undefined) {
+            setAddBtn(false)
             const basket = {
                 ...prod,
                 size: size,
@@ -64,19 +66,28 @@ export const ProductCard = ({ prod }) => {
                                     </div>
                                     <div className="col-10 text-muted" style={{ lineHeight: 1 }}><small>Standard Delivery: Today 5:00PM - 8:00PM</small></div>
                                 </div>
+                                {addBtn ? 
+                                  <div className="row mt-2">
+                                  <div className="col-7 ml-n2">
+                                      <div className="input-group flex-nowrap  ">
+                                          <div className="input-group-prepend">
+                                              <span className="input-group-text m-n1 " id="addon-wrapping"><samll className="text-muted">Qty</samll></span>
+                                          </div>
+                                          <input type="text" className="form-control m-n1 text-center" value={val} onChange={(e) => setVal(e.target.value)} />
+                                      </div>
+                                  </div>
+                                  <div className="col-5">
+                                      <button className="addBtn m-n1" onClick={handleBasket}>ADD <i className="fas fa-shopping-basket"></i></button>
+                                  </div>
+                              </div> : 
                                 <div className="row mt-2">
-                                    <div className="col-7 ml-n2">
-                                        <div className="input-group flex-nowrap  ">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text m-n1 " id="addon-wrapping"><samll className="text-muted">Qty</samll></span>
-                                            </div>
-                                            <input type="text" className="form-control m-n1 text-center" value={val} onChange={(e) => setVal(e.target.value)} />
-                                        </div>
-                                    </div>
-                                    <div className="col-5">
-                                        <button className="addBtn m-n1" onClick={handleBasket}>ADD <i className="fas fa-shopping-basket"></i></button>
+                                    <div className="col-12 d.flex text-center">
+                                        <button className="border-0">-</button>
+                                        <input type="text" value={val} className="qtyInput border-0 text-center"/>
+                                        <button className="border-0">+</button>
                                     </div>
                                 </div>
+                                }
                             </div>
                         </div>
                     </div>
