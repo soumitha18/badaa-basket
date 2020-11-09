@@ -19,7 +19,7 @@ export const ProductCard = ({ prod }) => {
     const handleClick = () => {
         localStorage.setItem("product", JSON.stringify(prod))
     }
-
+    console.log(val)
     const discountedPrice = ((price * (100 - Number(prod.offer))) / 100).toFixed(2)
 
     const handleBasket = () => {

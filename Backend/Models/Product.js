@@ -40,7 +40,7 @@ const productSchema = new Schema({
         required: true
     },
     "mrp": {
-        type: Array,
+        type: [Number],
         required: true
     },
     "offer": {

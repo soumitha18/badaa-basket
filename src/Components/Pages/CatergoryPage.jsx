@@ -120,6 +120,17 @@ export const CategoryPage = () => {
                 </div>
                 <div className="col-10">
                     <div className="row">
+                        <div className="col-12 my-3 d-flex justify-content-between">
+                            <h4>{data}</h4>
+                            <select name="" id=""  className="text-secondary">
+                                <option value="">Popularity</option>
+                                <option value="">Price- Low to High</option>
+                                <option value="">Price- High to Low</option>
+                                <option value="">Alphabetical</option>
+                                <option value="">Rupee Saving - Low to High</option>
+                                <option value="">Rupee Saving - High to Low</option>
+                            </select>
+                        </div>
                         {product && product.map((item, i) => <div className="col-3 px-1 m-0"><ProductCard key={i} prod={item} /></div>)}
                     </div>
                 </div>
