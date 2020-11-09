@@ -33,7 +33,7 @@ const getProducts = async (req, res) => {
         }
         
 
-        const products = await Product.find(search_params).sort({mrp: 1}).collation({locale: "en_US", numericOrdering: true})
+        const products = await Product.find(search_params).sort({mrp: -1}).collation({locale: "en_US", numericOrdering: true})
        
         res.send(products)
 
