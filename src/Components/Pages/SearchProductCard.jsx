@@ -5,19 +5,23 @@ import { editing } from '../../Redux/AuthReducer/action'
 export const SearchProductCard = ({ item, i, handleClick }) => {
     const [val, setVal] = useState(1)
     const user = useSelector(state => state.auth.user)
-  
+
     const dispatch = useDispatch()
 
     const discountedPrice = ((Number(item.mrp[0]) * (100 - Number(item.offer))) / 100).toFixed(2)
     const handleBasket = () => {
-        const basket = {
-            ...item,
-            size: item.size[0],
-            mrp: discountedPrice,
-            quantity: val
+        if (user.name !== undefined) {
+            const basket = {
+                ...item,
+                size: item.size[0],
+                mrp: discountedPrice,
+                quantity: val
+            }
+            user.basket.push(basket)
+            dispatch(editing(user))
+        } else {
+            alert("Please Login Before Adding to the Basket")
         }
-        user.basket.push(basket)
-        dispatch(editing(user))
     }
 
     return (

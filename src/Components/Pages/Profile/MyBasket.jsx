@@ -1,17 +1,31 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 export default function MyBasket() {
+
+    const isAuth = useSelector((state) => state.auth.isAuth);
+    const user = useSelector((state) => state.auth.user);
+    const history = useHistory()
+
+    if (!isAuth) {
+        history.push("/")
+    }
+
     return (
         <>
             <div style={{ backgroundColor: "whitesmoke" }}>
                 <div className="container bg-white">
                     <div className="p-4">
-                        <h2 className="font-weight-light text-muted">Your Basket(01 item)</h2>
+                        <h2 className="font-weight-light text-muted">Your Basket({user.basket.length} items)</h2>
                         <hr />
-                        <button type="button" className="btn" style={{ backgroundColor: "#fcfcfc", width: "230px", border: "1px solid #ff7b00", fontSize: "14px" }}> <i class="fa fa-product-hunt mr-2 text-warning" aria-hidden="true"></i>VIEW AVAILABLE PROMOS</button>
+                        <button type="button" className="btn border border-danger"> <i class="fa fa-product-hunt mr-2 text-warning" aria-hidden="true"></i>VIEW AVAILABLE PROMOS</button>
 
                         <div className="mt-5">
-                            <table class="table">
+                            <div className>
+
+                            </div>
+                            {/* <table class="table">
                                 <thead class="thead" style={{ backgroundColor: "#636360", color: "white" }} >
                                     <tr>
                                         <th scope="col-6" className="w-50">ITEM DESCRIPTION</th>
@@ -25,7 +39,7 @@ export default function MyBasket() {
                                     <tr>
                                         <td className="bg-light" >
                                             <span>Fruits & Vegetables</span>
-                                            <small className="text-muted ml-2">01 item: Rs. 270.00</small>
+                                            <small className="text-muted ml-2">{user.basket.length} item: Rs. 270.00</small>
                                         </td>
                                         <td className="bg-light text-muted"></td>
                                         <td className="bg-light text-muted"></td>
@@ -52,7 +66,7 @@ export default function MyBasket() {
                                     </tr>
                                 </tbody>
                             </table>
-                            <hr />
+                            <hr /> */}
                         </div>
 
                         <div className="row">
@@ -79,14 +93,14 @@ export default function MyBasket() {
                                 </div>
                             </div>
                             <div className="col border border-secondary">
-                                <div className="row">
+                                <div className="row p-2">
                                     <div className="col-10">
                                         <div className="row">
                                             <div className="col-8">
                                                 <span>Subtotal</span><br />
                                                 <span>Delivery Charges<i class="fa fa-question-circle text-success ml-1" aria-hidden="true"></i></span>
                                             </div>
-                                            <div className="col-4">
+                                            <div className="col-4 text-center">
                                                 <span>Rs.135.00</span><br />
                                                 <span>**</span>
                                             </div>
@@ -100,8 +114,8 @@ export default function MyBasket() {
                                                 <h3>Rs.135.00</h3>
                                             </div>
                                         </div>
-                                        <div className="row">
-                                            <p>*For this order: Accepted food coupon is Rs. 135.00</p>
+                                        <div className="text-center mb-0">
+                                            <small>*For this order: Accepted food coupon is Rs. 135.00</small>
                                         </div>
                                     </div>
                                     <div className="col-2 border-left text-danger">
@@ -112,7 +126,7 @@ export default function MyBasket() {
                                 </div>
                                 <hr />
                                 <div>
-                                    <button type="button" className="btn text-muted shadow-sm" style={{ backgroundColor: "#fcd277", width: "210px", height: "60px", fontSize: "22px", marginLeft: "300px" }}>CHECKOUT <i class="fa fa-arrow-circle-right ml-3" aria-hidden="true"></i></button>
+                                    <button type="button" className="btn text-muted shadow-sm" style={{ backgroundColor: "#fcd277", width: "210px", height: "60px", fontSize: "22px", marginLeft: "300px" }}><small>CHECKOUT <i class="fa fa-arrow-circle-right ml-3" aria-hidden="true"></i></small></button>
                                 </div>
                                 <small>** Actual delivery charges computed at checkout time</small>
                             </div>

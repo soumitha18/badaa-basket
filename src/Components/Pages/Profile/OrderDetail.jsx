@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import "../../styles/ProfileDetail.modules.css";
 
 
@@ -17,16 +17,17 @@ export default function OrderDetail() {
     return (
         <div>
             <div className="container my-3">
+                <div className="my-3"><small><Link to="/" className="text-muted">Home</Link>{` > `}<Link to="/my-account/profile" className="text-muted">Profile</Link>{` > `}Orders</small></div>
                 <div className="row">
                     <div className="col-3"><small>
                         <h6 className="border-bottom mt-1" style={{ textDecoration: "underline", textDecorationColor: "#86d615", textDecorationThickness: "2px" }}>PERSONAL DETAILS</h6>
-                        <div className="mt-1 text-muted" style={{ display: "flex", flexDirection: "column" }}>
+                        <div className="mt-1 text-muted ml-3" style={{ display: "flex", flexDirection: "column" }}>
                             <span className="my-2">Edit Profile</span>
                             <span className="my-2">Delivery Addresses</span>
                             <span className="my-2">Email Addresses</span>
                         </div>
                         <h6 className="border-bottom mt-1" style={{ textDecoration: "underline", textDecorationColor: "#86d615", textDecorationThickness: "2px" }}>SHOP FROM</h6>
-                        <div className="text-muted" style={{ display: "flex", flexDirection: "column" }}>
+                        <div className="text-muted ml-3" style={{ display: "flex", flexDirection: "column" }}>
                             <span className="my-2">Smart Basket</span>
                             <span className="my-2">Shopping List</span>
                             <span className="my-2">Past Order</span>
@@ -34,7 +35,7 @@ export default function OrderDetail() {
                         <h6 className="border-bottom" style={{ textDecoration: "underline", textDecorationColor: "#86d615", textDecorationThickness: "2px" }}>MY ACCOUNT</h6>
                         <div className="text-muted">
                             <div className="my-3">Customer Service</div>
-                            <div className="my-3">My Orders</div>
+                            <div className="my-3 text-success">My Orders</div>
                             <div className="my-3">My Wallet</div>
                             <div className="my-3">My Gift Cards</div>
                             <div className="my-3">My Payments</div>

@@ -9,7 +9,7 @@ export const ProductCard = ({ prod }) => {
     const [val, setVal] = useState(1)
     const [size, setSize] = useState(prod.size[0])
     const user = useSelector(state => state.auth.user)
-  
+
     const dispatch = useDispatch()
 
     const handleChange = (e) => {
@@ -23,16 +23,19 @@ export const ProductCard = ({ prod }) => {
     const discountedPrice = ((price * (100 - Number(prod.offer))) / 100).toFixed(2)
 
     const handleBasket = () => {
-        const basket = {
-            ...prod,
-            size: size,
-            mrp: discountedPrice,
-            quantity: val
+        if (user.name !== undefined) {
+            const basket = {
+                ...prod,
+                size: size,
+                mrp: discountedPrice,
+                quantity: val
+            }
+            user.basket.push(basket)
+            dispatch(editing(user))
+        } else {
+            alert("Please Login Before adding to the Basket")
         }
-        user.basket.push(basket)
-        dispatch(editing(user))
     }
-
 
     return (
         <div className="my-2 mainCard" onClick={handleClick}>

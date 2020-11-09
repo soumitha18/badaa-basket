@@ -16,6 +16,7 @@ export default function ProfileDetail() {
     return (
         <div>
             <div className="container my-3">
+                <div className="my-3"><small><Link to="/" className="text-muted">Home</Link>{` > `}MyAccount</small></div>
                 <div className="row">
                     <div className="col-3 border-right"><small>
                         <h5 className="hEffect mb-3">MY ACCOUNT</h5>
