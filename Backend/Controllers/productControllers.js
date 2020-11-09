@@ -1,4 +1,6 @@
+const mongoose = require('mongoose')
 const Product = require("../Models/Product")
+const db  = mongoose.connection
 
 const addProduct = async (req, res) => {
 
@@ -29,9 +31,10 @@ const getProducts = async (req, res) => {
         if (req.query.productName) {
             search_params["productName"] = req.query.productName
         }
+        
 
-
-        const products = await Product.find(search_params)
+        const products = await Product.find(search_params).sort({mrp: -1}).collation({locale: "en_US", numericOrdering: true})
+       
         res.send(products)
 
     } catch (err) {
