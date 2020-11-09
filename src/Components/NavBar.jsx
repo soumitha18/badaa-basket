@@ -66,16 +66,67 @@ export const NavBar = () => {
             ["Exotic Fruits", "Exotic Vegetables"],
             []
         ],
-        FOM: [["Toor Channa & Moong Dal", "Urad & Other Dals", "Cereals & Millets"], ["Sooji, Maida & Besan", "Atta Whole Wheat", "Rice & others Flour"], ["Sugar & Jaggery", "Salts", "Sugarfree Sweeteners"], ["Basmati Rice", "Raw Rice"], ["Soya & Mustard Oils", "Ghee & Vanaspati"]],
-        BCB: [],
-        B: [],
-        SB: [],
-        BH: [],
-        CH: [],
-        KGP: [],
-        EMF: [],
-        GW: [],
-        BC: []
+        FOM: [
+            ["Toor Channa & Moong Dal", "Urad & Other Dals", "Cereals & Millets"],
+            ["Sooji, Maida & Besan", "Atta Whole Wheat", "Rice & others Flour"],
+            ["Sugar & Jaggery", "Salts", "Sugarfree Sweeteners"],
+            ["Basmati Rice", "Raw Rice"],
+            ["Soya & Mustard Oils", "Ghee & Vanaspati"]
+        ],
+        BCB: [
+            ["Milk", "CUrd", "Butter & Margarine", "Buttermilk & Lassi", "Condensed, Powdered Milk", "Paneer, Tofu & Cream", "Chees", "Flavoured, soya Milk", "Yogurt & Shrnkhand"],
+            ["Milk,WHite & Sandwich", "Brown, Wheat & Miltigrain", "Buns, Pavs & Pizza Base"],
+            ["Chees & Garlic Bread", "Breadcrumbs & Croutons", "Bread Sticks & Lavash"],
+            ["Rusks", "Bakery Biscuitsn, Cookies", "Khari & Cream Rolls", "Premium Cookies"],
+            ["Tea Cakes & Slice Cakes", "Muffins & Cup Cakes", "Birthday & Party Cakes", "Pastrues & Brownies"],
+            ["Ice Creams"],
+            ["Gourmet Bread", "panini, Focaccia & Pita", "Croissants,Bagels", "Bagels & Baguette"]
+        ],
+        B: [
+            ["Kids(5+Yrs)", "Diabetic Drinks", "Children(2-5 Yrs)", "Men & Women", "Glucose Powder, Tablets"],
+            ["Packaged Water", "Spring Water"],
+            ["Soda & Cocktail Milk", "Cold Drinks", "Sports & Energy Drinks", "Non Alcoholic Drinks"],
+            ["Leaf & Dust Tea", "Green Tea", "Exotic & Flavoured Tea", "Tea Bags"],
+            ["Instant Coffee", "Ground Coffee"],
+            ["Unsweetened, Cold Press", "Juices", "Syrups & Concentrates"]
+        ],
+        SB: [
+            ["Chocolates", "Toffee, Candy & Lollypop", "Mints & Chewing Gum", "Gift Boxes"],
+            ["Instant Noodles", "Cup Noodles", "Instant Pasta", "Vermicell", "Hakka Noodles", "Pasta & Marcaroni"],
+            ["Marie, Health, Digestive", "Salted Biscuits", "Cream Biscuits & Wafers", "Glucose & Milk Biscuits", "Coockies"],
+            ["Oats & Porridge", "Kids Cereal", "Flakes", "Muesli", "Granola & Cereal Bars"],
+
+        ],
+        BH: [
+            ["Face", "Nails", "Makeup Accessories", "Eyes", "Lips", "Makeup Kits & Gifts Sets"],
+            ["Sanitary Napkins", "Intimate Wash & Care", "Panty Liners", "Hair Removal", "Tampons & Menstrual Cups"],
+            ["Mouthwash", "Toothpaste", "Toothbrush", "Floss & Tongue Cleaner"]
+        ],
+        CH: [
+            ["Dishwash Liquids & Pastes", "DishwashBars & Powders", "Detergent Powder, Liquid", "Fabric Pre, Post Wash", "Detergent Bars"],
+            ["Disinfectant Spray & Cleaners", "Toliet Cleaners", "Floor & Other Cleaners", "Kitchen, Glass & Drain", "Metal, Furniture Cleaner", "Imported Cleaners"],
+            ["Wet Wipe, Pocket Tissues", "Kitchen Rolls", "Garbage Bags", "Toilet Paper", "Aluminium Foil, Clingwrap", "Paper Napkin, Tissue Box"]
+        ],
+        KGP: [
+            ["Battery & Electrical", "CFL & Led Bulbs"],
+            ["Lighters", "Knives & Peelers", "Choppers & Graters", "Kitchen Tools & Other Accessories", "Strainer,Ladle,Spatula"],
+            ["Pet Meals & Treats", "Pet Toys", "Pet Collars & Leashes", "Pet Cleaning & Grooming", "Pet Feefing Support"]
+        ],
+        EMF: [
+            ["Farm Eggs", "Organic Eggs", "Protien Eggs", "Country Eggs"],
+            ["Frozen Chicken", "Fresh Chicken", "Turkey"],
+            ["Chicken Sausagas", "Lamb", "Turley & Duck", "Pork & Ham"]
+        ],
+        GW: [
+            ["Extra Virgin Olive Oil", "Pure, Pomace Olive Oil", "Canola & Rapeseed Oil", "Balsamic & Cider Vinegar", "Organic & Cold Press Oil", "Regular & White Vinegar", "Wine & Rice Vinegar"],
+            ["Flavoured & Greeks Yogurt", "Tofu", "International Cheese", "Creame & Cheese Spreads", "Milk & Soya Drinks", "Gourmet Ice Creame", "Butter & Cream"],
+            ["Pastas & Spaghetti", "Imported Noodles", "Jasmine & Sushi Rice", "Imported Soups"]
+        ],
+        BC: [
+            ["Diapers", "Baby Wipes", "Nappies & Rash Cream"],
+            ["Inant Formula", "Baby Food", "Organic Baby Food"],
+            ["Baby Oil & Shampoo", "Baby Bath", "Baby Powder", "Baby Laundry", "Baby Creams & Lotions", "Baby Health", "Baby Buds", "Baby Oral Care", "Baby Gifts Sets"]
+        ]
     }
     const productObjItem = productObj[categoryState]
 
