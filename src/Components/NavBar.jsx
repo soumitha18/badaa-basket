@@ -237,7 +237,7 @@ export const NavBar = () => {
                 <div className="col-2 p-3">
                     <Link to="/">
                         <img
-                            src="https://www.bbassets.com/static/staticContent/bb_logo.png"
+                            src="/bb.png"
                             className="img-fluid"
                             alt="bada"
                             width="100%"
