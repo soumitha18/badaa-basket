@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid')
 const Razorpay = require('razorpay');
+const nodemailer = require("nodemailer")
 const dotenv = require('dotenv');
 const request = require("request")
 
@@ -11,7 +12,6 @@ const instance = new Razorpay({
 })
 
 const getOrder = (req, res) => {
-    console.log(req.query.total)
     try {
         const options = {
             amount: req.query.total * 100,
@@ -32,7 +32,6 @@ const getOrder = (req, res) => {
 
 const capturePayment = (req, res) => {
     try {
-        console.log(req.body.total)
         return request(
             {
                 method: "POST",
@@ -57,4 +56,30 @@ const capturePayment = (req, res) => {
     }
 }
 
-module.exports = { getOrder, capturePayment }
+const sendingEmail = (req, res) => {
+
+    let transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+            user: process.env.GMAIL_ID,
+            pass: process.env.GMAIL_PASSWORD
+        },
+    });
+
+    let mailOptions = {
+        from: process.env.GMAIL_ID,
+        to: req.body.to,
+        subject: req.body.subject,
+        text: req.body.message,
+    };
+
+    transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            res.status(400).json(err)
+        } else {
+            res.status(200).json("Email sended successfully")
+        }
+    });
+}
+
+module.exports = { getOrder, capturePayment, sendingEmail }
