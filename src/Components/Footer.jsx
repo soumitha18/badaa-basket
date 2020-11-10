@@ -37,22 +37,22 @@ export const Footer = () => {
                             <div className="row">
                                 <div className="col-3">
                                     <div className="circleFb">
-                                        <i className="fa fa-facebook ml-4 mt-3" aria-hidden="true"></i>
+                                        <i className="fa fa-facebook fa-2x m-3" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div className="col-3">
                                     <div className="circleP">
-                                        <i className="fa fa-pinterest-p ml-4 mt-3" aria-hidden="true"></i>
+                                        <i className="fa fa-pinterest-p fa-2x m-3" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div className="col-3">
                                     <div className="circleT">
-                                        <i className="fa fa-twitter ml-4 mt-3" aria-hidden="true"></i>
+                                        <i className="fa fa-twitter fa-2x m-3" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div className="col-3">
                                     <div className="circleI">
-                                        <i className="fa fa-instagram ml-4 mt-3" aria-hidden="true"></i>
+                                        <i className="fa fa-instagram fa-2x m-3" aria-hidden="true"></i>
                                     </div>
                                 </div>
                             </div>

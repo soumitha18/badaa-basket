@@ -2,27 +2,26 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { editing } from '../../Redux/AuthReducer/action'
 
-export const SearchProductCard = ({ item, i, handleClick }) => {
+export const SearchProductCard = ({ item, i, handleClick, setSearch }) => {
     const [val, setVal] = useState(1)
     const user = useSelector(state => state.auth.user)
+    const isAuth = useSelector(state => state.auth.isAuth)
 
     const dispatch = useDispatch()
 
     const discountedPrice = ((Number(item.mrp[0]) * (100 - Number(item.offer))) / 100).toFixed(2)
+    
     const handleBasket = () => {
-        if (user.name !== undefined) {
-            const basket = {
-                ...item,
-                size: item.size[0],
-                mrp: discountedPrice,
-                originalMrp: item.mrp[0],
-                quantity: val
-            }
-            user.basket.push(basket)
-            dispatch(editing(user))
-        } else {
-            alert("Please Login Before Adding to the Basket")
+        const basket = {
+            ...item,
+            size: item.size[0],
+            mrp: discountedPrice,
+            originalMrp: item.mrp[0],
+            quantity: val
         }
+        user.basket.push(basket)
+        dispatch(editing(user))
+        setSearch("")
     }
 
     return (
@@ -44,13 +43,13 @@ export const SearchProductCard = ({ item, i, handleClick }) => {
                 <div className="col-2 px-1 pt-1">
                     <div className="input-group flex-nowrap">
                         <div className="input-group-prepend">
-                            <span className="input-group-text" id="addon-wrapping"><samll className="text-muted">Qty</samll></span>
+                            <span className="input-group-text" id="addon-wrapping"><small className="text-muted">Qty</small></span>
                         </div>
                         <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control" />
                     </div>
                 </div>
                 <div className="col-2 px-1">
-                    <button className="addBtn" onClick={handleBasket}>ADD <i className="fas fa-shopping-basket"></i></button>
+                    <button className="addBtn" onClick={isAuth ? handleBasket : null} data-toggle={isAuth ? null : "modal"} data-target={isAuth ? null : "#modalLRForm"}>ADD <i className="fas fa-shopping-basket"></i></button>
                 </div>
             </div>
         </div>

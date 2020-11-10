@@ -1,10 +1,8 @@
 import React from 'react'
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { editing } from '../../Redux/AuthReducer/action'
 
 export const BasketCard = ({ item, index }) => {
-    // const [val, setVal] = useState(item.quantity)
     const user = useSelector(state => state.auth.user)
 
     const dispatch = useDispatch()
@@ -19,7 +17,6 @@ export const BasketCard = ({ item, index }) => {
     }
 
     const handleQuantity = (value) => {
-        // setVal(val => val + (value))
         if(user.basket[index].quantity === 1 && value === -1){
             handleRemove()
             return

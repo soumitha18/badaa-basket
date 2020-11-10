@@ -10,7 +10,7 @@ export const ProductItem = () => {
     const [index, setIndex] = useState(0)
     const [val, setVal] = useState(1)
     const user = useSelector(state => state.auth.user)
-    console.log(user)
+    const isAuth = useSelector(state => state.auth.isAuth)
 
     const dispatch = useDispatch()
 
@@ -24,20 +24,17 @@ export const ProductItem = () => {
     }
 
     const discountedPrice = ((Number(data.mrp[index]) * (100 - Number(data.offer))) / 100).toFixed(2)
+    
     const handleBasket = () => {
-        if (user.name !== undefined) {
-            const basket = {
-                ...data,
-                size: size,
-                mrp: discountedPrice,
-                originalMrp: data.mrp[index],
-                quantity: val
-            }
-            user.basket.push(basket)
-            dispatch(editing(user))
-        } else {
-            alert("Please Login Before adding to the Basket")
-        }
+        const basket = {
+            ...data,
+            size: size,
+            mrp: discountedPrice,
+            originalMrp: data.mrp[index],
+            quantity: val
+        }        
+        user.basket.push(basket)
+        dispatch(editing(user))
     }
 
     return (
@@ -112,7 +109,7 @@ export const ProductItem = () => {
                     <span className="px-1 text-light" style={{ background: "#14a043" }}><small>{data.ratings}</small> <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828884.svg" alt="star" width="12px" /></span> {data.reviews} Reviews
                     <div className="mt-3 row mb-1">
                         <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-2 ml-4 mt-1 p-4" />
-                        <button className="btn btn-success col-5 mx-3" onClick={handleBasket}>ADD TO BASKET</button>
+                        <button className="btn btn-success col-5 mx-3" onClick={isAuth ? handleBasket : null} data-toggle={isAuth ? null : "modal"} data-target={isAuth ? null : "#modalLRForm"}>ADD TO BASKET</button>
                         <button className="btn col-3 border-success">SAVE</button>
                     </div>
                     <small className="text-muted">Express: Today 5:00PM - 7:00PM</small>

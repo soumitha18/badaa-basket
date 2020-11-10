@@ -112,7 +112,8 @@ const editUserDetails = async (req, res) => {
                     customer.order = req.body.order,
                     customer.basket = req.body.basket,
                     customer.membership = req.body.membership,
-                    customer.wallet = req.body.wallet
+                    customer.wallet = req.body.wallet,
+                    customer.address = req.body.address
 
                 customer.save()
                     .then(() => res.send(customer))
