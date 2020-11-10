@@ -15,6 +15,7 @@ export const SearchProductCard = ({ item, i, handleClick }) => {
                 ...item,
                 size: item.size[0],
                 mrp: discountedPrice,
+                originalMrp: item.mrp[0],
                 quantity: val
             }
             user.basket.push(basket)

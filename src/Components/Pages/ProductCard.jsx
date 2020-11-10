@@ -30,6 +30,7 @@ export const ProductCard = ({ prod }) => {
                 ...prod,
                 size: size,
                 mrp: discountedPrice,
+                originalMrp: price,
                 quantity: val
             }
             user.basket.push(basket)
