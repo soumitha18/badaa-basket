@@ -132,7 +132,7 @@ export const Checkout = () => {
                                                                 <i class="fas fa-truck"></i><small> Shipment 1: Standard Delivery</small>
                                                             </div>
                                                             <div className="col-3 text-secondary">
-                                                                <small>12 items @ 2124.42</small><br />
+                                                                <small>{user.basket.length} items @ {total}</small><br />
                                                                 <small>Delivery charge: <span className="font-weight-bold text-success ">FREE</span> </small>
                                                             </div>
                                                             <div className="col-5">

@@ -54,7 +54,7 @@ export default function OrderDetail() {
                             <div className="p-2">
                                 <button type="button" className="btn btn-outline-secondary"> <i className="fa fa-question-circle" aria-hidden="true"></i>HELP</button>
                             </div>
-                            <div className="p-2">
+                            <div className="p-2 d-none">
                                 <button type="button" className="btn" style={{ cursor: "no-drop", backgroundColor: "#86d615", width: "200px" }}>PAY NOW</button>
                             </div>
                         </div>
