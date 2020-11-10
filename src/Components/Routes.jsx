@@ -11,9 +11,10 @@ import WalletDetail from "./Pages/Profile/WalletDetail"
 import MyBasket from "./Pages/Profile/MyBasket"
 import { NavBar } from './NavBar'
 import { Footer } from './Footer'
+import { Checkout } from './Pages/Checkout'
 
 export const Routes = () => {
-   
+
     return (
         <div>
             <Route path="/" component={NavBar} />
@@ -27,6 +28,7 @@ export const Routes = () => {
             <Route path="/my-account/customer-service" component={Customer} />
             <Route path="/my-account/wallet" component={WalletDetail} />
             <Route path="/my-account/basket" component={MyBasket} />
+            <Route path="/checkout" component={Checkout} />
             <Route path="/" component={Footer} />
         </div>
     )

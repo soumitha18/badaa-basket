@@ -57,4 +57,4 @@ const searchProducts = async (req, res) => {
     }
 }
 
-module.exports = {addProduct, getAllProducts, searchProducts, getProducts,}
+module.exports = {addProduct, getAllProducts, searchProducts, getProducts}
