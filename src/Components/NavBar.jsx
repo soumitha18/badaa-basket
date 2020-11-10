@@ -289,7 +289,7 @@ export const NavBar = () => {
                             <div className="position-absolute pr-2 text-left" style={{ zIndex: "10", width: "100%", minHeight: "0px", maxHeight: "330px", overflowY: "scroll", display: status ? "block" : "none" }}>
                                 {
                                     data && data.map((item, i) => (
-                                        <SearchProductCard key={i} item={item} i={i} handleClick={handleClick} />
+                                        <SearchProductCard key={i} item={item} i={i} handleClick={handleClick} setSearch={setSearch} />
                                     ))
                                 }
                             </div>
@@ -344,7 +344,7 @@ export const NavBar = () => {
                                     </div>
                                     <div>
                                         {
-                                            isAuth && <div className="p-2 mx-2" style={{ background: "whitesmoke" }}>
+                                            isAuth && user.basket.length !== 0 && <div className="p-2 mx-2" style={{ background: "whitesmoke" }}>
                                                 <div className="row">
                                                     <div className="col-7 mr-0 pr-1 pt-1">
                                                         <div className="bg-white p-1 text-muted text-center"><small>**Actual Delivery Charges computed at checkout</small></div>

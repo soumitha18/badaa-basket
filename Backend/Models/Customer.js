@@ -34,6 +34,10 @@ const customerSchema = new Schema({
     wallet: {
         type: Number,
         default: 0
+    },
+    address: {
+        type: String,
+        default: ""
     }
 });
 
