@@ -12,14 +12,20 @@ export const SearchProductCard = ({ item, i, handleClick, setSearch }) => {
     const discountedPrice = ((Number(item.mrp[0]) * (100 - Number(item.offer))) / 100).toFixed(2)
     
     const handleBasket = () => {
-        const basket = {
-            ...item,
-            size: item.size[0],
-            mrp: discountedPrice,
-            originalMrp: item.mrp[0],
-            quantity: val
+        let data = user.basket.findIndex(elem => elem.productName === item.productName )
+        if(data>=0){
+            user.basket[data].quantity+= val
         }
-        user.basket.push(basket)
+        else{
+            const basket = {
+                ...item,
+                size: item.size[0],
+                mrp: discountedPrice,
+                originalMrp: item.mrp[0],
+                quantity: val
+            }
+            user.basket.push(basket)
+        }
         dispatch(editing(user))
         setSearch("")
     }
