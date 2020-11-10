@@ -58,8 +58,128 @@ export default function OrderDetail() {
                                 <button type="button" className="btn" style={{ cursor: "no-drop", backgroundColor: "#86d615", width: "200px" }}>PAY NOW</button>
                             </div>
                         </div>
-                        <div className="my-3 text-center" >
+                        {/* <div className="my-3 text-center" >
                             <small>{user && user.order && user.order.length === 0 ? "No Orders" : null}</small>
+                        </div> */}
+                        <div className="row border-left">
+                            <div className="mt-4 ml-2">
+                                <input type="checkbox" aria-label="Checkbox for following text input" />
+                            </div>
+
+                            <div className="row ml-2 border">
+                                <div>
+                                    <div style={{ width: "50px", height: "65px", border: "1px solid black", backgroundColor: "black", display: "flex" }}><i class="fa fa-truck h5 m-3 mt-1 text-white" aria-hidden="true"></i></div>
+                                </div>
+                                <div className="mx-3 d-flex flex-row">
+                                    <i class="fa fa-clock-o mt-4" aria-hidden="true"></i>
+                                    <div className="d-flex flex-column text-center mt-3 ml-2">
+                                        <small>11 NOV. WEDNESDAY</small>
+                                        <small>06:00PM - 08:00PM</small>
+                                    </div>
+                                </div>
+                                <div className="border-right"></div>
+                                <div>
+                                    <div className="d-flex ml-5 mr-5 text-success">
+                                        <i class="fa fa-check-circle mt-3" aria-hidden="true"></i>
+                                        <span className="mt-2">_______</span>
+                                        <i class="fa fa-circle-thin mt-3" aria-hidden="true"></i>
+                                        <span className="mt-2">_______</span>
+                                        <i class="fa fa-circle-thin mt-3" aria-hidden="true"></i>
+                                        <span className="mt-2">_______</span>
+                                        <i class="fa fa-circle-thin mt-3" aria-hidden="true"></i>
+                                        <span className="mt-2">_______</span>
+                                        <i class="fa fa-circle-thin mt-3" aria-hidden="true"></i>
+                                    </div>
+                                    <div className="d-flex ml-5">
+                                        <small className="mt-2">Placed</small>
+                                        <small className="m-2">Inprocess</small>
+                                        <small className="m-2">Packed</small>
+                                        <small className="m-2">On the way</small>
+                                        <small className="m-2">Delivered</small>
+
+                                    </div>
+                                </div>
+                                <div className="ml-5 mr-5" id="accordionExample">
+                                    <button type="button" className="border mt-3 text-muted" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{ backgroundColor: "white", outline: "none" }}>View 2 items<i class="fa fa-sort-desc h5" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="ml-3 border" id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div className="row ml-4 mt-4 d-flex d-flex justify-content-around">
+                                <div>
+                                    <span>Shipment type: Standard delivery</span>
+                                </div>
+                                <div >
+                                    <span>Order-id: 12345566</span>
+                                </div>
+                                <div >
+                                    <span>Order Placed: Mon 9 Nov 2020</span>
+                                </div>
+                            </div>
+                            <hr className="text-center w-75" />
+
+                            <div className="row d-flex ml-4 justify-content-around">
+                                <div className="col-3 p-2 mt-3">
+                                    <h6>Delevery Address</h6>
+                                    <span>sanjay nagar</span>
+                                </div>
+                                <div className="col-3 p-2 mt-3">
+                                    <h6>Payment Information</h6>
+                                    <span>Order-id: 12345566</span>
+                                </div>
+                                <div className="col-4 bg-light mt-2" >
+                                    <h5>Order Summery</h5>
+                                    <div className="row d-flex justify-content-around">
+                                        <span>Delevery charge </span> <span> Rs. 10</span>
+                                    </div>
+                                    <div className="row d-flex justify-content-around">
+                                        <span>Used from Wallet </span> <span> Rs. 10</span>
+                                    </div>
+                                    <div className="row d-flex justify-content-around">
+                                        <span>Order Amount </span> <span> Rs. 10</span>
+                                    </div>
+                                    <div className="row d-flex justify-content-around">
+                                        <span>Savings </span> <span className="text-success"> Rs. 10</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row ml-4">
+                                <h6 className="mt-4">More With The Order</h6>
+                            </div>
+                            <div className="row d-flex text-center ml-4">
+                                <div className="p-2 border border-dark w-25">
+                                    <h5>Add-on Order</h5>
+                                    <span className="text-muted" >Add more Item without extra delivery charge</span>
+                                </div>
+                                <div className="p-2 ml-2  border border-dark" >
+                                    <h5>Change Slot</h5>
+                                    <span className="text-muted">Change Delivery slot</span>
+                                </div>
+                                <div className="p-2 ml-2 border border-dark" >
+                                    <h5>Cancel Order</h5>
+                                    <span className="text-muted" >Cancel this order</span>
+                                </div>
+                            </div>
+                            <div className="row d-flex justify-content-end">
+                                <button className="border-0 bg-white mr-3 text-primary">View more detail</button>
+                            </div>
+
+                        </div>
+
+                        <div className="text-center ml-3" >
+                            <div className="text-center" style={{ height: "60px", width: "100%", backgroundColor: "#eef2ed" }}>
+                                <div >
+                                    <button type="button" className="mt-2" style={{ backgroundColor: "white", width: "200px", height: "45px", border: "1px solid #30c416", outline: "none" }} >APPLY VOUCHER<br /><small className="text-muted m-1">Save more on this order</small></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="text-center my-3" >
+                            <span className="">_________________________________________________</span>
+                            <small className="mt-5 m-3">PAST ORDERS</small>
+                            <span className="">__________________________________________________</span>
                         </div>
                     </div>
                 </div>
