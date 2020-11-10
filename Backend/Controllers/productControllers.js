@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Product = require("../Models/Product")
-const db  = mongoose.connection
+const db = mongoose.connection
 
 const addProduct = async (req, res) => {
 
@@ -31,10 +31,10 @@ const getProducts = async (req, res) => {
         if (req.query.productName) {
             search_params["productName"] = req.query.productName
         }
-        
 
-        const products = await Product.find(search_params).sort({mrp: -1}).collation({locale: "en_US", numericOrdering: true})
-       
+
+        const products = await Product.find(search_params).sort({ mrp: -1 }).collation({ locale: "en_US", numericOrdering: true })
+
         res.send(products)
 
     } catch (err) {
@@ -44,17 +44,18 @@ const getProducts = async (req, res) => {
 
 const searchProducts = async (req, res) => {
     try {
-        const name = req.query.name.toLowerCase()
-
-        let products = await Product.find()
-
-        let result = products.filter(item => item.productName.toLowerCase().includes(name))
-
-        res.send(result)
+        await Product.find({
+            productName: {
+                $regex: req.query.name,
+                $options: "i"
+            }
+        }, function (err, data) {
+            res.send(data)
+        })
     }
     catch (err) {
         res.status(400).send(err.message)
     }
 }
 
-module.exports = {addProduct, getAllProducts, searchProducts, getProducts}
+module.exports = { addProduct, getAllProducts, searchProducts, getProducts }
