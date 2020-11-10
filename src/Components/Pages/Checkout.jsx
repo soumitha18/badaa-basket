@@ -34,8 +34,9 @@ export const Checkout = () => {
                     if (captured) {
                         user.order = user.basket
                         user.basket = []
+                        Axios.post("http://localhost:5000/email/send", { to: user.email, subject: `Badaa Basket`, message: `Thanks for Buying! your ordered ${user.order.length} Items. Payment is successful Rs.${total} with Discount of Rs.${totalDiscount}` })
                         dispatch(editing(user))
-                        alert("Payment Successful")
+                        alert("Payment Successful! Email Sended to you!")
                         history.push("/my-account/orders")
                     }
                 } catch (err) {
