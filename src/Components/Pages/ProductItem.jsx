@@ -30,6 +30,7 @@ export const ProductItem = () => {
                 ...data,
                 size: size,
                 mrp: discountedPrice,
+                originalMrp: data.mrp[index],
                 quantity: val
             }
             user.basket.push(basket)
