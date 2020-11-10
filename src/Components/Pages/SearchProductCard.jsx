@@ -10,11 +10,13 @@ export const SearchProductCard = ({ item, i, handleClick, setSearch }) => {
     const dispatch = useDispatch()
 
     const discountedPrice = ((Number(item.mrp[0]) * (100 - Number(item.offer))) / 100).toFixed(2)
+    
     const handleBasket = () => {
         const basket = {
             ...item,
             size: item.size[0],
             mrp: discountedPrice,
+            originalMrp: item.mrp[0],
             quantity: val
         }
         user.basket.push(basket)

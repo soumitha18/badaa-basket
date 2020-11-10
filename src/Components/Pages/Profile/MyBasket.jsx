@@ -51,6 +51,7 @@ export default function MyBasket() {
     }
 
     const total = (user && user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)).toFixed(2)
+    const totalDiscount = (user && user.basket.reduce((total, item) => total + Number(item.originalMrp - item.mrp) * Number(item.quantity), 0)).toFixed(2)
 
     return (
         <>
@@ -83,7 +84,7 @@ export default function MyBasket() {
                                                 <button className="border-0 rounded-right" onClick={()=>handleQuantity(i,1)}>+</button>
                                             </div>
                                         <div className="col-2 text-center pt-3">Rs.{(item.mrp * item.quantity).toFixed(2)} <span onClick={() => handleClick(item)} className="float-right pr-2">x</span></div>
-                                        <div className="col-1 text-center pt-3"></div>
+                                        <div className="col-1 text-center pt-3">₹ {(item.originalMrp - item.mrp).toFixed(2)}</div>
                                     </div>
                                 ))
                             }
@@ -134,7 +135,7 @@ export default function MyBasket() {
                                     <div className="col-2 border-left text-danger">
                                         <i class="fa fa-shopping-basket mt-3" aria-hidden="true"></i><br />
                                         <small>YOU SAVE</small><br />
-                                        <small>RS. 33.30</small>
+                                        <small>₹ {totalDiscount}</small>
                                     </div>
                                 </div>
                                 <hr />

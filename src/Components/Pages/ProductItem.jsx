@@ -24,13 +24,15 @@ export const ProductItem = () => {
     }
 
     const discountedPrice = ((Number(data.mrp[index]) * (100 - Number(data.offer))) / 100).toFixed(2)
+    
     const handleBasket = () => {
         const basket = {
             ...data,
             size: size,
             mrp: discountedPrice,
+            originalMrp: data.mrp[index],
             quantity: val
-        }
+        }        
         user.basket.push(basket)
         dispatch(editing(user))
     }
