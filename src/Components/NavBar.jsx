@@ -291,6 +291,8 @@ export const NavBar = () => {
                                     data && data.map((item, i) => (
                                         <SearchProductCard key={i} item={item} i={i} handleClick={handleClick} setSearch={setSearch} />
                                     ))
+                                }{
+                                    data && data.length === 0 && <div className="card p-2 mr-2 border-danger border-top-0 text-center"><small>No Items</small></div>
                                 }
                             </div>
                         </div>
