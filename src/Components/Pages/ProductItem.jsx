@@ -37,6 +37,8 @@ export const ProductItem = () => {
         dispatch(editing(user))
     }
 
+    
+
     return (
         <div className="container">
             <div className="row text-muted">
