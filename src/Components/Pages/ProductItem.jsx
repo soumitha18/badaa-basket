@@ -156,9 +156,9 @@ export const ProductItem = () => {
                             <button className="btn col-3 border-success">SAVE</button>
                         </div> :
                     <div className="mt-3 row mb-1">
-                        <button className="btn btn-outline-success col-1" onClick={()=>handleQuantity(-1)}><i class="fas fa-minus"></i></button>
+                        <button className="btn btn-outline-success p-2 rounded col-1" onClick={()=>handleQuantity(-1)}><i class="fas fa-minus"></i></button>
                         <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-1 mt-2 font-weight-bold border-0" />
-                        <button className="btn btn-outline-success col-1" onClick={()=>handleQuantity(1)}><i class="fas fa-plus"></i></button>
+                        <button className="btn btn-outline-success p-2 rounded col-1" onClick={()=>handleQuantity(1)}><i class="fas fa-plus"></i></button>
                 </div>
                     }
                     <small className="text-muted">Express: Today 5:00PM - 7:00PM</small>
