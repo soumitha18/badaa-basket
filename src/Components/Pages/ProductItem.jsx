@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { editing } from '../../Redux/AuthReducer/action'
@@ -9,6 +9,7 @@ export const ProductItem = () => {
     const [size, setSize] = useState(data.size[0])
     const [index, setIndex] = useState(0)
     const [val, setVal] = useState(1)
+    const [addBtn, setAddBtn] = useState(true)
     const user = useSelector(state => state.auth.user)
     const isAuth = useSelector(state => state.auth.isAuth)
 
@@ -26,6 +27,7 @@ export const ProductItem = () => {
     const discountedPrice = ((Number(data.mrp[index]) * (100 - Number(data.offer))) / 100).toFixed(2)
     
     const handleBasket = () => {
+        setAddBtn(false)
         const basket = {
             ...data,
             size: size,
@@ -37,6 +39,43 @@ export const ProductItem = () => {
         dispatch(editing(user))
     }
 
+    const handleQuantity = (value) => {
+        let index
+
+        for (let i = 0; i < user.basket.length; i++) {
+            if (user.basket[i].productName === data.productName) {
+                index = i
+            }
+        }
+           
+        if(user.basket[index].quantity === 1 && value === -1){
+            let basket = user.basket.filter((ele) => ele.productName !== user.basket[index].productName)
+            const userDetail = {
+                ...user,
+                basket
+            }
+            dispatch(editing(userDetail))
+            setAddBtn(true)
+            return
+        }
+        user.basket[index].quantity += value
+        dispatch(editing(user))
+        setVal(user.basket[index].quantity)
+    }
+    useEffect(() => {
+        if(isAuth){
+            let newdata = user.basket.find(item => item.productName === data.productName)
+            if(newdata){
+                setVal(newdata.quantity)
+                setAddBtn(false)
+            }
+            else{
+                setVal(1)
+                setAddBtn(true)
+            }
+        }
+       
+    },[user])
     
 
     return (
@@ -109,11 +148,19 @@ export const ProductItem = () => {
                     <h5 className="mt-1 mb-3">{data.productName} - {size}</h5>
                     <small className="text-muted">MRP.<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[index]}</em> <b className="text-dark">Price: Rs.{discountedPrice}</b> <b className="text-danger">you save : {data.offer}%</b> (including all taxes) </small><br />
                     <span className="px-1 text-light" style={{ background: "#14a043" }}><small>{data.ratings}</small> <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828884.svg" alt="star" width="12px" /></span> {data.reviews} Reviews
+                    {
+                        addBtn?
+                        <div className="mt-3 row mb-1">
+                            <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-2 ml-4 mt-1 p-4" />
+                            <button className="btn btn-success col-5 mx-3" onClick={isAuth ? handleBasket : null} data-toggle={isAuth ? null : "modal"} data-target={isAuth ? null : "#modalLRForm"}>ADD TO BASKET</button>
+                            <button className="btn col-3 border-success">SAVE</button>
+                        </div> :
                     <div className="mt-3 row mb-1">
-                        <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-2 ml-4 mt-1 p-4" />
-                        <button className="btn btn-success col-5 mx-3" onClick={isAuth ? handleBasket : null} data-toggle={isAuth ? null : "modal"} data-target={isAuth ? null : "#modalLRForm"}>ADD TO BASKET</button>
-                        <button className="btn col-3 border-success">SAVE</button>
-                    </div>
+                        <button className="btn btn-outline-success col-1" onClick={()=>handleQuantity(-1)}><i class="fas fa-minus"></i></button>
+                        <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-1 mt-2 font-weight-bold border-0" />
+                        <button className="btn btn-outline-success col-1" onClick={()=>handleQuantity(1)}><i class="fas fa-plus"></i></button>
+                </div>
+                    }
                     <small className="text-muted">Express: Today 5:00PM - 7:00PM</small>
                     <div>
                         <small>Pack Size</small>
