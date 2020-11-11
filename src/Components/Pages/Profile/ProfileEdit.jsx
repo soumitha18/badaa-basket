@@ -1,11 +1,33 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { editing } from '../../../Redux/AuthReducer/action';
 import "../../styles/ProfileDetail.modules.css";
 
 export default function ProfileEdit() {
-
     const user = useSelector((state) => state.auth.user);
+    const [name, setName] = useState(user.name)
+    const [email, setEmail] = useState(user.email)
+    const [number, setNumber] = useState(user.number)
+    const isAuth = useSelector(state => state.auth.isAuth)
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    if (!isAuth) {
+        history.push("/")
+    }
+
+    const editUser = () => {
+        let obj = {
+            ...user,
+            name,
+            email,
+            number
+        }
+        dispatch(editing(obj))
+        history.push("/my-account/profile")
+    }
 
     return (
         <div>
@@ -13,7 +35,7 @@ export default function ProfileEdit() {
                 <div className="my-3"><small><Link to="/" className="text-muted">Home</Link>{` > `}<Link to="/my-account/profile" className="text-muted">Profile</Link>{` > `}Edit Profile</small></div>
                 <hr />
                 <div className="row mt-4">
-                    <div className="col-3 border-right">
+                    <div className="col-3 border-right"><small>
                         <h6 className="border-bottom mt-1" style={{ textDecoration: "underline", textDecorationColor: "#86d615", textDecorationThickness: "2px" }}>PERSONAL DETAILS</h6>
                         <div className="mt-1 text-muted ml-3" style={{ display: "flex", flexDirection: "column" }}>
                             <span className="my-2">Edit Profile</span>
@@ -37,7 +59,7 @@ export default function ProfileEdit() {
                             <div className="my-3">Locate on Map</div>
                             <div className="my-3">Alerts & Notification</div>
                             <div className="my-3">Spend Trends</div>
-                        </div>
+                        </div></small>
                     </div>
 
                     <div className="col-8 ml-4">
@@ -62,30 +84,19 @@ export default function ProfileEdit() {
                                     </select>
                                 </div>
                                 <div className="row my-2">
-                                    <label for="FirstName" class="col-sm-3 col-form-label">First Name:<span className="text-danger ml-1">*</span></label>
-                                    <input class="form-control form-control-sm w-50" value={user.name} id="FirstName" type="text" required></input>
-                                </div>
-
-                                <div className="row my-2">
-                                    <label for="LastName" class="col-sm-3 col-form-label">Last Name:<span className="text-danger ml-1">*</span></label>
-                                    <input class="form-control form-control-sm w-50" value={user.name} id="LastName" type="text" placeholder="Last Name" required></input>
+                                    <label for="FirstName" class="col-sm-3 col-form-label">Name:<span className="text-danger ml-1">*</span></label>
+                                    <input class="form-control form-control-sm w-50" onChange={e => setName(e.target.value)} value={name} id="FirstName" type="text" required></input>
                                 </div>
 
                                 <div className="row my-2">
                                     <label for="EmailAddress" class="col-sm-3 col-form-label">Email Address:<span className="text-danger ml-1">*</span></label>
-                                    <input class="form-control form-control-sm w-50" value={user.email} id="EmailAddress" type="email" placeholder="Email Address" required></input>
+                                    <input class="form-control form-control-sm w-50" onChange={e => setEmail(e.target.value)} value={email} id="EmailAddress" type="email" placeholder="Email Address" required></input>
                                 </div>
-
                                 <div className="row my-2">
-                                    <label for="dob" class="col-sm-3 col-form-label">Date of Birth:<span className="text-danger ml-1">*</span></label>
-                                    <input class="form-control form-control-sm w-50" id="dob" type="date" placeholder="DD/MM/YYYY" required></input>
-                                </div>
-
-                                <div className="row my-2">
-                                    <label for="MobileNumber" class="col-sm-3 col-form-label">Mobile Number:<span className="text-danger ml-1">*</span></label>
+                                    <label for="MobileNumber" class="col-sm-3 col-form-label">Mobile Number:</label>
                                     <div class="input-group mb-2 w-50">
                                         <div class="input-group-text">+91</div>
-                                        <input type="text" class="form-control" value={user.number} id="MobileNumber" placeholder="Mobile Number" required />
+                                        <input type="text" class="form-control" onChange={e => setNumber(e.target.value)} value={number} id="MobileNumber" placeholder="Mobile Number" />
                                     </div>
                                 </div>
                             </form>
@@ -100,7 +111,7 @@ export default function ProfileEdit() {
                         </div>
 
                         <div className="">
-                            <button type="submit" className="btn pt-2" style={{ backgroundColor: "#f0bf65", borderRadius: "10px", height: "35px", fontWeight: "bold" }}>SAVE CHANGES</button>
+                            <button type="submit" className="btn pt-2" style={{ backgroundColor: "#f0bf65", borderRadius: "10px", height: "35px", fontWeight: "bold" }} onClick={editUser}>SAVE CHANGES</button>
                             <button type="button" className="btn ml-3 pt-2" style={{ backgroundColor: "#ebe9e6", borderRadius: "10px", height: "35px", fontWeight: "bold" }}>CANCEL</button>
                         </div>
                     </div>

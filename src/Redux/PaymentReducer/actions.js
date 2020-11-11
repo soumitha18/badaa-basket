@@ -1,4 +1,4 @@
-import { PAYMENT_FAILURE, PAYMENT_REQUEST, PAYMENT_SUCCESS } from "./actionTypes"
+import { HANDLE_CAPTURE, PAYMENT_FAILURE, PAYMENT_REQUEST, PAYMENT_SUCCESS } from "./actionTypes"
 
 import axios from "axios"
 
@@ -36,6 +36,7 @@ export const payment = ({ total, to, totalDiscount, orders }) => async (dispatch
                     axios.post("http://localhost:5000/email/send", { to, subject: `Badaa Basket`, message: `Thanks for Buying! your ordered ${orders} Items. Payment is successful Rs.${total} with Discount of Rs.${totalDiscount}` })
                         .then(() => dispatch(paymentSuccess()))
                         .catch(() => console.log("err"))
+
                 }
             } catch (err) {
                 dispatch(paymentFailure())
@@ -48,3 +49,7 @@ export const payment = ({ total, to, totalDiscount, orders }) => async (dispatch
     const rzp1 = new window.Razorpay(options);
     rzp1.open();
 }
+
+export const handleCapture = () => ({
+    type: HANDLE_CAPTURE
+})

@@ -22,9 +22,9 @@ export default function ProfileDetail() {
                         <h5 className="hEffect mb-3">MY ACCOUNT</h5>
                         <div className="hEffect my-1">Personal Details</div>
                         <div className="mt-1 ml-3 text-muted" style={{ display: "flex", flexDirection: "column" }}>
-                            <span className="hEffect my-1">-Edit Profile</span>
-                            <span className="hEffect my-1">-Delivery Addresses</span>
-                            <span className="hEffect my-1">-Email Addresses</span>
+                            <Link to="/my-account/edit-profile" className="hEffect my-1 text-muted">-Edit Profile</Link>
+                            <Link to="/my-account/delivery-address" className="hEffect my-1 text-muted">-Delivery Addresses</Link>
+                            <span className="hEffect my-1 text-muted">-Email Addresses</span>
                         </div>
                         <div className="hEffect my-1">Shop From</div>
                         <div className="text-muted ml-3" style={{ display: "flex", flexDirection: "column" }}>
@@ -43,7 +43,7 @@ export default function ProfileDetail() {
                     <div className="col-9">
                         <div className="ml-4">
                             <div className="border-bottom">
-                                <span className="h2 font-weight-light mr-4 p-2">Profile Detail</span><span className="mt-4 hEffect font-weight-bolder">(Edit)</span>
+                                <span className="h2 font-weight-light mr-4 p-2">Profile Detail</span><Link to="/my-account/profile-edit" className="mt-4 hEffect font-weight-bolder">(Edit)</Link>
                             </div>
                             <div className="border-bottom">
                                 <div className="mt-4 font-weight-light h4">{user.name}</div>

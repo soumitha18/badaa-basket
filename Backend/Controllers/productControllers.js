@@ -32,7 +32,6 @@ const getProducts = async (req, res) => {
             search_params["productName"] = req.query.productName
         }
 
-
         const products = await Product.find(search_params).sort({ mrp: -1 }).collation({ locale: "en_US", numericOrdering: true })
 
         res.send(products)

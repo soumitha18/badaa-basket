@@ -12,6 +12,8 @@ import MyBasket from "./Pages/Profile/MyBasket"
 import { NavBar } from './NavBar'
 import { Footer } from './Footer'
 import { Checkout } from './Pages/Checkout'
+import ProfileEdit from './Pages/Profile/ProfileEdit'
+import DeliveryAddress from "./Pages/Profile/DeliveryAddress"
 
 export const Routes = () => {
 
@@ -29,6 +31,8 @@ export const Routes = () => {
             <Route path="/my-account/wallet" component={WalletDetail} />
             <Route path="/my-account/basket" component={MyBasket} />
             <Route path="/checkout" component={Checkout} />
+            <Route path="/my-account/profile-edit" component={ProfileEdit} />
+            <Route path="/my-account/delivery-address" component={DeliveryAddress} />
             <Route path="/" component={Footer} />
         </div>
     )

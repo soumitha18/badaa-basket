@@ -1,9 +1,10 @@
 import Axios from 'axios'
 import React from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from 'react-router-dom'
 import { editing } from "../../Redux/AuthReducer/action"
-import { payment } from '../../Redux/PaymentReducer/actions'
+import { handleCapture, payment } from '../../Redux/PaymentReducer/actions'
 
 export const Checkout = () => {
 
@@ -18,13 +19,17 @@ export const Checkout = () => {
         dispatch(payment({ total, to: user.email, orders: user.basket.length, totalDiscount }))
     }
 
-    if (capture) {
-        user.order = user.basket
-        user.basket = []
-        dispatch(editing(user))
-        alert("Payment Successful! Email Sended to you!")
-        history.push("/my-account/orders")
-    }
+    useEffect(() => {
+        if (capture) {
+            user.order = user.basket
+            user.basket = []
+            dispatch(editing(user))
+            alert("Payment Successful! Email Sended to you!")
+            dispatch(handleCapture())
+            history.push("/my-account/orders")
+        }
+    }, [capture])
+
 
     return (
         <>

@@ -36,8 +36,8 @@ const customerSchema = new Schema({
         default: 0
     },
     address: {
-        type: String,
-        default: ""
+        type: Object,
+        default: {}
     }
 });
 

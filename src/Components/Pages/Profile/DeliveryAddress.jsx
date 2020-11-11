@@ -8,12 +8,12 @@ export default function DeleveryAddress() {
     const user = useSelector((state) => state.auth.user);
 
     return (
-        <div>
+        <div className="my-3">
             <div className="container">
-                <div className="my-3"><small><Link to="/" className="text-muted">Home</Link>{` > `}<Link to="/my-account/profile" className="text-muted">Profile</Link>{` > `}Address Book</small></div>
+                <div><small><Link to="/" className="text-muted">Home</Link>{` > `}<Link to="/my-account/profile" className="text-muted">Profile</Link>{` > `}Address Book</small></div>
                 <hr />
-                <div className="row mt-4">
-                    <div className="col-3 border-right">
+                <div className="row mt-2">
+                    <div className="col-3 border-right"><small>
                         <h6 className="border-bottom mt-1" style={{ textDecoration: "underline", textDecorationColor: "#86d615", textDecorationThickness: "2px" }}>PERSONAL DETAILS</h6>
                         <div className="mt-1 text-muted ml-3" style={{ display: "flex", flexDirection: "column" }}>
                             <span className="my-2">Edit Profile</span>
@@ -37,7 +37,7 @@ export default function DeleveryAddress() {
                             <div className="my-3">Locate on Map</div>
                             <div className="my-3">Alerts & Notification</div>
                             <div className="my-3">Spend Trends</div>
-                        </div>
+                        </div></small>
                     </div>
 
                     <div className="col-9">
