@@ -50,8 +50,7 @@ export const signUpSuccess = (payload) => ({
 export const signUp = (payload) => (dispatch) => {
   dispatch(signUpRequest());
   axios
-    .post("http://localhost:5000/register", payload)
-    .then((res) => dispatch(signUpSuccess(res.data.user)))
+    .then((res) => dispatch(signUpSuccess(res.data)))
     .catch((err) => dispatch(signUpFailure(err.response.data)));
 };
 

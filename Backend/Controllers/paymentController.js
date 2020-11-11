@@ -63,7 +63,7 @@ const sendingEmail = (req, res) => {
         auth: {
             user: process.env.GMAIL_ID,
             pass: process.env.GMAIL_PASSWORD
-        },
+        }
     });
 
     let mailOptions = {
@@ -74,6 +74,7 @@ const sendingEmail = (req, res) => {
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
+
         if (err) {
             res.status(400).json(err)
         } else {

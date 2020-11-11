@@ -3,52 +3,27 @@ import React from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from 'react-router-dom'
 import { editing } from "../../Redux/AuthReducer/action"
+import { payment } from '../../Redux/PaymentReducer/actions'
 
 export const Checkout = () => {
 
     const user = useSelector(state => state.auth.user)
-    const total = (user && user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)).toFixed(2)
-    const totalDiscount = (user && user.basket.reduce((total, item) => total + Number(item.originalMrp - item.mrp) * Number(item.quantity), 0)).toFixed(2)
+    const total = Math.round(user && user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0))
+    const totalDiscount = Math.round(user && user.basket.reduce((total, item) => total + Number(item.originalMrp - item.mrp) * Number(item.quantity), 0))
     const history = useHistory()
     const dispatch = useDispatch()
+    const capture = useSelector(state => state.payment.capture)
 
-    const handleClick = async () => {
-        const API_URL = 'http://localhost:5000/'
-        const orderUrl = `${API_URL}order?total=${total}`;
-        const response = await Axios.get(orderUrl);
-        const { data } = response;
+    const handleClick = () => {
+        dispatch(payment({ total, to: user.email, orders: user.basket.length, totalDiscount }))
+    }
 
-        const options = {
-            name: "Badaa Basket",
-            description: "Payment",
-            order_id: data.id,
-            handler: async (response) => {
-                console.log(response.razorpay_payment_id)
-                try {
-                    const paymentId = response.razorpay_payment_id;
-                    const url = `${API_URL}capture/${paymentId}`;
-                    const captureResponse = await Axios.post(url, { total: total })
-                    const successObj = JSON.parse(captureResponse.data)
-                    const captured = successObj.captured;
-
-                    if (captured) {
-                        user.order = user.basket
-                        user.basket = []
-                        Axios.post("http://localhost:5000/email/send", { to: user.email, subject: `Badaa Basket`, message: `Thanks for Buying! your ordered ${user.order.length} Items. Payment is successful Rs.${total} with Discount of Rs.${totalDiscount}` })
-                        dispatch(editing(user))
-                        alert("Payment Successful! Email Sended to you!")
-                        history.push("/my-account/orders")
-                    }
-                } catch (err) {
-                    console.log(err);
-                }
-            },
-            theme: {
-                color: "rgb(129, 212, 19)",
-            },
-        };
-        const rzp1 = new window.Razorpay(options);
-        rzp1.open();
+    if (capture) {
+        user.order = user.basket
+        user.basket = []
+        dispatch(editing(user))
+        alert("Payment Successful! Email Sended to you!")
+        history.push("/my-account/orders")
     }
 
     return (

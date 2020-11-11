@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, useHistory } from "react-router-dom"
+import { Route } from "react-router-dom"
 import { Home } from "./Pages/Home"
 import { BBStar } from "./Pages/BBStar"
 import { ProductItem } from "./Pages/ProductItem"
