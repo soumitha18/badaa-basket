@@ -1,12 +1,16 @@
 import Axios from 'axios'
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { getProduct } from '../../Redux/ProductReducer/action'
 import { ProductCard } from './ProductCard'
 
 export const CategoryPage = () => {
     const data = JSON.parse(localStorage.getItem("data"))
     const title = JSON.parse(localStorage.getItem("title"))
-    const [product, setProduct] = useState([])
+    const product = useSelector(state => state.product.requestedProduct)
+    const [sortVal , setSortVal] = useState("")
+    const dispatch = useDispatch()
     let list = []
     if(data==="Fruits and vegetables"){
         list = ["Fresh Vegetables", "Herbs & Seasonings", "Fresh Fruits", "Organic Fruits & Vegetables", "Exotic Fruits & Veggies", "Cuts & Sprouts", "Flowers Bouquets, Bunches"]
@@ -16,15 +20,15 @@ export const CategoryPage = () => {
     }
     console.log(list)
     useEffect(() => {
-        console.log(title, data)
-        Axios.get(`http://localhost:5000/getproducts?${title}=${data}`)
-            .then(res => setProduct(res.data))
-            .catch(err => console.log(err))
-    }, [title, data])
+        console.log(title, data,sortVal)
+        dispatch(getProduct(title,data,sortVal))
+    }, [title, data,sortVal])
+
 
     const handleFetch = e => {
         console.log(e.target.id)
     }
+
 
     return (
         <div className="container">
@@ -122,13 +126,13 @@ export const CategoryPage = () => {
                     <div className="row">
                         <div className="col-12 my-3 d-flex justify-content-between">
                             <h4>{data}</h4>
-                            <select name="" id=""  className="text-secondary">
+                            <select className="text-secondary" onChange={(e)=>setSortVal(e.target.value)}>
                                 <option value="">Popularity</option>
-                                <option value="">Price- Low to High</option>
-                                <option value="">Price- High to Low</option>
-                                <option value="">Alphabetical</option>
-                                <option value="">Rupee Saving - Low to High</option>
-                                <option value="">Rupee Saving - High to Low</option>
+                                <option value="asc">Price- Low to High</option>
+                                <option value="desc">Price- High to Low</option>
+                                <option value="alpha">Alphabetical</option>
+                                <option value="ascdiscount">Rupee Saving - Low to High</option>
+                                <option value="descdiscount">Rupee Saving - High to Low</option>
                             </select>
                         </div>
                         {product && product.map((item, i) => <div className="col-3 px-1 m-0"><ProductCard key={i} prod={item} /></div>)}

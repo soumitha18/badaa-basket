@@ -223,6 +223,7 @@ export const NavBar = () => {
 
     const handleLogout = () => {
         dispatch(logout())
+        history.push('/')
     }
 
     const empty = () => {
@@ -230,6 +231,10 @@ export const NavBar = () => {
         setEmail("");
         setPassword("");
     };
+
+    if(history.location.pathname==="/checkout"){
+        return null
+    }
 
     return (
         <div className="container">

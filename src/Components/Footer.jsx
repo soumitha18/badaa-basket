@@ -1,7 +1,14 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 import "../Components/styles/style.modules.css"
 
 export const Footer = () => {
+
+    const history = useHistory()
+
+    if(history.location.pathname==="/checkout"){
+        return null
+    }
     return (
         <>
             <div className="container mx-auto justify-content-center">

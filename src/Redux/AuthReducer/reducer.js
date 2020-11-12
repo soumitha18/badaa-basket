@@ -1,3 +1,4 @@
+import { loadData, saveData } from "../localStorage";
 import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
@@ -15,9 +16,9 @@ import {
 } from "./actionTypes";
 
 export const initState = {
-  user: {},
+  user: loadData("user") || {},
   error: "",
-  isAuth: false
+  isAuth: loadData("isAuth") ||  false
 }
 
 const reducer = (state = initState, action) => {
@@ -34,6 +35,7 @@ const reducer = (state = initState, action) => {
         error: action.payload
       };
     case LOGIN_SUCCESS:
+      saveData("user", action.payload)
       return {
         ...state,
         error: "",
@@ -70,13 +72,17 @@ const reducer = (state = initState, action) => {
         error: action.payload
       }
     case AUTH_SUCCESS:
+      saveData("user", action.payload)
+      saveData("isAuth", true)
       return {
         ...state,
         error: "",
         user: action.payload,
         isAuth: true
       }
-    case LOGOUT:
+      case LOGOUT:
+        saveData("user", {})
+      saveData("isAuth", false)
       return {
         ...state,
         isAuth: false,
@@ -87,14 +93,14 @@ const reducer = (state = initState, action) => {
         ...state,
         err: "Something Went Wrong"
       }
-    case EDIT_REQUEST:
-      return {
-        ...state,
-        err: ""
-      }
-    case EDIT_SUCCESS:
-      return {
-        ...state,
+      case EDIT_REQUEST:
+        return {
+          ...state,
+          err: ""
+        }
+        case EDIT_SUCCESS:
+          return {
+            ...state,
         user: action.payload
       }
     default:
