@@ -67,10 +67,10 @@ export const getProductSuccess = (payload) => ({
   payload,
 });
 
-export const getProduct = () => (dispatch) => {
+export const getProduct = (title, data,sortVal="") => (dispatch) => {
   dispatch(getProductRequest());
   axios
-    .get("http://localhost:5000/getproducts")
+    .get(`http://localhost:5000/getproducts?${title}=${data}&sort=${sortVal}`)
     .then((res) => dispatch(getProductSuccess(res.data)))
     .catch(() => dispatch(getProductFailure()));
 };

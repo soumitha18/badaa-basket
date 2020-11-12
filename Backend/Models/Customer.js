@@ -37,7 +37,7 @@ const customerSchema = new Schema({
     },
     address: {
         type: Object,
-        default: {}
+        default: {HouseNo: "", ApartmentName:"",Street: "", Landmark:"", AreaDetails: "", City:"",PinCode:"", NickName:""}
     }
 });
 

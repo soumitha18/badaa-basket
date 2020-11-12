@@ -22,7 +22,7 @@ export default function ProfileDetail() {
                         <h5 className="hEffect mb-3">MY ACCOUNT</h5>
                         <div className="hEffect my-1">Personal Details</div>
                         <div className="mt-1 ml-3 text-muted" style={{ display: "flex", flexDirection: "column" }}>
-                            <Link to="/my-account/edit-profile" className="hEffect my-1 text-muted">-Edit Profile</Link>
+                            <Link to="/my-account/profile-edit" className="hEffect my-1 text-muted">-Edit Profile</Link>
                             <Link to="/my-account/delivery-address" className="hEffect my-1 text-muted">-Delivery Addresses</Link>
                             <span className="hEffect my-1 text-muted">-Email Addresses</span>
                         </div>

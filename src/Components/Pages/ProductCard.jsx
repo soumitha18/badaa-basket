@@ -75,6 +75,7 @@ export const ProductCard = ({ prod }) => {
         }
        
     },[user])
+    console.log(prod)
     return (
         <div className="my-2 mainCard" onClick={handleClick}>
             <div className="card "   >
@@ -107,7 +108,7 @@ export const ProductCard = ({ prod }) => {
                                         <div className="col-7 ml-n2">
                                             <div className="input-group flex-nowrap  ">
                                                 <div className="input-group-prepend">
-                                                    <span className="input-group-text m-n1 " id="addon-wrapping"><samll className="text-muted">Qty</samll></span>
+                                                    <span className="input-group-text m-n1 " id="addon-wrapping"><small className="text-muted">Qty</small></span>
                                                 </div>
                                                 <input type="text" className="form-control m-n1 text-center" value={val} onChange={(e) => setVal(e.target.value)} />
                                             </div>

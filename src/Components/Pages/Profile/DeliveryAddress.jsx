@@ -118,7 +118,7 @@ export default function DeleveryAddress() {
                                 <div className="row">
                                     <div className="row mt-1 ml-2 mr-4" style={{ width: "40%" }}>
                                         <label for="HouseNo" class="col-form-label text-muted"><small>House no.</small><span className="text-danger">*</span></label>
-                                        <input class="form-control form-control-sm border-right-0 border-top-0 border-left-0" onChange={e => setHouseNo(e.target.value)} value={HouseNo} style={{ borderBottom: "1px solid green", outline: "none" }} id="HouseNo" type="text" required></input>
+                                        <input class="form-control shadow-nonee form-control-sm border-right-0 border-top-0 border-left-0" onChange={e => setHouseNo(e.target.value)} value={HouseNo} style={{ borderBottom: "1px solid green", outline: "none" }} id="HouseNo" type="text" required></input>
                                     </div>
                                     <div className="row mt-1 ml-5" style={{ width: "40%" }}>
                                         <label for="ApartmentName" class="col-form-label text-muted"><small>Apartment name</small><span className="text-danger">*</span></label>
