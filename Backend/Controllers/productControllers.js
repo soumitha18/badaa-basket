@@ -31,34 +31,34 @@ const getProducts = async (req, res) => {
         if (req.query.productName) {
             search_params["productName"] = req.query.productName
         }
- 
+
         // const products = await Product.find(search_params).sort({ mrp: -1 }).collation({ locale: "en_US", numericOrdering: true })
         const products = await Product.find(search_params)
 
-        if(req.query.sort===""){
-           return  res.send(products)
+        if (req.query.sort === "") {
+            return res.send(products)
         }
-        if(req.query.sort==="alpha"){
-            const sortedProducts = products.sort((product1,product2)=> product1.productName - product2.productName )
-            return  res.send(sortedProducts)
+        if (req.query.sort === "alpha") {
+            const sortedProducts = products.sort((product1, product2) => product1.productName - product2.productName)
+            return res.send(sortedProducts)
         }
-        if(req.query.sort==="asc"){
-            const sortedProducts = products.sort((product1,product2)=> product1.mrp[0] - product2.mrp[0] )
-            return  res.send(sortedProducts)
+        if (req.query.sort === "asc") {
+            const sortedProducts = products.sort((product1, product2) => product1.mrp[0] - product2.mrp[0])
+            return res.send(sortedProducts)
         }
-        if(req.query.sort==="desc"){
-            const sortedProducts = products.sort((product1,product2)=> product2.mrp[0] - product1.mrp[0] )
-            return  res.send(sortedProducts)
+        if (req.query.sort === "desc") {
+            const sortedProducts = products.sort((product1, product2) => product2.mrp[0] - product1.mrp[0])
+            return res.send(sortedProducts)
         }
-        if(req.query.sort==="descdiscount"){
-            const sortedProducts = products.sort((product1,product2)=> (product2.mrp[0] - (product2.mrp[0] *(100 - Number(product2.offer))/100).toFixed(2)) - (product1.mrp[0] - (product1.mrp[0] *(100 - Number(product1.offer))/100).toFixed(2) ))
-            return  res.send(sortedProducts)
+        if (req.query.sort === "descdiscount") {
+            const sortedProducts = products.sort((product1, product2) => (product2.mrp[0] - (product2.mrp[0] * (100 - Number(product2.offer)) / 100).toFixed(2)) - (product1.mrp[0] - (product1.mrp[0] * (100 - Number(product1.offer)) / 100).toFixed(2)))
+            return res.send(sortedProducts)
         }
-        if(req.query.sort==="ascdiscount"){
-            const sortedProducts = products.sort((product1,product2)=> (product1.mrp[0] - (product1.mrp[0] *(100 - Number(product1.offer))/100).toFixed(2)) - (product2.mrp[0] - (product2.mrp[0] *(100 - Number(product2.offer))/100).toFixed(2) ))
-            return  res.send(sortedProducts)
+        if (req.query.sort === "ascdiscount") {
+            const sortedProducts = products.sort((product1, product2) => (product1.mrp[0] - (product1.mrp[0] * (100 - Number(product1.offer)) / 100).toFixed(2)) - (product2.mrp[0] - (product2.mrp[0] * (100 - Number(product2.offer)) / 100).toFixed(2)))
+            return res.send(sortedProducts)
         }
-       
+
 
     } catch (err) {
         res.status(400).send(err)

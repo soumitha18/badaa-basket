@@ -9,20 +9,20 @@ export const CategoryPage = () => {
     const data = JSON.parse(localStorage.getItem("data"))
     const title = JSON.parse(localStorage.getItem("title"))
     const product = useSelector(state => state.product.requestedProduct)
-    const [sortVal , setSortVal] = useState("")
+    const [sortVal, setSortVal] = useState("")
     const dispatch = useDispatch()
     let list = []
-    if(data==="Fruits and vegetables"){
+    if (data === "Fruits and vegetables") {
         list = ["Fresh Vegetables", "Herbs & Seasonings", "Fresh Fruits", "Organic Fruits & Vegetables", "Exotic Fruits & Veggies", "Cuts & Sprouts", "Flowers Bouquets, Bunches"]
     }
-    if(data==="Foodgrains, Oils and Masala"){
+    if (data === "Foodgrains, Oils and Masala") {
         list = ["Dols & Pulses", "Atta, Flours & Sooji", "Rice & Rice Product", "Edible Oils & Gees", "Masalas & Spices", "Organics Staples", "Dry Fruits"]
     }
     console.log(list)
     useEffect(() => {
-        console.log(title, data,sortVal)
-        dispatch(getProduct(title,data,sortVal))
-    }, [title, data,sortVal])
+        console.log(title, data, sortVal)
+        dispatch(getProduct(title, data, sortVal))
+    }, [title, data, sortVal])
 
 
     const handleFetch = e => {
@@ -112,7 +112,7 @@ export const CategoryPage = () => {
                     <div>
                         <small>{data}</small>
                         <div className="ml-3">
-                            {list && list.map(item=> <><small id={item}>{item}</small><br/></>)}
+                            {list && list.map(item => <><small id={item}>{item}</small><br /></>)}
                         </div>
                     </div>
                     <div className=" border-bottom">
@@ -126,7 +126,7 @@ export const CategoryPage = () => {
                     <div className="row">
                         <div className="col-12 my-3 d-flex justify-content-between">
                             <h4>{data}</h4>
-                            <select className="text-secondary" onChange={(e)=>setSortVal(e.target.value)}>
+                            <select className="text-secondary" onChange={(e) => setSortVal(e.target.value)}>
                                 <option value="">Popularity</option>
                                 <option value="asc">Price- Low to High</option>
                                 <option value="desc">Price- High to Low</option>

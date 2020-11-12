@@ -25,7 +25,7 @@ export const ProductItem = () => {
     }
 
     const discountedPrice = ((Number(data.mrp[index]) * (100 - Number(data.offer))) / 100).toFixed(2)
-    
+
     const handleBasket = () => {
         setAddBtn(false)
         const basket = {
@@ -34,7 +34,7 @@ export const ProductItem = () => {
             mrp: discountedPrice,
             originalMrp: data.mrp[index],
             quantity: val
-        }        
+        }
         user.basket.push(basket)
         dispatch(editing(user))
     }
@@ -47,8 +47,8 @@ export const ProductItem = () => {
                 index = i
             }
         }
-           
-        if(user.basket[index].quantity === 1 && value === -1){
+
+        if (user.basket[index].quantity === 1 && value === -1) {
             let basket = user.basket.filter((ele) => ele.productName !== user.basket[index].productName)
             const userDetail = {
                 ...user,
@@ -63,20 +63,20 @@ export const ProductItem = () => {
         setVal(user.basket[index].quantity)
     }
     useEffect(() => {
-        if(isAuth){
+        if (isAuth) {
             let newdata = user.basket.find(item => item.productName === data.productName)
-            if(newdata){
+            if (newdata) {
                 setVal(newdata.quantity)
                 setAddBtn(false)
             }
-            else{
+            else {
                 setVal(1)
                 setAddBtn(true)
             }
         }
-       
-    },[user])
-    
+
+    }, [user])
+
 
     return (
         <div className="container">
@@ -149,17 +149,17 @@ export const ProductItem = () => {
                     <small className="text-muted">MRP.<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[index]}</em> <b className="text-dark">Price: Rs.{discountedPrice}</b> <b className="text-danger">you save : {data.offer}%</b> (including all taxes) </small><br />
                     <span className="px-1 text-light" style={{ background: "#14a043" }}><small>{data.ratings}</small> <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828884.svg" alt="star" width="12px" /></span> {data.reviews} Reviews
                     {
-                        addBtn?
-                        <div className="mt-3 row mb-1">
-                            <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-2 ml-4 mt-1 p-4" />
-                            <button className="btn btn-success col-5 mx-3" onClick={isAuth ? handleBasket : null} data-toggle={isAuth ? null : "modal"} data-target={isAuth ? null : "#modalLRForm"}>ADD TO BASKET</button>
-                            <button className="btn col-3 border-success">SAVE</button>
-                        </div> :
-                    <div className="mt-3 row mb-1">
-                        <button className="btn btn-outline-success p-2 rounded col-1" onClick={()=>handleQuantity(-1)}><i class="fas fa-minus"></i></button>
-                        <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-1 mt-2 font-weight-bold border-0" />
-                        <button className="btn btn-outline-success p-2 rounded col-1" onClick={()=>handleQuantity(1)}><i class="fas fa-plus"></i></button>
-                </div>
+                        addBtn ?
+                            <div className="mt-3 row mb-1">
+                                <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-2 ml-4 mt-1 p-4" />
+                                <button className="btn btn-success col-5 mx-3" onClick={isAuth ? handleBasket : null} data-toggle={isAuth ? null : "modal"} data-target={isAuth ? null : "#modalLRForm"}>ADD TO BASKET</button>
+                                <button className="btn col-3 border-success">SAVE</button>
+                            </div> :
+                            <div className="mt-3 row mb-1">
+                                <button className="btn btn-outline-success p-2 rounded col-1" onClick={() => handleQuantity(-1)}><i class="fas fa-minus"></i></button>
+                                <input type="text" value={val} onChange={e => setVal(e.target.value)} className="form-control col-1 mt-2 font-weight-bold border-0" />
+                                <button className="btn btn-outline-success p-2 rounded col-1" onClick={() => handleQuantity(1)}><i class="fas fa-plus"></i></button>
+                            </div>
                     }
                     <small className="text-muted">Express: Today 5:00PM - 7:00PM</small>
                     <div>
@@ -171,7 +171,7 @@ export const ProductItem = () => {
                                         {item}
                                     </div>
                                     <div className="col-7 p-2">
-                                        <small className="text-muted">Rs.{discountedPrice} MRP:<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[i]}</em> <b className="text-danger">{data.offer}% Off</b></small>
+                                        <small className="text-muted">Rs.{((Number(data.mrp[i]) * (100 - Number(data.offer))) / 100).toFixed(2)} MRP:<em style={{ textDecoration: "line-through" }}>Rs. {data.mrp[i]}</em> <b className="text-danger">{data.offer}% Off</b></small>
                                     </div>
                                     <div className="col-2 float-right pl-5 pt-2">
                                         <img src={index === i ? "https://www.flaticon.com/svg/static/icons/svg/845/845646.svg" : "https://www.flaticon.com/svg/static/icons/svg/594/594852.svg"} alt="select" width={index === i ? "25px" : "20px"} />
