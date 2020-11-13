@@ -38,8 +38,8 @@ export default function ProfileEdit() {
                     <div className="col-3 border-right"><small>
                         <h6 className="border-bottom mt-1" style={{ textDecoration: "underline", textDecorationColor: "#86d615", textDecorationThickness: "2px" }}>PERSONAL DETAILS</h6>
                         <div className="mt-1 text-muted ml-3" style={{ display: "flex", flexDirection: "column" }}>
-                            <span className="my-2">Edit Profile</span>
-                            <Link to="/my-account/delivery-address" className="text-muted"><span className="my-2">Delivery Addresses</span></Link>
+                            <Link to="/my-account/profile-edit" className="hEffect my-1 text-muted">-Edit Profile</Link>
+                            <Link to="/my-account/delivery-address" className="hEffect my-1 text-muted">-Delivery Addresses</Link>
                             <span className="my-2">Email Addresses</span>
                         </div>
                         <h6 className="border-bottom mt-1" style={{ textDecoration: "underline", textDecorationColor: "#86d615", textDecorationThickness: "2px" }}>SHOP FROM</h6>

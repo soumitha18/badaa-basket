@@ -22,8 +22,8 @@ export default function OrderDetail() {
                     <div className="col-3"><small>
                         <h6 className="border-bottom mt-1" style={{ textDecoration: "underline", textDecorationColor: "#86d615", textDecorationThickness: "2px" }}>PERSONAL DETAILS</h6>
                         <div className="mt-1 text-muted ml-3" style={{ display: "flex", flexDirection: "column" }}>
-                            <span className="my-2">Edit Profile</span>
-                            <span className="my-2">Delivery Addresses</span>
+                            <Link to="/my-account/profile-edit" className="hEffect my-1 text-muted">-Edit Profile</Link>
+                            <Link to="/my-account/delivery-address" className="hEffect my-1 text-muted">-Delivery Addresses</Link>
                             <span className="my-2">Email Addresses</span>
                         </div>
                         <h6 className="border-bottom mt-1" style={{ textDecoration: "underline", textDecorationColor: "#86d615", textDecorationThickness: "2px" }}>SHOP FROM</h6>
@@ -68,7 +68,7 @@ export default function OrderDetail() {
 
                             <div className="row ml-2 border">
                                 <div>
-                                    <div style={{ width: "50px", height: "65px", border: "1px solid black", backgroundColor: "black", display: "flex" }}><i class="fa fa-truck h5 m-3 mt-1 text-white" aria-hidden="true"></i></div>
+                                    <div style={{ width: "50px", height: "65px", border: "1px solid black", backgroundColor: "black", display: "flex" }}><i class="fa fa-truck fa-2x mt-3 ml-2 text-white" aria-hidden="true"></i></div>
                                 </div>
                                 <div className="mx-3 d-flex flex-row">
                                     <i class="fa fa-clock-o mt-4" aria-hidden="true"></i>

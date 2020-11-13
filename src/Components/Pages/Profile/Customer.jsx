@@ -22,8 +22,8 @@ export default function Customer() {
                         <h5 className="hEffect mb-3">MY ACCOUNT</h5>
                         <div className="hEffect my-1">Personal Details</div>
                         <div className="mt-1 ml-3 text-muted" style={{ display: "flex", flexDirection: "column" }}>
-                            <span className="hEffect my-1">-Edit Profile</span>
-                            <span className="hEffect my-1">-Delivery Addresses</span>
+                            <Link to="/my-account/profile-edit" className="hEffect my-1 text-muted">-Edit Profile</Link>
+                            <Link to="/my-account/delivery-address" className="hEffect my-1 text-muted">-Delivery Addresses</Link>
                             <span className="hEffect my-1">-Email Addresses</span>
                         </div>
                         <div className="hEffect my-1">Shop From</div>
