@@ -1,4 +1,3 @@
-import Axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -18,9 +17,8 @@ export const CategoryPage = () => {
     if (data === "Foodgrains, Oils and Masala") {
         list = ["Dols & Pulses", "Atta, Flours & Sooji", "Rice & Rice Product", "Edible Oils & Gees", "Masalas & Spices", "Organics Staples", "Dry Fruits"]
     }
-    console.log(list)
+
     useEffect(() => {
-        console.log(title, data, sortVal)
         dispatch(getProduct(title, data, sortVal))
     }, [title, data, sortVal])
 

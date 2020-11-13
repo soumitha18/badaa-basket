@@ -8,8 +8,6 @@ import "../../styles/ProfileDetail.modules.css";
 export default function DeleveryAddress() {
 
     const user = useSelector((state) => state.auth.user);
-    console.log(user)
-    console.log(user.ad)
     const [name, setName] = useState(user.name)
     const [email, setEmail] = useState(user.email)
     const [number, setNumber] = useState(user.number)

@@ -196,19 +196,23 @@ export const NavBar = () => {
     };
 
     const responseFaceBook = (response) => {
-        const obj = {
-            email: response.name.split(" ").join("") + "@gmail.com",
-            name: response.name,
-        };
-        dispatch(auth(obj))
+        if (response.name) {
+            const obj = {
+                email: response.name.split(" ").join("") + "@gmail.com",
+                name: response.name,
+            };
+            dispatch(auth(obj))
+        }
     };
 
     const responseGoogle = (response) => {
-        const obj = {
-            email: response.profileObj.email,
-            name: response.profileObj.name,
-        };
-        dispatch(auth(obj))
+        if (response.profileObj) {
+            const obj = {
+                email: response.profileObj.email,
+                name: response.profileObj.name,
+            };
+            dispatch(auth(obj))
+        }
     };
 
     const handleLogin = () => {
@@ -232,7 +236,7 @@ export const NavBar = () => {
         setPassword("");
     };
 
-    if(history.location.pathname==="/checkout"){
+    if (history.location.pathname === "/checkout") {
         return null
     }
 
@@ -634,7 +638,7 @@ export const NavBar = () => {
                                                 )}
                                         </div>
                                         <div className="text-center text-secondary">OR sign with:</div>
-                                        <div className="text-center mt-2">
+                                        <div className="text-center mt-2" data-dismiss="modal">
                                             <GoogleLogin
                                                 clientId="25593677194-7vebfmo92m96cc9pg0rcjhgdjm5aq04p.apps.googleusercontent.com"
                                                 buttonText="SIGN WITH GOOGLE"
