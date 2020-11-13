@@ -58,7 +58,7 @@ export const ProductItem = () => {
             setAddBtn(true)
             return
         }
-        user.basket[index].quantity += value
+        user.basket[index].quantity = Number(user.basket[index].quantity) + value
         dispatch(editing(user))
         setVal(user.basket[index].quantity)
     }

@@ -53,10 +53,8 @@ export const ProductCard = ({ prod }) => {
             setAddBtn(true)
             return
         }
-        user.basket[index].quantity += value
-        console.log(user)
+        user.basket[index].quantity = Number(user.basket[index].quantity) + value
         dispatch(editing(user))
-        console.log(user)
         setVal(user.basket[index].quantity)
     }
     useEffect(() => {
@@ -73,7 +71,7 @@ export const ProductCard = ({ prod }) => {
         }
 
     }, [user])
-    console.log(prod)
+
     return (
         <div className="my-2 mainCard" onClick={handleClick}>
             <div className="card "   >
@@ -101,14 +99,14 @@ export const ProductCard = ({ prod }) => {
                                     </div>
                                     <div className="col-10 text-muted" style={{ lineHeight: 1 }}><small>Standard Delivery: Today 5:00PM - 8:00PM</small></div>
                                 </div>
-                                {addBtn && val === 1 ?
+                                {addBtn ?
                                     <div className="row mt-2">
                                         <div className="col-7 ml-n2">
                                             <div className="input-group flex-nowrap  ">
                                                 <div className="input-group-prepend">
                                                     <span className="input-group-text m-n1 " id="addon-wrapping"><small className="text-muted">Qty</small></span>
                                                 </div>
-                                                <input type="text" className="form-control m-n1 text-center" value={val} onChange={(e) => setVal(e.target.value)} />
+                                                <input type="text" className="form-control m-n1 text-center" value={val} onChange={(e) => setVal(Number(e.target.value))} />
                                             </div>
                                         </div>
                                         <div className="col-5">

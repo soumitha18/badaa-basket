@@ -5,21 +5,13 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login";
 import { Link, useHistory } from "react-router-dom";
-import { auth, login, signUp, logout } from "../Redux/AuthReducer/action";
 import { getSearchProduct } from "../Redux/ProductReducer/action"
-import { getLocation } from "../Redux/LocationReducer/action"
 import { SearchProductCard } from "./Pages/SearchProductCard";
 import { BasketCard } from "./Pages/BasketCard"
 import Axios from "axios";
 
 export const StickyNav = () => {
-    const [location, setLocation] = useState("");
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("")
     const [search, setSearch] = useState("")
     const [status, setStatus] = useState(true)
 
@@ -184,138 +176,141 @@ export const StickyNav = () => {
         }
     }
 
-
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-1 ">
-                    <Link to="/">
-                        <img
-                            src="https://www.bbassets.com/static/v2344/uiv2/images/BB.png"
-                            className="img-fluid py-2 mt-1"
-                            alt="bada"
-                            width="80%"
-                        />
-                    </Link>
-                </div>
-                <div className="col-1 mt-4 hoverDiv">
-                    <span>SHOP</span><i className="fas fa-caret-down pl-2"></i>
-                    <div className="innerHoverDiv" onClick={(e) => handleClickCategory(e)}>
-                        <div style={{ display: 'flex', flexDirection: "row" }}>
-                            <div className="category">
-                                <p onMouseOver={() => setCategoryState("FV")} style={{ background: categoryState === "FV" ? "whitesmoke" : null }}><small id="Fruits and vegetables:category">Fruits & Vegetables</small></p>
-                                <p onMouseOver={() => setCategoryState("FOM")} style={{ background: categoryState === "FOM" ? "whitesmoke" : null }}><small id="Foodgrains, Oils and Masala:category">Foodgrains, Oil & Masala</small></p>
-                                <p onMouseOver={() => setCategoryState("BCB")} style={{ background: categoryState === "BCB" ? "whitesmoke" : null }}><small id="Bakery, Cakes & Dairy:category">Bakery, Cakes & Dairy</small></p>
-                                <p onMouseOver={() => setCategoryState("B")} style={{ background: categoryState === "B" ? "whitesmoke" : null }}><small id="Beverages:category">Beverages</small></p>
-                                <p onMouseOver={() => setCategoryState("SB")} style={{ background: categoryState === "SB" ? "whitesmoke" : null }}><small id="Snacks & Branded Foods:category">Snacks & Branded Foods</small></p>
-                                <p onMouseOver={() => setCategoryState("BH")} style={{ background: categoryState === "BH" ? "whitesmoke" : null }}><small id="Beauty & Hygiene:category">Beauty & Hygiene</small></p>
-                                <p onMouseOver={() => setCategoryState("CH")} style={{ background: categoryState === "CH" ? "whitesmoke" : null }}><small id="Cleaning & Household:category">Cleaning & Household</small></p>
-                                <p onMouseOver={() => setCategoryState("KGP")} style={{ background: categoryState === "KGP" ? "whitesmoke" : null }}><small id="Kitchen, Garden & Pets:category">Kitchen, Garden & Pets</small></p>
-                                <p onMouseOver={() => setCategoryState("EMF")} style={{ background: categoryState === "EMF" ? "whitesmoke" : null }}><small id="Eggs, Meat & Fish:category">Eggs, Meat & Fish</small></p>
-                                <p onMouseOver={() => setCategoryState("GW")} style={{ background: categoryState === "GW" ? "whitesmoke" : null }}><small id="Gourmet & World Food:category">Gourmet & World Food</small></p>
-                                <p onMouseOver={() => setCategoryState("BC")} style={{ background: categoryState === "BC" ? "whitesmoke" : null }}><small id="Baby Care:category">Baby Care</small></p>
-                                <p onMouseOver={() => setCategoryState("ALL")} style={{ background: categoryState === "ALL" ? "whitesmoke" : null }}><small id="all">View All</small></p>
-                            </div>
-                            <div className="subCategory">
-                                <div>
-                                    {
-                                        subCategoryObj[categoryState] && subCategoryObj[categoryState].map((item, i) => <p onMouseOver={() => setSubCategoryState(i)} style={{ background: subCategoryState === i ? "white" : null }} key={i}><small id={`${item}:subCategory`}>{item}</small></p>)
-                                    }
-                                </div>
-                            </div>
-                            <div className="product">
-                                <div>
-                                    {
-                                        productObjItem && productObjItem[subCategoryState] && productObjItem[subCategoryState].map((item, i) => <p key={i}><small id={`${item}:productName`}>{item}</small></p>)
-                                    }
-                                </div>
-                            </div>
-                            <div className="image">
-                                {
-                                    images[categoryState] && <img src={images[categoryState]} alt={categoryState} width="100%" />
-                                }
-                            </div>
-                        </div>
+        <div className="container-fluid m-0 p-0 sticky-top bg-white shadow">
+            <div className="container py-0 my-0">
+                <div className="row">
+                    <div className="col-1 ">
+                        <Link to="/">
+                            <img
+                                src="https://www.bbassets.com/static/v2344/uiv2/images/BB.png"
+                                className="img-fluid py-2 mt-1"
+                                alt="bada"
+                                width="80%"
+                            />
+                        </Link>
                     </div>
-                 </div>
-                <div className="col-8">
-                    <div className="row" style={{ clear: "both" }}>
-                        <div className="col-12">
-                            <div className="input-group mt-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Search for Products.."
-                                    aria-label="Username"
-                                    aria-describedby="basic-addon1"
-                                    value={search}
-                                    onChange={e => setSearch(e.target.value)}
-                                />
-                                <div className="input-group-prepend ">
-                                    <span
-                                        className="input-group-text searchButton"
-                                        id="basic-addon1"
-                                    >
-                                        <i className="fas fa-search text-white p-1"></i>
-                                    </span>
+                    <div className="col-1 mt-4 hoverDiv">
+                        <span>SHOP</span><i className="fas fa-caret-down pl-2"></i>
+                        <div className="innerHoverDiv" onClick={(e) => handleClickCategory(e)}>
+                            <div style={{ display: 'flex', flexDirection: "row" }}>
+                                <div className="category">
+                                    <p onMouseOver={() => setCategoryState("FV")} style={{ background: categoryState === "FV" ? "whitesmoke" : null }}><small id="Fruits and vegetables:category">Fruits & Vegetables</small></p>
+                                    <p onMouseOver={() => setCategoryState("FOM")} style={{ background: categoryState === "FOM" ? "whitesmoke" : null }}><small id="Foodgrains, Oils and Masala:category">Foodgrains, Oil & Masala</small></p>
+                                    <p onMouseOver={() => setCategoryState("BCB")} style={{ background: categoryState === "BCB" ? "whitesmoke" : null }}><small id="Bakery, Cakes & Dairy:category">Bakery, Cakes & Dairy</small></p>
+                                    <p onMouseOver={() => setCategoryState("B")} style={{ background: categoryState === "B" ? "whitesmoke" : null }}><small id="Beverages:category">Beverages</small></p>
+                                    <p onMouseOver={() => setCategoryState("SB")} style={{ background: categoryState === "SB" ? "whitesmoke" : null }}><small id="Snacks & Branded Foods:category">Snacks & Branded Foods</small></p>
+                                    <p onMouseOver={() => setCategoryState("BH")} style={{ background: categoryState === "BH" ? "whitesmoke" : null }}><small id="Beauty & Hygiene:category">Beauty & Hygiene</small></p>
+                                    <p onMouseOver={() => setCategoryState("CH")} style={{ background: categoryState === "CH" ? "whitesmoke" : null }}><small id="Cleaning & Household:category">Cleaning & Household</small></p>
+                                    <p onMouseOver={() => setCategoryState("KGP")} style={{ background: categoryState === "KGP" ? "whitesmoke" : null }}><small id="Kitchen, Garden & Pets:category">Kitchen, Garden & Pets</small></p>
+                                    <p onMouseOver={() => setCategoryState("EMF")} style={{ background: categoryState === "EMF" ? "whitesmoke" : null }}><small id="Eggs, Meat & Fish:category">Eggs, Meat & Fish</small></p>
+                                    <p onMouseOver={() => setCategoryState("GW")} style={{ background: categoryState === "GW" ? "whitesmoke" : null }}><small id="Gourmet & World Food:category">Gourmet & World Food</small></p>
+                                    <p onMouseOver={() => setCategoryState("BC")} style={{ background: categoryState === "BC" ? "whitesmoke" : null }}><small id="Baby Care:category">Baby Care</small></p>
+                                    <p onMouseOver={() => setCategoryState("ALL")} style={{ background: categoryState === "ALL" ? "whitesmoke" : null }}><small id="all">View All</small></p>
                                 </div>
-                            </div>
-                            <div className="position-absolute pr-2 text-left" style={{ zIndex: "10", width: "100%", minHeight: "0px", maxHeight: "330px", overflowY: "scroll", display: status ? "block" : "none" }}>
-                                {
-                                    data && data.map((item, i) => (
-                                        <SearchProductCard key={i} item={item} i={i} handleClick={handleClick} />
-                                    ))
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-2">
-                    <div
-                        className="card ml-2 pl-3 py-3 pr-2 border-0"
-                        style={{ background: "whitesmoke" }}
-                    >
-                        <div className="row">
-                            <div className="col-4">
-                                <i className="fa fa-shopping-basket fa-2x pt-2" style={{ color: "red" }}></i>
-                            </div>
-                            <div className="col-8 cartHover">
-                                <small>My Basket <b className="text-success">{(user.basket && user.basket.length) || 0}</b> items</small>
-                                <div className="cartInnerHover">
+                                <div className="subCategory">
                                     <div>
                                         {
-                                            user.basket && user.basket.map((item, i) => <BasketCard key={i} index={i} item={item} />)
-                                        }{
-                                            (!user.name || (user.basket && user.basket.length === 0)) && <div className="m-3 p-4 text-center text-muted"><small>Your Basket is Empty! Start Shopping Now!</small></div>
+                                            subCategoryObj[categoryState] && subCategoryObj[categoryState].map((item, i) => <p onMouseOver={() => setSubCategoryState(i)} style={{ background: subCategoryState === i ? "white" : null }} key={i}><small id={`${item}:subCategory`}>{item}</small></p>)
                                         }
                                     </div>
+                                </div>
+                                <div className="product">
                                     <div>
                                         {
-                                            isAuth && <div className="p-2 mx-2" style={{ background: "whitesmoke" }}>
-                                                <div className="row">
-                                                    <div className="col-7 mr-0 pr-1 pt-1">
-                                                        <div className="bg-white p-1 text-muted text-center"><small>**Actual Delivery Charges computed at checkout</small></div>
-                                                    </div>
-                                                    <div className="col-5 ml-0 pl-1">
-                                                        <div className="bg-white p-2">
-                                                            <p className="p-0 m-0"><small>Sub Total: <span className="float-right">Rs.{(user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)).toFixed(2)}</span></small></p>
-                                                            <p className="p-0 m-0"><small>Delivery Charge: <span className="float-right">**</span></small></p>
+                                            productObjItem && productObjItem[subCategoryState] && productObjItem[subCategoryState].map((item, i) => <p key={i}><small id={`${item}:productName`}>{item}</small></p>)
+                                        }
+                                    </div>
+                                </div>
+                                <div className="image">
+                                    {
+                                        images[categoryState] && <img src={images[categoryState]} alt={categoryState} width="100%" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-8">
+                        <div className="row" style={{ clear: "both" }}>
+                            <div className="col-12">
+                                <div className="input-group mt-3">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Search for Products.."
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        value={search}
+                                        onChange={e => setSearch(e.target.value)}
+                                    />
+                                    <div className="input-group-prepend ">
+                                        <span
+                                            className="input-group-text searchButton"
+                                            id="basic-addon1"
+                                        >
+                                            <i className="fas fa-search text-white p-1"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="position-absolute pr-2 text-left" style={{ zIndex: "10", width: "100%", minHeight: "0px", maxHeight: "330px", overflowY: "scroll", display: status ? "block" : "none" }}>
+                                    {
+                                        data && data.map((item, i) => (
+                                            <SearchProductCard key={i} item={item} i={i} handleClick={handleClick} />
+                                        ))
+                                    }{
+                                        data && data.length === 0 && <div className="card p-2 mr-2 border-danger border-top-0 text-center"><small>No Items</small></div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-2">
+                        <div
+                            className="card ml-2 pl-3 py-1 pr-2 border-0"
+                            style={{ background: "whitesmoke" }}
+                        >
+                            <div className="row">
+                                <div className="col-4">
+                                    <i className="fa fa-shopping-basket fa-2x pt-2" style={{ color: "red" }}></i>
+                                </div>
+                                <div className="col-8 cartHover">
+                                    <small>My Basket <b className="text-success">{(user.basket && user.basket.length) || 0}</b> items</small>
+                                    <div className="cartInnerHover">
+                                        <div>
+                                            {
+                                                user.basket && user.basket.map((item, i) => <BasketCard key={i} index={i} item={item} />)
+                                            }{
+                                                (!user.name || (user.basket && user.basket.length === 0)) && <div className="m-3 p-4 text-center text-muted"><small>Your Basket is Empty! Start Shopping Now!</small></div>
+                                            }
+                                        </div>
+                                        <div>
+                                            {
+                                                isAuth && user.basket.length !== 0 && <div className="p-2 mx-2" style={{ background: "whitesmoke" }}>
+                                                    <div className="row">
+                                                        <div className="col-7 mr-0 pr-1 pt-1">
+                                                            <div className="bg-white p-1 text-muted text-center"><small>**Actual Delivery Charges computed at checkout</small></div>
                                                         </div>
-                                                        <div className="bg-success p-1 mt-1 text-center text-white">
-                                                            <small><Link className="text-white" to="/my-account/basket">View Basket & Checkout</Link></small>
+                                                        <div className="col-5 ml-0 pl-1">
+                                                            <div className="bg-white p-2">
+                                                                <p className="p-0 m-0"><small>Sub Total: <span className="float-right">Rs.{(user.basket.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)).toFixed(2)}</span></small></p>
+                                                                <p className="p-0 m-0"><small>Delivery Charge: <span className="float-right">**</span></small></p>
+                                                            </div>
+                                                            <div className="bg-success p-1 mt-1 text-center text-white">
+                                                                <small><Link className="text-white" to="/my-account/basket">View Basket & Checkout</Link></small>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        }
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
     );
 };
 
