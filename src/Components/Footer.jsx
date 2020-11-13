@@ -1,12 +1,12 @@
 import React from 'react'
-import { useHistory } from 'react-router'
+import { Link, useHistory } from 'react-router-dom'
 import "../Components/styles/style.modules.css"
 
 export const Footer = () => {
 
     const history = useHistory()
 
-    if(history.location.pathname==="/checkout"){
+    if (history.location.pathname === "/checkout") {
         return null
     }
     return (
@@ -16,23 +16,23 @@ export const Footer = () => {
                     <div className="row">
                         <div className="col-3">
                             <h5 className="text-success">bigbasket</h5>
-                            <a href="abc.com" className="list" >About Us</a><br />
-                            <a href="abc.com" className="list" >In News</a><br />
-                            <a href="abc.com" className="list" >Green bigbasket</a><br />
-                            <a href="abc.com" className="list" >Privacy Policy</a><br />
-                            <a href="abc.com" className="list" >Terms and Conditions</a><br />
-                            <a href="abc.com" className="list" >Careers At bigbasket</a><br />
-                            <a href="abc.com" className="list" >bb Instant</a><br />
-                            <a href="abc.com" className="list" >bb Daily</a><br />
+                            <Link to="/" className="list" >About Us</Link><br />
+                            <Link to="/" className="list" >In News</Link><br />
+                            <Link to="/" className="list" >Green bigbasket</Link><br />
+                            <Link to="/" className="list" >Privacy Policy</Link><br />
+                            <Link to="/" className="list" >Terms and Conditions</Link><br />
+                            <Link to="/" className="list" >Careers At bigbasket</Link><br />
+                            <Link to="/" className="list" >bb Instant</Link><br />
+                            <Link to="/" className="list" >bb Daily</Link><br />
                         </div>
                         <div className="col-3">
                             <h5 className="text-success">Help</h5>
-                            <a href="abc.com" className="list" >FAQs</a><br />
-                            <a href="abc.com" className="list" >Contact Us</a><br />
-                            <a href="abc.com" className="list" >bb Wallet FAQs</a><br />
-                            <a href="abc.com" className="list" >bb Wallet T&Cs</a><br />
-                            <a href="abc.com" className="list" >Vendor Connect</a><br />
-                            <a href="abc.com" className="list" >E-Invoice Compliance for bigbasket Vendors</a><br />
+                            <Link to="/" className="list" >FAQs</Link><br />
+                            <Link to="/" className="list" >Contact Us</Link><br />
+                            <Link to="/" className="list" >bb Wallet FAQs</Link><br />
+                            <Link to="/" className="list" >bb Wallet T&Cs</Link><br />
+                            <Link to="/" className="list" >Vendor Connect</Link><br />
+                            <Link to="/" className="list" >E-Invoice Compliance for bigbasket Vendors</Link><br />
                         </div>
                         <div className="col-3">
                             <h5 className="text-success">Download Our App</h5>
@@ -75,22 +75,22 @@ export const Footer = () => {
                             <h6>POPULAR CATEGORIES:</h6>
                         </div>
                         <div className="col-9">
-                            <a href="abc.com" className="list" >Washing Powders,</a>
-                            <a href="abc.com" className="list" >Milk,</a>
-                            <a href="abc.com" className="list" >Tea,</a>
-                            <a href="abc.com" className="list" >Liquid Soaps & Bars,</a>
-                            <a href="abc.com" className="list" >Toor Dal,</a>
-                            <a href="abc.com" className="list" >Ghee,</a>
-                            <a href="abc.com" className="list" >Washing Bars,</a>
-                            <a href="abc.com" className="list" >Other Fruits,</a>
-                            <a href="abc.com" className="list" >Butter & Cream,</a>
-                            <a href="abc.com" className="list" >Basmati Rice,</a>
-                            <a href="abc.com" className="list" >Cheese,</a>
-                            <a href="abc.com" className="list" >Fresh Chicken,</a>
-                            <a href="abc.com" className="list" >Toothpaste,</a>
-                            <a href="abc.com" className="list" >Toilet Cleaners,</a>
-                            <a href="abc.com" className="list" >Glucose,</a>
-                            <a href="abc.com" className="list" >Marie & Milk Biscuits,</a>
+                            <Link to="/" className="list" >Washing Powders,</Link>
+                            <Link to="/" className="list" >Milk,</Link>
+                            <Link to="/" className="list" >Tea,</Link>
+                            <Link to="/" className="list" >Liquid Soaps & Bars,</Link>
+                            <Link to="/" className="list" >Toor Dal,</Link>
+                            <Link to="/" className="list" >Ghee,</Link>
+                            <Link to="/" className="list" >Washing Bars,</Link>
+                            <Link to="/" className="list" >Other Fruits,</Link>
+                            <Link to="/" className="list" >Butter & Cream,</Link>
+                            <Link to="/" className="list" >Basmati Rice,</Link>
+                            <Link to="/" className="list" >Cheese,</Link>
+                            <Link to="/" className="list" >Fresh Chicken,</Link>
+                            <Link to="/" className="list" >Toothpaste,</Link>
+                            <Link to="/" className="list" >Toilet Cleaners,</Link>
+                            <Link to="/" className="list" >Glucose,</Link>
+                            <Link to="/" className="list" >Marie & Milk Biscuits,</Link>
                         </div>
                     </div>
 
@@ -99,22 +99,22 @@ export const Footer = () => {
                             <h6>POPULAR BRANDS:</h6>
                         </div>
                         <div className="col-9">
-                            <a href="abc.com" className="list" >Fresho,</a>
-                            <a href="abc.com" className="list" >bb Royal,</a>
-                            <a href="abc.com" className="list" >Surf Excel,</a>
-                            <a href="abc.com" className="list" >Amul,</a>
-                            <a href="abc.com" className="list" >Nestle,</a>
-                            <a href="abc.com" className="list" >Saffola,</a>
-                            <a href="abc.com" className="list" >Britannia,</a>
-                            <a href="abc.com" className="list" >Harpic,</a>
-                            <a href="abc.com" className="list" >Lizol,</a>
-                            <a href="abc.com" className="list" >Colgate,</a>
-                            <a href="abc.com" className="list" >Dettol,,</a>
-                            <a href="abc.com" className="list" >Dabur,</a>
-                            <a href="abc.com" className="list" >Tata I Shakti,</a>
-                            <a href="abc.com" className="list" >Fresho Meats,</a>
-                            <a href="abc.com" className="list" >Tropicana,</a>
-                            <a href="abc.com" className="list" >danone,</a>
+                            <Link to="/" className="list" >Fresho,</Link>
+                            <Link to="/" className="list" >bb Royal,</Link>
+                            <Link to="/" className="list" >Surf Excel,</Link>
+                            <Link to="/" className="list" >Amul,</Link>
+                            <Link to="/" className="list" >Nestle,</Link>
+                            <Link to="/" className="list" >Saffola,</Link>
+                            <Link to="/" className="list" >Britannia,</Link>
+                            <Link to="/" className="list" >Harpic,</Link>
+                            <Link to="/" className="list" >Lizol,</Link>
+                            <Link to="/" className="list" >Colgate,</Link>
+                            <Link to="/" className="list" >Dettol,,</Link>
+                            <Link to="/" className="list" >Dabur,</Link>
+                            <Link to="/" className="list" >Tata I Shakti,</Link>
+                            <Link to="/" className="list" >Fresho Meats,</Link>
+                            <Link to="/" className="list" >Tropicana,</Link>
+                            <Link to="/" className="list" >danone,</Link>
                         </div>
                     </div>
 
@@ -123,31 +123,31 @@ export const Footer = () => {
                             <h6>CITIES WE SERVE:</h6>
                         </div>
                         <div className="col-9">
-                            <a href="abc.com" className="list" >Bangalore,</a>
-                            <a href="abc.com" className="list" >Hyderabad,</a>
-                            <a href="abc.com" className="list" >Mumbai,</a>
-                            <a href="abc.com" className="list" >Pune,</a>
-                            <a href="abc.com" className="list" >Chennai,</a>
-                            <a href="abc.com" className="list" >Delhi,</a>
-                            <a href="abc.com" className="list" >Mysore,</a>
-                            <a href="abc.com" className="list" >Coimbatore,</a>
-                            <a href="abc.com" className="list" >Vijayawada-Guntur,</a>
-                            <a href="abc.com" className="list" >Kolkata,</a>
-                            <a href="abc.com" className="list" >Ahmedabad-Gandhinagar,</a>
-                            <a href="abc.com" className="list" >Nashik,</a>
-                            <a href="abc.com" className="list" >Lucknow-Kanpur,</a>
-                            <a href="abc.com" className="list" >Gurgaon,</a>
-                            <a href="abc.com" className="list" >Vadodara,</a>
-                            <a href="abc.com" className="list" >Visakhapatnam,</a>
-                            <a href="abc.com" className="list" >Surat,</a>
-                            <a href="abc.com" className="list" >Nagpur,</a>
-                            <a href="abc.com" className="list" >Patna,</a>
-                            <a href="abc.com" className="list" >Indore,</a>
-                            <a href="abc.com" className="list" >Chandigarh Tricity,</a>
-                            <a href="abc.com" className="list" >Jaipur,</a>
-                            <a href="abc.com" className="list" >Bhopal,</a>
-                            <a href="abc.com" className="list" >Noida-Ghaziabad,</a>
-                            <a href="abc.com" className="list" >Kochi,</a>
+                            <span to="/" style={{ color: "grey" }}>Bangalore,</span>
+                            <span to="/" style={{ color: "grey" }}>Hyderabad,</span>
+                            <span to="/" style={{ color: "grey" }}>Mumbai,</span>
+                            <span to="/" style={{ color: "grey" }}>Pune,</span>
+                            <span to="/" style={{ color: "grey" }}>Chennai,</span>
+                            <span to="/" style={{ color: "grey" }}>Delhi,</span>
+                            <span to="/" style={{ color: "grey" }}>Mysore,</span>
+                            <span to="/" style={{ color: "grey" }}>Coimbatore,</span>
+                            <span to="/" style={{ color: "grey" }}>Vijayawada-Guntur,</span>
+                            <span to="/" style={{ color: "grey" }}>Kolkata,</span>
+                            <span to="/" style={{ color: "grey" }}>Ahmedabad-Gandhinagar,</span>
+                            <span to="/" style={{ color: "grey" }}>Nashik,</span>
+                            <span to="/" style={{ color: "grey" }}>Lucknow-Kanpur,</span>
+                            <span to="/" style={{ color: "grey" }}>Gurgaon,</span>
+                            <span to="/" style={{ color: "grey" }}>Vadodara,</span>
+                            <span to="/" style={{ color: "grey" }}>Visakhapatnam,</span>
+                            <span to="/" style={{ color: "grey" }}>Surat,</span>
+                            <span to="/" style={{ color: "grey" }}>Nagpur,</span>
+                            <span to="/" style={{ color: "grey" }}>Patna,</span>
+                            <span to="/" style={{ color: "grey" }}>Indore,</span>
+                            <span to="/" style={{ color: "grey" }}>Chandigarh Tricity,</span>
+                            <span to="/" style={{ color: "grey" }}>Jaipur,</span>
+                            <span to="/" style={{ color: "grey" }}>Bhopal,</span>
+                            <span to="/" style={{ color: "grey" }}>Noida-Ghaziabad,</span>
+                            <span to="/" style={{ color: "grey" }}>Kochi,</span>
                         </div>
                     </div>
 
