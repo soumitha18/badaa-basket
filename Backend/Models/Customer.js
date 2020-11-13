@@ -36,40 +36,37 @@ const customerSchema = new Schema({
         default: 0
     },
     address: {
-        type: Object,
-        default: {
-            HouseNo: {
-                type: String,
-                default: ""
-            },
-            ApartmentName: {
-                type: String,
-                default: ""
-            },
-            Street: {
-                type: String,
-                default: ""
-            },
-            Landmark: {
-                type: String,
-                default: ""
-            },
-            AreaDetails: {
-                type: String,
-                default: ""
-            },
-            City: {
-                type: String,
-                default: ""
-            },
-            PinCode: {
-                type: String,
-                default: ""
-            },
-            NickName: {
-                type: String,
-                default: ""
-            }
+        HouseNo: {
+            type: String,
+            default: ""
+        },
+        ApartmentName: {
+            type: String,
+            default: ""
+        },
+        Street: {
+            type: String,
+            default: ""
+        },
+        Landmark: {
+            type: String,
+            default: ""
+        },
+        AreaDetails: {
+            type: String,
+            default: ""
+        },
+        City: {
+            type: String,
+            default: ""
+        },
+        PinCode: {
+            type: String,
+            default: ""
+        },
+        NickName: {
+            type: String,
+            default: ""
         }
     }
 });

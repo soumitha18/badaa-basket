@@ -70,7 +70,7 @@ export const ProductCard = ({ prod }) => {
             }
         }
 
-    }, [user])
+    }, [user, prod])
 
     return (
         <div className="my-2 mainCard" onClick={handleClick}>
