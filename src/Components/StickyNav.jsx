@@ -176,6 +176,9 @@ export const StickyNav = () => {
         }
     }
 
+    if (history.location.pathname === "/checkout") {
+        return null
+    }
     return (
         <div className="container-fluid m-0 p-0 sticky-top bg-white shadow">
             <div className="container py-0 my-0">

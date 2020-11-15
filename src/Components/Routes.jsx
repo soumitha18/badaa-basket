@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import { Home } from "./Pages/Home"
 import { BBStar } from "./Pages/BBStar"
 import { ProductItem } from "./Pages/ProductItem"
@@ -17,6 +17,7 @@ import ProfileEdit from './Pages/Profile/ProfileEdit'
 import DeliveryAddress from "./Pages/Profile/DeliveryAddress"
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { ErrorPage } from './Pages/ErrorPage'
 
 export const Routes = () => {
     const [scroll, setScroll] = useState(0)
@@ -56,19 +57,22 @@ export const Routes = () => {
             {
                 scroll <= 1 ? <Route path="/" component={NavBar} /> : <Route path="/" component={StickyNav} />
             }
-            <Route path="/" exact component={Home} />
-            <Route path="/bb-star" component={BBStar} />
-            <Route path="/category" component={CategoryPage} />
-            <Route path="/product-item/:name" component={ProductItem} />
-            <Route path="/product/:name" component={CategoryPage} />
-            <Route path="/my-account/profile" component={ProfileDetail} />
-            <Route path="/my-account/orders" component={OrderDetail} />
-            <Route path="/my-account/customer-service" component={Customer} />
-            <Route path="/my-account/wallet" component={WalletDetail} />
-            <Route path="/my-account/basket" component={MyBasket} />
-            <Route path="/checkout" component={Checkout} />
-            <Route path="/my-account/profile-edit" component={ProfileEdit} />
-            <Route path="/my-account/delivery-address" component={DeliveryAddress} />
+            <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/bb-star" component={BBStar} />
+                <Route path="/category" component={CategoryPage} />
+                <Route path="/product-item/:name" component={ProductItem} />
+                <Route path="/product/:name" component={CategoryPage} />
+                <Route path="/my-account/profile" component={ProfileDetail} />
+                <Route path="/my-account/orders" component={OrderDetail} />
+                <Route path="/my-account/customer-service" component={Customer} />
+                <Route path="/my-account/wallet" component={WalletDetail} />
+                <Route path="/my-account/basket" component={MyBasket} />
+                <Route path="/checkout" component={Checkout} />
+                <Route path="/my-account/profile-edit" component={ProfileEdit} />
+                <Route path="/my-account/delivery-address" component={DeliveryAddress} />
+                <Route render={()=><ErrorPage />} />
+            </Switch>
             <Route path="/" component={Footer} />
         </div>
     )
