@@ -77,8 +77,8 @@ export default function OrderDetail() {
                                 <div className="mx-3 d-flex flex-row">
                                     <i class="fa fa-clock-o mt-4" aria-hidden="true"></i>
                                     <div className="d-flex flex-column text-center mt-3 ml-2">
-                                        <small>11 NOV. WEDNESDAY</small>
-                                        <small>06:00PM - 08:00PM</small>
+                                        <small>TOMORROW</small>
+                                        <small>08:00AM - 11:00AM</small>
                                     </div>
                                 </div>
                                 <div className="border-right"></div>
@@ -118,7 +118,7 @@ export default function OrderDetail() {
                                     <span>Order-id: {user._id}</span>
                                 </div>
                                 <div >
-                                    <span>Order Placed: Mon 9 Nov 2020</span>
+                                    <span>Order Placed: {new Date().toDateString()}</span>
                                 </div>
                             </div>
                             <hr className="text-center w-75" />
@@ -130,7 +130,9 @@ export default function OrderDetail() {
                                 </div>
                                 <div className="col-3 p-2 mt-3">
                                     <h6 className="font-weight-bold">Delivery Address</h6>
-                                    <small className="text-muted">sanjay nagar</small>
+                                    <small className="text-muted">{user.name}</small> <br/>
+                                    <small className="text-muted">{user.email}</small><br/>
+                                    <small className="text-muted">{user.number}</small><br/>
                                 </div>
                                 <div className="col-4 bg-light mt-2" >
                                     <h5>Order Summery</h5>
@@ -175,16 +177,16 @@ export default function OrderDetail() {
                         <div className="text-center ml-3" >
                             <div className="text-center" style={{ height: "60px", width: "100%", backgroundColor: "#eef2ed" }}>
                                 <div >
-                                    <button type="button" className="mt-2" style={{ backgroundColor: "white", width: "200px", height: "45px", border: "1px solid #30c416", outline: "none" }} >APPLY VOUCHER<br /><small className="text-muted m-1">Save more on this order</small></button>
+                                    <button type="button" disabled className="mt-2" style={{ backgroundColor: "white", width: "200px", height: "45px", border: "1px solid #30c416", outline: "none" }} >APPLY VOUCHER<br /><small className="text-muted m-1">Save more on this order</small></button>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="text-center my-3" >
+                        {/* <div className="text-center my-3" >
                             <span className="">_________________________________________________</span>
                             <small className="mt-5 m-3">PAST ORDERS</small>
                             <span className="">__________________________________________________</span>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

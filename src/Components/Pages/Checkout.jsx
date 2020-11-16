@@ -23,7 +23,7 @@ export const Checkout = () => {
             user.order = user.basket
             user.basket = []
             dispatch(editing(user))
-            alert("Payment Successful! Email Sended to you!")
+            alert("Payment Successful! Email Sent to you!")
             dispatch(handleCapture())
             history.push("/my-account/orders")
         }
