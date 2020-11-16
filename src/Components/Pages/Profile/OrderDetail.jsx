@@ -14,6 +14,9 @@ export default function OrderDetail() {
         history.push("/")
     }
 
+    const total = (user && user.order.reduce((total, item) => total + Number(item.mrp) * Number(item.quantity), 0)).toFixed(2)
+    const totalDiscount = (user && user.order.reduce((total, item) => total + Number(item.originalMrp - item.mrp) * Number(item.quantity), 0)).toFixed(2)
+
     return (
         <div>
             <div className="container my-3">
@@ -58,9 +61,10 @@ export default function OrderDetail() {
                                 <button type="button" className="btn" style={{ cursor: "no-drop", backgroundColor: "#86d615", width: "200px" }}>PAY NOW</button>
                             </div>
                         </div>
-                        {/* <div className="my-3 text-center" >
-                            <small>{user && user.order && user.order.length === 0 ? "No Orders" : null}</small>
-                        </div> */}
+                        {user && user.order && user.order.length === 0 ?
+                        <div className="my-3 text-center" >
+                            <small> "No Orders" </small>
+                        </div> :
                         <div className="row border-left">
                             <div className="mt-4 ml-2">
                                 <input type="checkbox" aria-label="Checkbox for following text input" />
@@ -100,10 +104,10 @@ export default function OrderDetail() {
                                     </div>
                                 </div>
                                 <div className="ml-5 mr-5" id="accordionExample">
-                                    <button type="button" className="border mt-3 text-muted" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{ backgroundColor: "white", outline: "none" }}>View 2 items<i class="fa fa-sort-desc h5" aria-hidden="true"></i></button>
+                                    <button type="button" className="border mt-3 text-muted" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{ backgroundColor: "white", outline: "none" }}>View {user.order.length} items<i class="fa fa-sort-desc h5" aria-hidden="true"></i></button>
                                 </div>
                             </div>
-                        </div>
+                        </div>}
 
                         <div className="ml-3 border" id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div className="row ml-4 mt-4 d-flex d-flex justify-content-around">
@@ -111,7 +115,7 @@ export default function OrderDetail() {
                                     <span>Shipment type: Standard delivery</span>
                                 </div>
                                 <div >
-                                    <span>Order-id: 12345566</span>
+                                    <span>Order-id: {user._id}</span>
                                 </div>
                                 <div >
                                     <span>Order Placed: Mon 9 Nov 2020</span>
@@ -121,32 +125,32 @@ export default function OrderDetail() {
 
                             <div className="row d-flex ml-4 justify-content-around">
                                 <div className="col-3 p-2 mt-3">
-                                    <h6>Delevery Address</h6>
-                                    <span>sanjay nagar</span>
+                                    <h6 className="font-weight-bold">Items</h6>
+                                    {user.order && user.order.map(item => <div key={item.productName}><small>{item.productName}</small></div>)}
                                 </div>
                                 <div className="col-3 p-2 mt-3">
-                                    <h6>Payment Information</h6>
-                                    <span>Order-id: 12345566</span>
+                                    <h6 className="font-weight-bold">Delivery Address</h6>
+                                    <small className="text-muted">sanjay nagar</small>
                                 </div>
                                 <div className="col-4 bg-light mt-2" >
                                     <h5>Order Summery</h5>
                                     <div className="row d-flex justify-content-around">
-                                        <span>Delevery charge </span> <span> Rs. 10</span>
+                                        <span>Delevery charge </span> <span> Rs. 00</span>
                                     </div>
                                     <div className="row d-flex justify-content-around">
-                                        <span>Used from Wallet </span> <span> Rs. 10</span>
+                                        <span>Used from Wallet </span> <span> Rs. 00</span>
                                     </div>
                                     <div className="row d-flex justify-content-around">
-                                        <span>Order Amount </span> <span> Rs. 10</span>
+                                        <span>Order Amount </span> <span> Rs. {total}</span>
                                     </div>
                                     <div className="row d-flex justify-content-around">
-                                        <span>Savings </span> <span className="text-success"> Rs. 10</span>
+                                        <span>Savings </span> <span className="text-success"> Rs. {totalDiscount}</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="row ml-4">
-                                <h6 className="mt-4">More With The Order</h6>
+                            <div className="row ml-4 my-3">
+                                {/* <h6 className="mt-4">More With The Order</h6> */}
                             </div>
                             <div className="row d-flex text-center ml-4">
                                 <div className="p-2 border border-dark w-25">
