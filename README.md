@@ -46,7 +46,6 @@ Cloning the bigBasket website
 - [x] Edit in Basket
 - [x] Remove from Basket
 - [x] Edit Customer Details
-- [ ] Apply Voucher
 - [x] Payment
 - [x] Tracking Order
 - [x] Logout
@@ -57,8 +56,11 @@ Cloning the bigBasket website
 
 ### Chhota Mein Badaa Basket
 
-<b style="color:red;">Badaa Basket is Cloning of Big Basket.</b> Badaa Basket is an e-commerce platform for groceries. As we open our website we can login or signup with personal details or Google or Facebook authentication. Set your near by Badaa Basket location. You can search the products or filter it by category and can make customizations. In product page  we can see the product details(About), actual price, discount price, saving from choosing product, rating and reviews by customers, quantity required etc. We can add the products to the Basket, there we can edit the quantity required, remove the product, overall view of products purchased and amount payable. We can edit profile, delivery address. From choosing products from vast varieties click on checkout option where order summary is displayed, by clicking payment option it will redirect to bank servers after successfull payment, one can track the order details. If any queries and support regarding the products one can access to the customer support panel.
+<b style="color:red;">Badaa Basket is Clone of Big Basket.</b> Badaa Basket is an e-commerce platform for groceries. As you open our website you can login or signup with personal details or Google or Facebook authentication. Set your near by Badaa Basket location. You can search the products or filter it by category and can make customizations. In product page  you can see the product details(About), actual price, discount price, saving from choosing product, rating and reviews by customers, quantity required etc. You can add the products to the Basket, there you can edit the quantity required, remove the product, overall view of products purchased and amount payable. You can edit profile, delivery address. From choosing products from vast varieties click on checkout option where order summary is displayed, by clicking payment option it will redirect to bank servers after successfull payment, one can track the order details. If any queries and support regarding the products one can access to the customer support panel.
 
 #### From Home Customer can experience a virtual platform to purchase daily groceries and enjoy great experience without any complications from our website.
 
 Wanna Try (http://badaabasket.tk/) ![Wana Look](https://media.tenor.com/images/7ad5dbcba7a5b825626c6cb4697254b4/tenor.gif)
+
+Any Suggestions regarding improvement of website welcome.....
+
