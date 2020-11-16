@@ -53,7 +53,7 @@ Cloning the bigBasket website
 
 ### Actually It Looks
 
-<img src="" alt="Landing Page" />
+<img src="./resources/badaaBasket.jpeg" alt="Landing Page" />
 
 ### Chhota Mein Badaa Basket
 
