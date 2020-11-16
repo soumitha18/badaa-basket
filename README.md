@@ -47,6 +47,7 @@ Cloning the bigBasket website
 - [x] Remove from Basket
 - [x] Edit Customer Details
 - [x] Payment
+- [x] Email Conformation
 - [x] Tracking Order
 - [x] Logout
 
