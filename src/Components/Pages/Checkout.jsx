@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from 'react-router-dom'
 import { editing } from "../../Redux/AuthReducer/action"
-import { handleCapture, payment } from '../../Redux/PaymentReducer/actions'
+import { handleCapture, payment } from '../../Redux/PaymentReducer/action'
 
 export const Checkout = () => {
 

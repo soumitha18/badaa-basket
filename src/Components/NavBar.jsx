@@ -176,7 +176,7 @@ export const NavBar = () => {
         }
         const [data, title] = e.target.id.split(":")
         if (title === "productName") {
-            Axios.get(`http://localhost:5000/getproducts?${title}=${data}`)
+            Axios.get(`/api/getproducts?${title}=${data}`)
                 .then(res => {
                     localStorage.setItem("product", JSON.stringify(res.data[0]))
                     history.push(`/product-item/${data}`)
