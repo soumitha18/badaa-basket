@@ -160,7 +160,7 @@ export const NavBar = () => {
     }, [isAuth]);
 
     useEffect(() => {
-        localStorage.setItem("userProfile", JSON.stringify(user))
+        localStorage.setItem("user", JSON.stringify(user))
     }, [user])
 
     const handleClick = (item) => {
